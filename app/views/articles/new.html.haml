@@ -1,5 +1,23 @@
 %h1 New article
 
-= render 'form'
+= form_for @article do |f|
+  - if @article.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@article.errors.count, "error")} prohibited this article from being saved:"
+      %ul
+        - @article.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label "What's new?"
+    = f.text_field :title
+    = f.label :予定日
+    = f.datetime_select :date
+
+    = f.hidden_field :user_id, value: current_user.id
+  .actions
+    = f.submit 'Save'
+
+/ = render 'form'
 
 = link_to 'Back', articles_path

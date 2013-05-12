@@ -2,11 +2,11 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @articles }
+    if current_user
+      @article = Article.new
+      @articles = Article.all
+    else
+      render template: 'home/login', layout: false
     end
   end
 
@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.html { redirect_to articles_path, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else
         format.html { render action: "new" }

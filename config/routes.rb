@@ -6,7 +6,7 @@ Week::Application.routes.draw do
 
 
   get "home/index"
-  root to: "home#index"
+  root to: "articles#index"
 
   #OmniAuth
   match "/auth/facebook/callback" => 'users#callback'
