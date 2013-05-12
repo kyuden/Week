@@ -1,0 +1,20 @@
+= image_tag current_user.image
+%p
+  = current_user.name
+  さんのプロフィール
+%p
+  名前
+  = current_user.name
+%p
+  mail
+  = current_user.email
+%p
+  活動拠点
+  = current_user.location_name
+%p
+  年齢
+  = current_user.age
+
+= link_to 'プロフィールを編集する', edit_user_path(current_user)
+\|
+= link_to 'homeに戻る', root_path

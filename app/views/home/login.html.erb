@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Week</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<h1><%= "Weekは週末を同期と楽しむサービスです" %></h1>
+<p><%= link_to "facebook 無料登録/ログイン", "/auth/facebook" %></p>
+<p><%= "WeekがFacebookに許可無く投稿することはありません" %></p>
+<hr>
+<p>
+  © 2013
+  <%= link_to  'Masahiro Hisada', 'http://internkyuden.tumblr.com/' %>
+  All Rights Reserved</p>
+</body>
+</html>

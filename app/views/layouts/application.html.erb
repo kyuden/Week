@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Week</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<!-- = render 'shared/header' -->
+<h1>Week</h1>
+<hr>
+<%= render template: 'users/index' %>
+<%= yield %>
+
+<!-- = render 'shared/footer' -->
+<hr>
+<p>
+  © 2013
+  <%= link_to  'Masahiro Hisada', 'http://internkyuden.tumblr.com/' %>
+  All Rights Reserved</p>
+</body>
+</html>

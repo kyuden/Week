@@ -1,0 +1,12 @@
+%h1 Listing users
+
+.user_nav
+  - logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ#{p current_user.inspect}"
+  = image_tag current_user.image
+  %p
+    = current_user.name
+    さん #{link_to "logout", logout_path}
+  %p
+    = link_to "プロフィール", current_user
+  %p
+    = link_to "delete", current_user, method: :delete
