@@ -8,11 +8,17 @@
 </head>
 <body>
 <!-- = render 'shared/header' -->
+<div id="banner">
 <h1>Week</h1>
 <hr>
-<%= render template: 'users/index' %>
-<%= yield %>
+</div>
+  <div id="side">
+    <%= render template: 'users/index' %>
+  </div>
 
+  <div id="main">
+    <%= yield %>
+  </div>
 <!-- = render 'shared/footer' -->
 <hr>
 <p>

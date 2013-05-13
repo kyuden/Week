@@ -1,29 +1,22 @@
 %h1 Listing articles
 %h2= render template: 'articles/new'
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Date
-    %th Comment
-    %th User
-    %th Entry
-    %th
-    %th
-    %th
-
-  - @articles.each do |article|
-    %tr
-      %td= article.title
-      %td= article.description
-      %td= article.date
-      %td= article.comment_id
-      %td= article.user_id
-      %td= article.entry_id
-      %td= link_to 'Show', article
-      %td= link_to 'Edit', edit_article_path(article)
-      %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
+- @articles.each do |article|
+  %hr
+  = image_tag article.user.image
+  = article.user.name
+  %span= article.title
+  
+  / %td= article.description
+  / %td= article.date
+  / %td= article.comment_id
+  / %td= article.user_id
+  / %td= article.entry_id
+  / %td= link_to 'Show', article
+  / %td= link_to 'Edit', edit_article_path(article)
+  / %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %p= render 'comments/form', comment: article.comments.build
+  - article.comments.each do |comment|
+    - if comment.body
+      %p= render 'comments/comment', comment: comment
 
 %br
-
-= link_to 'New Article', new_article_path

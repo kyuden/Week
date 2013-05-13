@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :uid, :name, :age, :location, :email, :gender, :access_token, :image, :url
   has_many :articles
-
+  has_many :comments
+  
   include JpPrefecture
   jp_prefecture :prefecture_code
 

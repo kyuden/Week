@@ -1,0 +1,14 @@
+- comment.user = current_user
+- logger.debug "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#{comment.inspect}"
+= simple_form_for comment do |f|
+  .comment_container
+    .comment_user
+      = image_tag current_user.image
+      %span.name= current_user.name
+      %span= f.input :body, label: false, placeholder: "コメントをする", size: "50x50"
+      = f.input :user_id, as: :hidden
+      = f.input :article_id, as: :hidden
+    .form-actions
+      = f.button :submit
+
+

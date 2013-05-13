@@ -2,7 +2,7 @@ class CreateArticles < ActiveRecord::Migration
   def change
     create_table :articles do |t|
       t.string :title
-      t.string :description
+      t.text :description
       t.datetime :date
       t.integer :comment_id
       t.integer :user_id
