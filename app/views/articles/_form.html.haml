@@ -7,22 +7,16 @@
           %li= msg
 
   .field
+    = f.label :date
+    = f.datetime_select :date
+  .field
     = f.label :title
     = f.text_field :title
   .field
     = f.label :description
-    = f.text_field :description
+  = f.text_area :description, {cols: 80, rows: 10}
   .field
-    = f.label :date
-    = f.datetime_select :date
-  .field
-    = f.label :comment_id
-    = f.number_field :comment_id
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :entry_id
-    = f.number_field :entry_id
+    = f.label :詳細を公開する
+    = f.check_box :publish
   .actions
     = f.submit 'Save'

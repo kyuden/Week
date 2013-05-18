@@ -12,6 +12,13 @@ gem 'omniauth-facebook'
 gem 'jp_prefecture'
 gem 'koala'
 gem 'simple_form'
+gem 'factory_girl_rails'
+gem 'guard-rails'
+gem 'rails3-generators'
+gem 'kaminari'
+gem 'hirb'
+gem 'hirb-unicode'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

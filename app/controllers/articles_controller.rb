@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   def index
     if current_user
       @article = Article.new
-      @articles = Article.all
+      @articles = Article.joins(:user).where("location = ? AND age = ?", current_user.location, current_user.age).page(params[:page])
     else
       render template: 'home/login', layout: false
     end

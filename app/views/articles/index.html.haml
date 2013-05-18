@@ -5,7 +5,10 @@
   = image_tag article.user.image
   = article.user.name
   %span= article.title
-  
+  - if article.publish?
+    = link_to 'イベント詳細', article_path(article)
+  - if article.user == current_user
+    = link_to 'Edit', edit_article_path(article)
   / %td= article.description
   / %td= article.date
   / %td= article.comment_id
@@ -18,5 +21,5 @@
   - article.comments.each do |comment|
     - if comment.body
       %p= render 'comments/comment', comment: comment
-
+= paginate @articles
 %br
