@@ -5,6 +5,15 @@
   = image_tag article.user.image
   = article.user.name
   %span= article.title
+  - logger.debug "YYYYYYYYYYYYYYYYYYYYYYYYYYY#{article.watch_hold}"
+  - unless article.watch_hold?
+    = button_to 'ちょっと気になる', entries_path(article_id: article, type: 'Watch')
+  - else
+    = link_to '気になるをやめる', entry_path(article.watch_hold, type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }
+  - unless article.cart_hold?
+    = button_to '参加してみる', entries_path(article_id: article, type: 'Cart')
+  - else
+    = link_to '参加をやめる', entry_path(article.cart_hold, type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' }
   - if article.publish?
     = link_to 'イベント詳細', article_path(article)
   - if article.user == current_user
@@ -17,7 +26,7 @@
   / %td= link_to 'Show', article
   / %td= link_to 'Edit', edit_article_path(article)
   / %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
-  %p= render 'comments/form', comment: article.comments.build
+  %p= render 'comments/form', comment: article.comments.build, type: ''
   - article.comments.each do |comment|
     - if comment.body
       %p= render 'comments/comment', comment: comment

@@ -40,11 +40,18 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
+    logger.debug "pJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ#{params[:type]}"
     @comment = Comment.new(params[:comment])
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to root_url , notice: 'Comment was successfully created.' }
+        if params[:type] == 'Cart'
+          format.html { redirect_to carts_url , notice: 'Comment was successfully created.' }
+        elsif params[:type] == 'Watch'
+          format.html { redirect_to watches_url , notice: 'Comment was successfully created.' }
+        else
+          format.html { redirect_to root_url , notice: 'Comment was successfully created.' }
+        end
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }

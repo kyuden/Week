@@ -7,4 +7,23 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
+
+  def current_cart
+    if current_user.cart
+      Cart.find(current_user.cart)
+    else
+      cart = Cart.create(user_id: current_user.id)
+      cart
+    end
+  end
+
+  def current_watch
+    if current_user.watch
+      Watch.find(current_user.watch)
+    else
+      watch = Watch.create(user_id: current_user.id)
+      watch
+    end
+  end
+
 end

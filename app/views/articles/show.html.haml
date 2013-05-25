@@ -11,7 +11,11 @@
   = @article.date
 %p
   %b Date:
-  = @article.publish ? "詳細公開" : "詳細非公開" 
+  = @article.publish ? "詳細公開" : "詳細非公開"
+%p
+  %b 参加者:
+  - @entries.each do |entry|
+    = image_tag entry.cart.user.image
 
 = link_to '編集を続ける', edit_article_path(@article)
 \|

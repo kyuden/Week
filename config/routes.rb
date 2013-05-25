@@ -1,12 +1,11 @@
 Week::Application.routes.draw do
+  resources :watches
+  resources :entries
+  resources :carts
   resources :comments
-
-
   resources :articles
-
-
   resources :users
-
+  resources :cars
 
   get "home/index"
   root to: "articles#index"

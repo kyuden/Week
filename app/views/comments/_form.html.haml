@@ -1,6 +1,6 @@
 - comment.user = current_user
-- logger.debug "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#{comment.inspect}"
-= simple_form_for comment do |f|
+- logger.debug "+++++++++++++++++#{type}"
+= simple_form_for comment, url: comments_path(type: type),:html => { :method => "post" } do |f|
   .comment_container
     .comment_user
       = image_tag current_user.image
