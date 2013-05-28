@@ -7,6 +7,8 @@
   = link_to '参加をやめる', entry_path(entry, type: 'Cart' ), :method => :delete, :data => { :confirm => 'Are you sure?' }
   - if entry.article.publish?
     = link_to 'イベント詳細', article_path(entry.article)
+  - if entry.article.user == current_user
+    = link_to 'Edit', edit_article_path(entry.article)
   / %td= article.description
   / %td= article.date
   / %td= article.comment_id

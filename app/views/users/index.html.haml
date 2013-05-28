@@ -9,6 +9,12 @@
   %p
     = link_to "プロフィール", current_user
   %p
-    = link_to "参加するイベント", carts_path
+  - if current_user.cart
+    = link_to "参加するイベント #{current_user.cart.entries.length}件", carts_path
+  - else
+    = "「参加する」を押してイベントに参加してみよう"
   %p
-    = link_to "気になるイベント", watches_path
+  - if current_user.watch
+    = link_to "気になるイベント #{current_user.watch.entries.length}件", watches_path
+  - else
+    = "「気になる」を押してイベントをブックマークしてみよう"

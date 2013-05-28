@@ -5,10 +5,11 @@ class Entry < ActiveRecord::Base
   belongs_to :watch
   default_scope order: "created_at DESC"
 
-  def cart_hold?
+  def cart_hold?(user)
     Entry.where(
       article_id: self.article_id,
-      watch_id: nil
+      watch_id: nil,
+      cart_id: user.cart
     ).exists?
   end
 

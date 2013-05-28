@@ -16,7 +16,6 @@
   %b 参加者:
   - @entries.each do |entry|
     = image_tag entry.cart.user.image
-
 = link_to '編集を続ける', edit_article_path(@article)
 \|
 = link_to 'ホームに戻る', articles_path

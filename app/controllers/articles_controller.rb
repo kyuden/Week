@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @article = Article.find(params[:id])
-    @entries = Entry.where(article_id: @article)
+    @entries = Entry.where(article_id: @article, watch_id: nil)
 
     respond_to do |format|
       format.html # show.html.erb
