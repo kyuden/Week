@@ -18,6 +18,7 @@ gem 'rails3-generators'
 gem 'kaminari'
 gem 'hirb'
 gem 'hirb-unicode'
+gem 'roadie'
 
 group :development do
   gem 'better_errors'

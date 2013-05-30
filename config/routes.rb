@@ -3,7 +3,10 @@ Week::Application.routes.draw do
   resources :entries
   resources :carts
   resources :comments
-  resources :articles
+  resources :articles do
+    get "send_mail", on: :member
+  end
+
   resources :users
   resources :cars
 

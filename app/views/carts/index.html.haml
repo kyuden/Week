@@ -17,7 +17,7 @@
   / %td= link_to 'Show', article
   / %td= link_to 'Edit', edit_article_path(article)
   / %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
-  %p= render 'comments/form', {comment: entry.article.comments.build, type: 'Cart'}
   - entry.article.comments.each do |comment|
     - if comment.body
       %p= render 'comments/comment', comment: comment
+  %p= render 'comments/form', {comment: entry.article.comments.build, type: 'Cart'}

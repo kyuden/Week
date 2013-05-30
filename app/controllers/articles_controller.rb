@@ -81,4 +81,12 @@ class ArticlesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def send_mail
+    entries = Entry.where(article_id: params[:id], watch_id: nil)
+    mail = OwnerMailer.detail_mail(entries)
+    mail.transport_encoding = "8bit"
+    mail.deliver
+    redirect_to article_path(params[:id])
+  end
 end

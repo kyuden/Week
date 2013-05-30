@@ -16,6 +16,9 @@
   %b 参加者:
   - @entries.each do |entry|
     = image_tag entry.cart.user.image
+%p
+  -if current_user == @article.user
+    = link_to '参加者全員に決定事項をmailする', send_mail_article_path(@article)
 = link_to '編集を続ける', edit_article_path(@article)
 \|
 = link_to 'ホームに戻る', articles_path
