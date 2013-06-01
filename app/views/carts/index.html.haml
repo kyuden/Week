@@ -1,6 +1,11 @@
 %h1 Listing cart
 - @cart.entries.each do |entry|
   %hr
+  = entry.article.disp_day
+  - if entry.article.about_time.present?
+    %p= "#{entry.article.about_time}辺りから"
+  - else
+    %p
   = image_tag entry.article.user.image
   = entry.article.user.name
   = entry.article.title

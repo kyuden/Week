@@ -12,7 +12,10 @@
     = f.label "What's new?"
     = f.text_field :title
     = f.label :予定日
-    = f.datetime_select :date
+    = f.select :disp_day, week_select
+    = f.label "開始時間帯"
+    = f.select :about_time, [["朝"],["昼"],["夕方"],["夜"]], prompt: "後で決める"
+    / = f.datetime_select :date, prompt: {hour: "後で", minute: "決める"},  order: [:day, :month, :year], add_month_numbers: true, datetime_separator: " 予定時間 "
 
     = f.hidden_field :user_id, value: current_user.id
   .actions

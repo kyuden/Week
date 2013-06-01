@@ -1,5 +1,5 @@
 class Article < ActiveRecord::Base
-  attr_accessible :comment_id, :date, :description, :entry_id, :title, :user_id, :publish
+  attr_accessible :comment_id, :date, :description, :entry_id, :title, :user_id, :publish, :disp_day, :about_time
   belongs_to :user
   has_many :comments
   has_many :entries

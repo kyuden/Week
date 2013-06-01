@@ -7,6 +7,12 @@
           %li= msg
 
   .field
+    = f.label :disp_day
+    = f.select :disp_day, week_select
+  .field
+    = f.label :about_time
+    = f.select :about_time, [["朝"],["昼"],["夕方"],["夜"]], prompt: "後で決める"
+  .field
     = f.label :date
     = f.datetime_select :date
   .field

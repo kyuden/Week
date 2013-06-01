@@ -2,6 +2,11 @@
 %h2= render template: 'articles/new'
 - @articles.each do |article|
   %hr
+  = article.disp_day
+  - if article.about_time.present?
+    %p= "#{article.about_time}辺りから"
+  - else
+    %p
   = image_tag article.user.image
   = article.user.name
   %span= article.title
