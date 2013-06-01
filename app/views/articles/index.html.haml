@@ -5,6 +5,14 @@
   = image_tag article.user.image
   = article.user.name
   %span= article.title
+  - if current_user == article.user
+    %p 共通の友達はいません
+  - else
+    - friends = @graph.get_connections("me", "mutualfriends/#{article.user.uid}?fields=name,picture")
+    %p 共通の友達
+    - friends.each do |friend|
+      = image_tag friend["picture"]["data"]["url"]
+      = friend["name"]
   - unless article.watch_hold?(current_user)
     = button_to 'ちょっと気になる', entries_path(article_id: article, type: 'Watch')
   - else

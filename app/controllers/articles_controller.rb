@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
     if current_user
       @article = Article.new
       @articles = Article.joins(:user).where("location = ? AND age = ?", current_user.location, current_user.age).page(params[:page])
+      @graph = Koala::Facebook::API.new(current_user.access_token)
     else
       render template: 'home/login', layout: false
     end

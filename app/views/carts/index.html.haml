@@ -4,6 +4,14 @@
   = image_tag entry.article.user.image
   = entry.article.user.name
   = entry.article.title
+  - if current_user == entry.article.user
+    %p 共通の友達はいません
+  - else
+    - friends = @graph.get_connections("me", "mutualfriends/#{entry.article.user.uid}?fields=name,picture")
+    %p 共通の友達
+    - friends.each do |friend|
+      = image_tag friend["picture"]["data"]["url"]
+      = friend["name"]
   = link_to '参加をやめる', entry_path(entry, type: 'Cart' ), :method => :delete, :data => { :confirm => 'Are you sure?' }
   - if entry.article.publish?
     = link_to 'イベント詳細', article_path(entry.article)
