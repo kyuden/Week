@@ -18,6 +18,7 @@
     / = f.datetime_select :date, prompt: {hour: "後で", minute: "決める"},  order: [:day, :month, :year], add_month_numbers: true, datetime_separator: " 予定時間 "
 
     = f.hidden_field :user_id, value: current_user.id
+    = f.hidden_field :place_adress, value: current_user.location_name
   .actions
     = f.submit 'Save'
 

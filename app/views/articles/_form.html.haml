@@ -5,16 +5,15 @@
       %ul
         - @article.errors.full_messages.each do |msg|
           %li= msg
-
+  %h2予定
   .field
     = f.label :disp_day
     = f.select :disp_day, week_select
   .field
     = f.label :about_time
     = f.select :about_time, [["朝"],["昼"],["夕方"],["夜"]], prompt: "後で決める"
-  .field
-    = f.label :date
-    = f.datetime_select :date
+  %hr
+  %h2詳細事項
   .field
     = f.label :title
     = f.text_field :title
@@ -22,7 +21,17 @@
     = f.label :description
   = f.text_area :description, {cols: 80, rows: 10}
   .field
-    = f.label :詳細を公開する
+    = f.label :date
+    = f.datetime_select :date
+  .field
+    = f.label "集合場所名"
+    = f.text_field  :place_name
+  .field
+    = f.label "集合場所住所"
+    = f.text_field  :place_adress
+    = gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})
+  .field
+    = f.label :詳細事項を公開する
     = f.check_box :publish
   .actions
     = f.submit 'Save'

@@ -1,11 +1,41 @@
 class Article < ActiveRecord::Base
-  attr_accessible :comment_id, :date, :description, :entry_id, :title, :user_id, :publish, :disp_day, :about_time
+  acts_as_gmappable validation: true,
+                    check_process: false,
+                    :msg => "Sorry, not even Google could figure out where that is"
+  attr_accessible :comment_id,
+                  :date,
+                  :description,
+                  :entry_id,
+                  :title,
+                  :user_id,
+                  :publish,
+                  :disp_day,
+                  :about_time,
+                  :place_adress,
+                  :place_name,
+                  :latitude,
+                  :longitude,
+                  :gmaps
+
   belongs_to :user
   has_many :comments
   has_many :entries
 
   default_scope order: "created_at DESC"
   paginates_per  5
+
+  def gmaps4rails_address
+    #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
+    "#{self.place_adress}"
+  end
+
+  def gmaps4rails_infowindow
+    "集合場所: #{self.place_name}"
+  end
+
+  def gmaps4rails_title
+    "集合場所: #{self.place_name}"
+  end
 
   def cart_hold?(user)
     Entry.where(

@@ -19,6 +19,7 @@ gem 'kaminari'
 gem 'hirb'
 gem 'hirb-unicode'
 gem 'roadie'
+gem 'gmaps4rails'
 
 group :development do
   gem 'better_errors'

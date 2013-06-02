@@ -1,5 +1,16 @@
 %p#notice= notice
-
+%h2予定
+%p
+  %b disp_day:
+  = @article.disp_day
+%p
+  %b about_time:
+  - if @article.about_time.present?
+    = @article.about_time
+  - else
+    %a 後で決める
+%hr
+%h2決定事項
 %p
   %b Title:
   = @article.title
@@ -9,6 +20,13 @@
 %p
   %b Date:
   = @article.date
+%p
+  %b 集合場所名:
+  = @article.place_name
+%p
+  %b 集合場所住所:
+  = @article.place_adress
+  = gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})
 %p
   %b Date:
   = @article.publish ? "詳細公開" : "詳細非公開"

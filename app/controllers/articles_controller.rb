@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     @entries = Entry.where(article_id: @article, watch_id: nil)
+    @json = Article.find(params[:id]).to_gmaps4rails
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,6 +38,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
+    @json = Article.find(params[:id]).to_gmaps4rails
   end
 
   # POST /articles

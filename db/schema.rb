@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601175844) do
+ActiveRecord::Schema.define(:version => 20130602073956) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -20,11 +20,16 @@ ActiveRecord::Schema.define(:version => 20130601175844) do
     t.integer  "comment_id"
     t.integer  "user_id"
     t.integer  "entry_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "publish",     :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "publish",      :default => false
     t.string   "disp_day"
     t.string   "about_time"
+    t.string   "place_adress", default: "平和祈念像"
+    t.string   "place_name"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
   end
 
   create_table "carts", :force => true do |t|
