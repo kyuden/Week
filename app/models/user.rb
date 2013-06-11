@@ -12,4 +12,16 @@ class User < ActiveRecord::Base
   def location_name
     JpPrefecture::Prefecture.find(self.location).name
   end
+
+  def small_image
+    self.image.sub(/square/, "small")
+  end
+
+  def normal_image
+    self.image.sub(/square/, "normal")
+  end
+
+  def large_image
+    self.image.sub(/square/, "large")
+  end
 end

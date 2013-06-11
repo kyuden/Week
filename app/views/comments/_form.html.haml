@@ -1,14 +1,13 @@
 - comment.user = current_user
-- logger.debug "+++++++++++++++++#{type}"
 = simple_form_for comment, url: comments_path(type: type),:html => { :method => "post" } do |f|
-  .comment_container
-    .comment_user
+  .comment_container{style: "border-top:2px outset #6a6a6a;border-right:15px solid #FFFFFF; padding: 1px; background-color: #808080; overflow: hidden;"}
+    .span1
       = image_tag current_user.image
-      %span.name= current_user.name
-      %span= f.input :body, label: false, placeholder: "コメントをする", size: "50x50"
+    .span11{style: "float:left"}
+      = f.input :body, label: false, placeholder: "コメントをする",wrapper_html: { size: "100" }
       = f.input :user_id, as: :hidden
       = f.input :article_id, as: :hidden
-    .form-actions
-      = f.button :submit
+      = f.button :submit, style: "display:none"
+      %br
 
 

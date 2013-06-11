@@ -1,5 +1,9 @@
-%ul
-  %li
-    = image_tag comment.user.image
-    %span.name= comment.user.name
-    = comment.body
+%hr{style: "margin:1px",size: "1"}
+.row-fluid{style: "padding: 0px; background-color: #f0f0f0; overflow: hidden;"}
+  .span1
+    %div
+      = image_tag comment.user.image
+  .span11
+    %a{style:"color: #973102"}= comment.user.name
+    .div{:style => "margin: 10px"}
+      = comment.body

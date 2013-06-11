@@ -1,30 +1,90 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="jp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+  <!-- Le styles -->
+  <meta charset="utf-8">
   <title>Week</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-</head>
+    <style>
+      .container#main { padding-top: 60px; }
+      ul{ list-style:none;margin:0;padding:0; }
+      li{ display:inline; }
+      .media-heading > p {
+        { padding: 5px; }
+      }
+    </style>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+  </head>
 <body>
 <!-- = render 'shared/header' -->
-<div id="banner">
-<h1><%= link_to 'Week', root_url %></h1>
-<hr>
-</div>
-  <div id="side">
-    <%= render template: 'users/index' %>
-  </div>
+<!-- 上部固定のナビゲーションバー -->
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="/articles/">Week</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav pull-right">
+            <form class="navbar-search pull-left" action="">
+            <input type="text" class="search-query span2 GINGER_SOFATWARE_control" placeholder="Search" spellcheck="false" ginger_sofatware_editor="true" style="background-attachment: local; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJwAAAAUCAYAAAB4W1T4AAAAcUlEQVRoQ+3SMQ0AAAzDsJU/6bHI5RKoFHlnCoQFFn65UuCAgyAtAFya2xlwDKQFgEtzOwOOgbQAcGluZ8AxkBYALs3tDDgG0gLApbmdAcdAWgC4NLcz4BhICwCX5nYGHANpAeDS3M6AYyAtAFya29kDMaQAFR40GaMAAAAASUVORK5CYII=); position: relative; font-size: 13px; line-height: 13px; background-position: 14px 13px; background-repeat: no-repeat no-repeat;">
+            </form>
+            <li></li>
+            <li><a href="#">Link</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><%= link_to "logout", logout_path %></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /nav-collapse collapse -->
+      </div><!-- /container -->
+    </div><!-- /navbar-inner -->
+  </div><!-- /navbar navbar-fixed-top -->
+<div class="container" id="main">
+  <div class="row">
+    <!-- 左部固定のサイドバー -->
+    <div class="span2 bs-docs-sidebar">
+      <%= render template: 'users/index' %>
+    </div><!-- /span3 bs-docs-sidebar -->
 
-  <div id="main">
-    <%= yield %>
-  </div>
-<!-- = render 'shared/footer' -->
-<hr>
-<p>
-  © 2013
-  <%= link_to  'Masahiro Hisada', 'http://internkyuden.tumblr.com/' %>
-  All Rights Reserved</p>
+    <div class="span10 bs-docs-sidebar">
+      <blockquote>
+        <%= yield %>
+      </blockquote>
+    </div><!-- /span9 bs-docs-sidebar -->
+  </div><!-- /row -->
+
+  <hr>
+  <footer>
+    <p>&copy; 2013
+      <%= link_to  'Masahiro Hisada', 'http://internkyuden.tumblr.com/' %>
+      All Rights Reserved
+    </p>
+  </footer>
+</div><!-- /container -->
+
 <%= yield :scripts %>
 </body>
 </html>

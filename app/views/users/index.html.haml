@@ -1,20 +1,27 @@
-%h1 Listing users
+.user_image{align: "center"}
+  = image_tag current_user.large_image, :class => "img-circle"
+  %br
+  %br
+  %p{align: "center"}= "#{current_user.name}さん"
 
-.user_nav
-  - logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ#{p current_user.inspect}"
-  = image_tag current_user.image
-  %p
-    = current_user.name
-    さん #{link_to "logout", logout_path}
-  %p
-    = link_to "プロフィール", current_user
-  %p
-  - if current_user.cart
-    = link_to "参加するイベント #{current_user.cart.entries.length}件", carts_path
-  - else
-    = "「参加する」を押してイベントに参加してみよう"
-  %p
-  - if current_user.watch
-    = link_to "気になるイベント #{current_user.watch.entries.length}件", watches_path
-  - else
-    = "「気になる」を押してイベントをブックマークしてみよう"
+%ul.nav.nav-list
+  %li.active
+    = link_to  "Home", root_path
+  %li
+    = link_to "Profile", current_user
+  %li
+    %a{:href => "#"} Mail Setting
+  %li.nav-header{style:"color: #973102"}  Activity list
+  %li
+    - if current_user.cart
+      = link_to "参加するイベント #{current_user.cart.entries.length}件", carts_path
+    - else
+      = "参加するイベント 0件"
+  %li
+    - if current_user.watch
+      = link_to "気になるイベント #{current_user.watch.entries.length}件", watches_path
+    - else
+      = "気になるイベント 0件"
+  %li.divider
+  %li
+    %a{:href => "#"} Help

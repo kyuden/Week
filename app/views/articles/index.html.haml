@@ -1,46 +1,56 @@
-%h1 Listing articles
 %h2= render template: 'articles/new'
 - @articles.each do |article|
   %hr
-  = article.disp_day
-  - if article.about_time.present?
-    %p= "#{article.about_time}辺りから"
-  - else
-    %p
-  = image_tag article.user.image
-  = article.user.name
-  %span= article.title
-  - if current_user == article.user
-    %p 共通の友達はいません
-  - else
-    - friends = @graph.get_connections("me", "mutualfriends/#{article.user.uid}?fields=name,picture")
-    %p 共通の友達
-    - friends.each do |friend|
-      = image_tag friend["picture"]["data"]["url"]
-      = friend["name"]
-  - unless article.watch_hold?(current_user)
-    = button_to 'ちょっと気になる', entries_path(article_id: article, type: 'Watch')
-  - else
-    = link_to '気になるをやめる', entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }
-  - unless article.cart_hold?(current_user)
-    = button_to '参加してみる', entries_path(article_id: article, type: 'Cart')
-  - else
-    = link_to '参加をやめる', entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' }
-  - if article.publish?
-    = link_to 'イベント詳細', article_path(article)
-  - if article.user == current_user
-    = link_to 'Edit', edit_article_path(article)
-  / %td= article.description
-  / %td= article.date
-  / %td= article.comment_id
-  / %td= article.user_id
-  / %td= article.entry_id
-  / %td= link_to 'Show', article
-  / %td= link_to 'Edit', edit_article_path(article)
-  / %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
-  - article.comments.each do |comment|
-    - if comment.body
-      %p= render 'comments/comment', comment: comment
-  %p= render 'comments/form', comment: article.comments.build, type: ''
+  .date
+    = article.disp_day
+    - if article.about_time.present?
+      %a= "#{article.about_time}"
+  .row-fluid
+    .span1
+      %div{:style => "float:left; margin-top:20px;"}
+        = image_tag article.user.image
+        %br
+        = article.user.name
+    .span11
+      .article
+        .article-title{:style => "margin: 20px"}
+          %p= article.title
+        %ul.breadcrumb
+          %li
+            - unless article.watch_hold?(current_user)
+              = link_to 'ちょっと気になる', entries_path(article_id: article, type: 'Watch'), method: :create
+            - else
+              = link_to '気になるをやめる', entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %span.divider /
+          %li
+            - unless article.cart_hold?(current_user)
+              = link_to '参加してみる', entries_path(article_id: article, type: 'Cart'), method: :create
+            - else
+              = link_to '参加をやめる', entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %span.divider /
+          %li
+            - if article.publish?
+              = link_to 'イベント詳細', article_path(article)
+              %span.divider /
+            - if article.user == current_user
+              = link_to '詳細を編集', edit_article_path(article)
+              %span.divider /
+      .comments
+        - article.comments.each do |comment|
+          - if comment.body
+            %p= render 'comments/comment', comment: comment
+        %p= render 'comments/form', comment: article.comments.build, type: ''
+        %div
+          - if current_user == article.user
+            %a 共通の友達はいません
+          - else
+            %a 共通の友達
+            %br
+            - friends = @graph.get_connections("me", "mutualfriends/#{article.user.uid}?fields=first_name,picture")
+            - friends.each do |friend|
+              .picture{:style => "float:left"}
+                = image_tag friend["picture"]["data"]["url"]
+                %br
+                = friend["first_name"]
 = paginate @articles
 %br

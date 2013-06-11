@@ -1,6 +1,5 @@
-%h1 New article
-
-= form_for @article do |f|
+%h5 週末どんな事がしたいですか？
+= simple_form_for @article, {:class => "form-inline"}  do |f|
   - if @article.errors.any?
     #error_explanation
       %h2= "#{pluralize(@article.errors.count, "error")} prohibited this article from being saved:"
@@ -9,17 +8,33 @@
           %li= msg
 
   .field
-    = f.label "What's new?"
-    = f.text_field :title
-    = f.label :予定日
-    = f.select :disp_day, week_select
-    = f.label "開始時間帯"
-    = f.select :about_time, [["朝"],["昼"],["夕方"],["夜"]], prompt: "後で決める"
-    / = f.datetime_select :date, prompt: {hour: "後で", minute: "決める"},  order: [:day, :month, :year], add_month_numbers: true, datetime_separator: " 予定時間 "
+    = f.text_field :title, placeholder: "映画見た後、飲み会したい",maxlength: "100"
+    = f.select :disp_day, week_select, label: "予定日", as: :grouped_select
+    = f.select :about_time, [["朝辺りから"],["昼辺りから"],["夕方辺りから"],["夜辺りから"]], prompt: "時間帯は後で決める", label: "開始時間帯"
+
 
     = f.hidden_field :user_id, value: current_user.id
     = f.hidden_field :place_adress, value: current_user.location_name
   .actions
-    = f.submit 'Save'
+    = f.button :submit, style: "display:none"
+/ %h1 New article
+
+/ = simple_form_for @article do |f|
+/   - if @article.errors.any?
+/     #error_explanation
+/       %h2= "#{pluralize(@article.errors.count, "error")} prohibited this article from being saved:"
+/       %ul
+/         - @article.errors.full_messages.each do |msg|
+/           %li= msg
+/    .field
+/      = f.text_field :title, label: "What's new?"
+/      = f.select :disp_day, week_select, label: "予定日"
+/      = f.select :about_time, [["朝"],["昼"],["夕方"],["夜"]], prompt: "後で決める", label: "開始時間帯"
+/     / = f.datetime_select :date, prompt: {hour: "後で", minute: "決める"},  order: [:day, :month, :year], add_month_numbers: true, datetime_separator: " 予定時間 "
+
+/     = f.hidden_field :user_id, value: current_user.id
+/     = f.hidden_field :place_adress, value: current_user.location_name
+/   .actions
+/     = f.submit 'Save'
 
 / = render 'form'
