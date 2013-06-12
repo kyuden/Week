@@ -13,25 +13,3 @@
  *= require_self
  *= require_tree .
  */
- 
-/* START_HIGHLIGHT */
-/*#banner {
-  background: #33ABD6;
-  padding: 2px;
-  border-bottom: 2px solid;
-  color: #FFFFFF;
-}
-
-  #main {
-    margin-left: 25em;
-    padding: 1em;
-    background: white;
-}
-  #side {
-    float: left;
-    padding: 1em 2em;
-    width: 13em;
-    height: 50em;
-    background: #F0EEE9;
-    border-right: 1px solid #F0EEE9;
-}*/

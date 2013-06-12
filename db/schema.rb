@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20130602073956) do
     t.boolean  "publish",      :default => false
     t.string   "disp_day"
     t.string   "about_time"
-    t.string   "place_adress", default: "平和祈念像"
+    t.string   "place_adress"
     t.string   "place_name"
     t.float    "latitude"
     t.float    "longitude"
