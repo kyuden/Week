@@ -1,56 +1,8 @@
-%h2= render template: 'articles/new'
-- @articles.each do |article|
-  %hr
-  .date
-    = article.disp_day
-    - if article.about_time.present?
-      %a= "#{article.about_time}"
-  .row-fluid
-    .span1
-      %div{:style => "float:left; margin-top:20px;"}
-        = image_tag article.user.image
-        %br
-        = article.user.name
-    .span11
-      .article
-        .article-title{:style => "margin: 20px"}
-          %p= article.title
-        %ul.breadcrumb
-          %li
-            - unless article.watch_hold?(current_user)
-              = link_to 'ちょっと気になる', entries_path(article_id: article, type: 'Watch'), method: :create
-            - else
-              = link_to '気になるをやめる', entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }
-            %span.divider /
-          %li
-            - unless article.cart_hold?(current_user)
-              = link_to '参加してみる', entries_path(article_id: article, type: 'Cart'), method: :create
-            - else
-              = link_to '参加をやめる', entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' }
-            %span.divider /
-          %li
-            - if article.publish?
-              = link_to 'イベント詳細', article_path(article)
-              %span.divider /
-            - if article.user == current_user
-              = link_to '詳細を編集', edit_article_path(article)
-              %span.divider /
-      .comments
-        - article.comments.each do |comment|
-          - if comment.body
-            %p= render 'comments/comment', comment: comment
-        %p= render 'comments/form', comment: article.comments.build, type: ''
-        %div
-          - if current_user == article.user
-            %a 共通の友達はいません
-          - else
-            %a 共通の友達
-            %br
-            - friends = @graph.get_connections("me", "mutualfriends/#{article.user.uid}?fields=first_name,picture")
-            - friends.each do |friend|
-              .picture{:style => "float:left"}
-                = image_tag friend["picture"]["data"]["url"]
-                %br
-                = friend["first_name"]
-= paginate @articles
+%section#Article-new
+  = render template: 'articles/new'
+%section#Article-index
+  - @articles.each do |article|
+    = render 'articles/article', article: article, graph: @graph
+%section#Article-paginate
+  = paginate @articles
 %br

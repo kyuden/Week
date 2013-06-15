@@ -1,5 +1,5 @@
 %h5 週末どんな事がしたいですか？
-= simple_form_for @article, {:class => "form-inline"} do |f|
+= simple_form_for @article, :remote => true do |f|
   - if @article.errors.any?
     #error_explanation
       %h2= "#{pluralize(@article.errors.count, "error")} prohibited this article from being saved:"
@@ -7,13 +7,12 @@
         - @article.errors.full_messages.each do |msg|
           %li= msg
 
-  / = f.text_field :title, placeholder: "映画見た後、飲み会したい",:class=>"input-xxlarge"
   .row-fluid
     .span7
       = f.text_field :title, placeholder: "映画見た後、飲み会したい",label: false, class: "span12"
     .span5
       .row-fluid
-        .span7
+        #new-form.span7
           = f.input :disp_day, collection: week_select, input_html: { class: 'selectpicker show-menu-arrow span12'}, label: false,include_blank: false
         .span5
           = f.input :about_time, collection: [["朝辺りから"],["昼辺りから"],["夕方辺りから"],["夜辺りから"]], prompt: "時間は後で決める",input_html: { class: 'selectpicker show-menu-arrow span12' },label: false

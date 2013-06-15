@@ -1,0 +1,3 @@
+$('#Article-index').prepend('<%= escape_javascript( render "articles/article",article: @article, graph: @graph ) %>');
+$('#article_title').val('');
+$("#article_<%= @article.id %>").show( 'drop', '', 300 );

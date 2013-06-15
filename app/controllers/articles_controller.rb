@@ -45,10 +45,12 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(params[:article])
+    @graph = Koala::Facebook::API.new(current_user.access_token)
 
     respond_to do |format|
       if @article.save
         format.html { redirect_to articles_path, notice: 'Article was successfully created.' }
+        format.js
         format.json { render json: @article, status: :created, location: @article }
       else
         format.html { render action: "new" }

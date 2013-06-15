@@ -1,0 +1,54 @@
+= div_for article, :class => "Article" do
+  %hr
+  .date
+    = article.disp_day
+    - if article.about_time.present?
+      %a= "#{article.about_time}"
+  .row-fluid
+    .span1
+      %div{:style => "float:left; margin-top:20px;"}
+        = image_tag article.user.image
+        %br
+        = article.user.name
+    .span11
+      .article
+        .article-title{:style => "margin: 20px"}
+          %p= article.title
+        %ul.breadcrumb
+          %li
+            - unless article.watch_hold?(current_user)
+              = link_to 'ちょっと気になる', entries_path(article_id: article, type: 'Watch'), :remote => true, method: :post, :class => "add-watch"
+            - else
+              = link_to '気になるをやめる', entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true
+            %span.divider /
+          %li
+            - unless article.cart_hold?(current_user)
+              = link_to '参加してみる', entries_path(article_id: article, type: 'Cart'), :remote => true, method: :post, :class => "add-cart"
+            - else
+              = link_to '参加をやめる', entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart"
+            %span.divider /
+          %li
+            - if article.publish?
+              = link_to 'イベント詳細', article_path(article)
+              %span.divider /
+            - if article.user == current_user
+              = link_to '詳細を編集', edit_article_path(article)
+              %span.divider /
+      .com
+        %ul.comments
+          - article.comments.each do |comment|
+            - if comment.body
+              = render 'comments/comment', comment: comment
+        = render 'comments/form', comment: article.comments.build, type: ''
+        %div
+          - if current_user == article.user
+            %a 共通の友達はいません
+          - else
+            %a 共通の友達
+            %br
+            - friends = graph.get_connections("me", "mutualfriends/#{article.user.uid}?fields=first_name,picture")
+            - friends.each do |friend|
+              .picture{:style => "float:left"}
+                = image_tag friend["picture"]["data"]["url"]
+                %br
+                = friend["first_name"]
