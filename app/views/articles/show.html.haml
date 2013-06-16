@@ -1,42 +1,48 @@
-%p#notice= notice
-%h2予定
-%p
-  %b disp_day:
-  = @article.disp_day
-%p
-  %b about_time:
-  - if @article.about_time.present?
-    = @article.about_time
-  - else
-    %a 後で決める
+%h2 Event Detail
 %hr
-%h2決定事項
-%p
-  %b Title:
-  = @article.title
-%p
-  %b Description:
-  = @article.description
-%p
-  %b Date:
-  = @article.date
-%p
-  %b 集合場所名:
-  = @article.place_name
-%p
-  %b 集合場所住所:
-  = @article.place_adress
-  = gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})
-%p
-  %b Date:
-  = @article.publish ? "詳細公開" : "詳細非公開"
-%p
-  %b 参加者:
-  - @entries.each do |entry|
-    = image_tag entry.cart.user.image
-%p
-  -if current_user == @article.user
-    = link_to '参加者全員に決定事項をmailする', send_mail_article_path(@article)
-= link_to '編集を続ける', edit_article_path(@article)
-\|
-= link_to 'ホームに戻る', articles_path
+%h4= "Event: #{@article.title}"
+%hr
+.row-fluid
+  .span6
+    %dl.dl-horizontal
+      %dt Event Day:
+      %dd= @article.disp_day
+      %dt Place to meet:
+      %dd= @article.place_name
+      %dt Time to meet:
+      %dd=@article.date.strftime("%H:%M") + "集合(24H)"
+      %dt Place-Adress:
+      %dd= @article.place_adress
+    %dt Description or Note:
+    .well.well-small= simple_format @article.description, :style => "font-size:small"
+  .span6
+    = gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})
+-if @entries.present?
+  %dt 参加者:
+- @entries.each do |entry|
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image
+%hr
+-if current_user == @article.user
+  .text-center
+    = button_to '参加者全員に詳細事項をmailする', send_mail_article_path(@article),:data => { :confirm => 'Are you sure?' }, method: "get", class: "btn btn-primary btn-large"
+-if current_user == @article.user
+  = link_to '編集を続ける', edit_article_path(@article)
+  \|
+= link_to 'Back Home', articles_path
+/ %dt Publish:
+/ %dd= @article.publish ? "詳細を公開しています" : "詳細を公開していません"

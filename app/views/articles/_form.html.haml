@@ -1,37 +1,44 @@
-= form_for @article do |f|
+%p#notice= notice
+= simple_form_for @article do |f|
   - if @article.errors.any?
     #error_explanation
       %h2= "#{pluralize(@article.errors.count, "error")} prohibited this article from being saved:"
       %ul
         - @article.errors.full_messages.each do |msg|
           %li= msg
-  %h2予定
-  .field
-    = f.label :disp_day
-    = f.select :disp_day, week_select
-  .field
-    = f.label :about_time
-    = f.select :about_time, [["朝"],["昼"],["夕方"],["夜"]], prompt: "後で決める"
+  .tabbable.tabs-left
+    %ul.nav.nav-tabs
+      %li
+        %a{"data-toggle" => "tab", :href => "#A"} 予定編集
+      %li.disabled.active
+        %a{"data-toggle" => "tab", :href => "#B"} 詳細編集
+    .tabbable
+      .tab-content
+        #A.tab-pane
+          = f.input :title, label: "Top Tittle", input_html: { class: 'field span8'}
+          .row-fluid
+            .span4
+              = f.input :disp_day, collection: week_select, input_html: { class: 'selectpicker show-menu-arrow span12'},include_blank: false, label: "Event Day"
+            .sapn3
+              = f.input :about_time, collection: [["朝辺りから"],["昼辺りから"],["夕方辺りから"],["夜辺りから"]], prompt: "時間は後で決める",input_html: { class: 'selectpicker show-menu-arrow span5' }, label: "Time Zone"
+        #B.tab-pane.active
+          Publish
+          .row-fluid
+            .span1
+              = f.input :publish, label: false, input_html: { class: 'field span3' }
+            .span11
+              下記の内容を公開する
+          %hr
+          = f.input :description , input_html: { class: 'field span8', rows: '6'}, label: "Description or Note"
+          = f.input  :place_name, label: "Place to meet", input_html: { class: 'field span8' }
+          = f.label "Time to meet"
+          = f.datetime_select :date , :discard_year => true, :discard_month => true, :discard_day => true
+          %br
+          = f.input  :place_adress, label: "Place-Adress to meet",input_html: { class: 'field span8' }
+          = gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})
+
   %hr
-  %h2詳細事項
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :description
-  = f.text_area :description, {cols: 80, rows: 10}
-  .field
-    = f.label :date
-    = f.datetime_select :date
-  .field
-    = f.label "集合場所名"
-    = f.text_field  :place_name
-  .field
-    = f.label "集合場所住所"
-    = f.text_field  :place_adress
-    = gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})
-  .field
-    = f.label :詳細事項を公開する
-    = f.check_box :publish
-  .actions
-    = f.submit 'Save'
+    .row-fluid
+      .span10
+      .span2
+        = f.button :submit, value: 'UPdate', class: 'span9', class: "btn btn-primary"
