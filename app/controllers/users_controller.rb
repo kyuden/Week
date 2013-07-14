@@ -56,7 +56,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     session[:user_id] = @user
-
+    current_cart
+    current_watch
     respond_to do |format|
       if @user.save
         logger.debug "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
