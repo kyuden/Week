@@ -12,18 +12,6 @@
   %li
     %a{:href => "#"} Mail Setting
   %li.nav-header{style:"color: #973102"}  Activity list
-  / %li
-  /   - if current_user.cart
-  /     = link_to carts_path do
-  /       参加する <span id = "cart-count" class = "badge badge-important">#{current_user.cart.entries.length}</span> 件
-  /   - else
-  /     = "参加するイベント 0件"
-  / %li
-  /   - if current_user.watch
-  /     = link_to watches_path do
-  /       気になる <span id = "watch-count" class = "badge badge-inverse">#{current_user.watch.entries.length}</span> 件
-  /   - else
-  /     = "気になるイベント 0件"
   %li
     = link_to carts_path do
       参加する <span id = "cart-count" class = "badge badge-important">#{current_user.cart.entries.length}</span> 件

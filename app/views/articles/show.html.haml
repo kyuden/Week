@@ -21,23 +21,10 @@
   %dt 参加者:
 - @entries.each do |entry|
   = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
-  = image_tag entry.cart.user.image
 %hr
--if current_user == @article.user
+-logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQ#{@entries.empty?}"
+-logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQ#{@entries}"
+-if current_user == @article.user && @entries.present?
   .text-center
     = button_to '参加者全員に詳細事項をmailする', send_mail_article_path(@article),:data => { :confirm => 'Are you sure?' }, method: "get", class: "btn btn-primary btn-large"
 -if current_user == @article.user
