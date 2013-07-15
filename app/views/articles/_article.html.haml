@@ -1,9 +1,11 @@
 = div_for article, :class => "Article" do
   %hr
   .date
-    = article.disp_day
-    - if article.about_time.present?
-      %a= "#{article.about_time}"
+  - if current_user == article.user
+    = button_to '☓', article_path(article), :method => :delete, class: "close", data_dismiss: "modal", aria_hidden: true, :data => { :confirm => 'イベントを削除しますか？' }, remote: true
+  = article.disp_day
+  - if article.about_time.present?
+    %a= "#{article.about_time}"
   .row-fluid
     .span1
       %div{:style => "float:left; margin-top:20px;"}

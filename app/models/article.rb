@@ -18,8 +18,8 @@ class Article < ActiveRecord::Base
                   :gmaps
 
   belongs_to :user
-  has_many :comments
-  has_many :entries
+  has_many :comments, :dependent => :destroy
+  has_many :entries, :dependent => :destroy
 
   default_scope order: "created_at DESC"
   paginates_per  5

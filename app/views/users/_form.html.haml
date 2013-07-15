@@ -1,4 +1,4 @@
-= form_for @user  do |f|
+= simple_form_for @user,:html => { :class => "form-signin"  }  do |f|
   / = form_for(@user, url: users_path(@user), html: { method: :post } ) do |f|
   / - if @user.errors.any?
   /   / #error_explanation
@@ -6,26 +6,44 @@
   /   /   %ul
   /   /     - @user.errors.full_messages.each do |msg|
   /   /       %li= msg
-  .form
-    %p= f.label :name
-    %p= f.text_field :name
-    %p= f.label :age
-    %p= f.select :age, (18..99)
-    %p= f.label :locationl
-    - if current_user
-      %p= f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name, selected: current_user.location
-    - else
-      %p= f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name
-    %p= f.label :email
-    - if current_user
-      %p= f.text_field :email, value: current_user.email
-    - else
-      %p= f.text_field :email, value: @auth['info']['email']
-
-      = f.hidden_field :uid, value: @auth['uid']
-      = f.hidden_field :gender, value: @auth['extra']['raw_info']['gender']
-      = f.hidden_field :access_token, value: @auth['credentials']['token']
-      = f.hidden_field :image, value: @auth['info']['image']
-      = f.hidden_field :url, value: @auth['info']['urls']['Facebook']
-
-    %p= f.submit 'Save'
+  %h1.form-signin-heading
+    Please sign up
+  %br
+  .row-fluid
+    .span2{:style => "float:left"}
+      名前　　　
+    .span10
+      = f.text_field :name, value: @auth['info']['first_name']
+  %br
+  .row-fluid{:style => "clear:left"}
+    .span2{:style => "float:left"}
+      年齢　　　
+    .span10
+      = f.select :age, (18..99)
+  %br
+  .row-fluid{:style => "clear:left"}
+    .span2{:style => "float:left"}
+      活動拠点　
+    .span10
+      - if current_user
+        = f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name, selected: current_user.location
+      - else
+        = f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name
+  %br
+  .row-fluid{:style => "clear:left"}
+    .span2{:style => "float:left"}
+      email　　　
+    .span10
+      - if current_user
+        = f.text_field :email, value: current_user.email
+      - else
+        = f.text_field :email, value: @auth['info']['email']
+  = f.hidden_field :uid, value: @auth['uid']
+  = f.hidden_field :gender, value: @auth['extra']['raw_info']['gender']
+  = f.hidden_field :access_token, value: @auth['credentials']['token']
+  = f.hidden_field :image, value: @auth['info']['image']
+  = f.hidden_field :url, value: @auth['info']['urls']['Facebook']
+  %hr
+  .span{:style => "float:right"}
+    = f.submit 'Sign Up', class: "btn btn-primary"
+  %br{:style => "clear:right"}

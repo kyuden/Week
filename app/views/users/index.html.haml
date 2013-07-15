@@ -7,10 +7,10 @@
 %ul.nav.nav-list
   %li.active
     = link_to  "Home", root_path
-  %li
-    = link_to "Profile", current_user
-  %li
-    %a{:href => "#"} Mail Setting
+  / %li
+  /   = link_to "Profile", current_user
+  / %li
+  /   %a{:href => "#"} Mail Setting
   %li.nav-header{style:"color: #973102"}  Activity list
   %li
     = link_to my_index_articles_path do

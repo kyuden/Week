@@ -88,6 +88,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to articles_url }
+      format.js
       format.json { head :no_content }
     end
   end
