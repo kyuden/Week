@@ -5,7 +5,7 @@
     .span11{style: "float:left"}
       = f.text_field :body, label: false, placeholder: "コメントをする",:class=>"input-xxlarge"
       = f.input :article_id, as: :hidden
-      = f.button :submit,style: "display:none"
+      = f.button :submit, disable_with: "Sending...", style: "display:none"
       %br
 
 

@@ -19,5 +19,8 @@
 
   = f.hidden_field :user_id, value: current_user.id
   = f.hidden_field :place_adress, value: "#{current_user.location_name}..."
-  .actions
-    = f.button :submit, style: "display:none"
+  .row-fluid
+    .span10
+    .span2
+      .actions
+        = f.button :submit, value: '投稿する', disable_with: "Seding....", class: "btn btn-large btn-primary"
