@@ -1,0 +1,7 @@
+%h3 自分が投稿したイベント
+%section#Article-index
+  - @articles.each do |article|
+    = render 'articles/article', article: article, graph: @graph
+%section#Article-paginate
+  = paginate @articles
+%br

@@ -4,16 +4,20 @@
 %hr
 .row-fluid
   .span6
-    %dl.dl-horizontal
-      %dt Event Day:
-      %dd= @article.disp_day
-      %dt Place to meet:
-      %dd= @article.place_name
-      %dt Time to meet:
-      %dd=@article.date.strftime("%H:%M") + "集合(24H)"
-      %dt Place-Adress:
-      %dd= @article.place_adress
-    %dt Description or Note:
+    .well
+      %dl.dl-horizontal
+        %dt 開催日:
+        %dd= @article.disp_day
+        %dt 集合時間:
+        %dd= @article.date.strftime("%H:%M")
+        %dt 集合場所:
+        - if @article.place_name.present?
+          %dd= @article.place_name
+        - else
+          %dd= "　- "
+        %dt 集合場所住所:
+        %dd= @article.place_adress
+    %dt 備考:
     .well.well-small= simple_format @article.description, :style => "font-size:small"
   .span6
     = gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})

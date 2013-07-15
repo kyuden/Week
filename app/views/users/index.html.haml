@@ -13,6 +13,9 @@
     %a{:href => "#"} Mail Setting
   %li.nav-header{style:"color: #973102"}  Activity list
   %li
+    = link_to my_index_articles_path do
+      自分の投稿  <span id = "my-event-count" class = "badge badge-important">#{my_event_count}</span> 件
+  %li
     = link_to carts_path do
       参加する <span id = "cart-count" class = "badge badge-important">#{current_user.cart.entries.length}</span> 件
   %li

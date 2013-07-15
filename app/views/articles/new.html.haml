@@ -18,6 +18,6 @@
           = f.input :about_time, collection: [["朝辺りから"],["昼辺りから"],["夕方辺りから"],["夜辺りから"]], prompt: "時間は後で決める",input_html: { class: 'selectpicker show-menu-arrow span12' },label: false
 
   = f.hidden_field :user_id, value: current_user.id
-  = f.hidden_field :place_adress, value: current_user.location_name
+  = f.hidden_field :place_adress, value: "#{current_user.location_name}..."
   .actions
     = f.button :submit, style: "display:none"

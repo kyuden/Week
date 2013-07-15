@@ -5,6 +5,7 @@ Week::Application.routes.draw do
   resources :comments
   resources :articles do
     get "send_mail", on: :member
+    get "my_index", on: :collection, as: "my_index"
   end
 
   resources :users

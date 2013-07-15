@@ -1,3 +1,6 @@
 $('#Article-index').prepend('<%= escape_javascript( render "articles/article",article: @article, graph: @graph ) %>');
 $('#article_title').val('');
 $("#article_<%= @article.id %>").show( 'drop', '', 300 );
+var my_event_count = $('#my-event-count').text();
+my_event_count =  parseInt(my_event_count);
+$("#my-event-count").text(my_event_count + 1 );

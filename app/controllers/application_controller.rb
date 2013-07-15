@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user
+  helper_method :current_user, :my_event_count
 
   private
   def current_user
@@ -26,4 +26,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def my_event_count
+    Article.where(user_id: current_user).length
+  end
 end

@@ -11,6 +11,11 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def my_index
+    @articles = Article.where(user_id: current_user).page(params[:page])
+    @graph = Koala::Facebook::API.new(current_user.access_token)
+  end
+
   # GET /articles/1
   # GET /articles/1.json
   def show
