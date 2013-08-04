@@ -1,402 +1,90 @@
-<!DOCTYPE html>
-<html lang="jp">
+<html class="no_js logged_out tab_switcher_chrome" id="logged_out" lang="">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-  <!-- Le styles -->
-  <meta charset="utf-8">
-  <title>Week</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-    <style>
-
-    /* GLOBAL STYLES
-    -------------------------------------------------- */
-    /* Padding below the footer and lighter body text */
-    .movie {
-      margin-top: 40px;
-    }
-
-    body {
-      padding-bottom: 40px;
-      color: #5a5a5a;
-    }
-
-    /* CUSTOMIZE THE NAVBAR
-    -------------------------------------------------- */
-
-    /* Special class on .container surrounding .navbar, used for positioning it into place. */
-    .navbar-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 10;
-      margin-top: 20px;
-      margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
-    }
-    .navbar-wrapper .navbar {
-
-    }
-
-    /* Remove border and change up box shadow for more contrast */
-    .navbar .navbar-inner {
-      border: 0;
-      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-              box-shadow: 0 2px 10px rgba(0,0,0,.25);
-    }
-
-    /* Downsize the brand/project name a bit */
-    .navbar .brand {
-      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
-      font-size: 16px;
-      font-weight: bold;
-      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-    }
-
-    /* Navbar links: increase padding for taller navbar */
-    .navbar .nav > li > a {
-      padding: 15px 20px;
-    }
-
-    /* Offset the responsive button for proper vertical alignment */
-    .navbar .btn-navbar {
-      margin-top: 10px;
-    }
-
-
-
-    /* CUSTOMIZE THE CAROUSEL
-    -------------------------------------------------- */
-
-    /* Carousel base class */
-    .carousel {
-      margin-bottom: 60px;
-    }
-
-    .carousel .container {
-      position: relative;
-      z-index: 9;
-    }
-
-    .carousel-control {
-      height: 80px;
-      margin-top: 0;
-      font-size: 120px;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-      background-color: transparent;
-      border: 0;
-      z-index: 10;
-    }
-
-    .carousel .item {
-      height: 500px;
-    }
-    .carousel img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      height: 500px;
-    }
-
-    .carousel-caption {
-      background-color: transparent;
-      position: static;
-      max-width: 550px;
-      padding: 0 20px;
-      margin-top: 200px;
-    }
-    .carousel-caption h1,
-    .carousel-caption .lead {
-      margin: 0;
-      line-height: 1.25;
-      color: #fff;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-    }
-    .carousel-caption .btn {
-      margin-top: 10px;
-    }
-
-
-
-    /* MARKETING CONTENT
-    -------------------------------------------------- */
-
-    /* Center align the text within the three columns below the carousel */
-    .marketing .span4 {
-      text-align: center;
-    }
-    .marketing h2 {
-      font-weight: normal;
-    }
-    .marketing .span4 p {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-
-
-    /* Featurettes
-    ------------------------- */
-
-    .featurette-divider {
-      margin: 80px 0; /* Space out the Bootstrap <hr> more */
-    }
-    .featurette {
-      padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
-      overflow: hidden; /* Vertically center images part 2: clear their floats. */
-    }
-    .featurette-image {
-      margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
-    }
-
-    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
-    .featurette-image.pull-left {
-      margin-right: 40px;
-    }
-    .featurette-image.pull-right {
-      margin-left: 40px;
-    }
-
-    /* Thin out the marketing headings */
-    .featurette-heading {
-      font-size: 50px;
-      font-weight: 300;
-      line-height: 1;
-      letter-spacing: -1px;
-    }
-
-
-
-    /* RESPONSIVE CSS
-    -------------------------------------------------- */
-
-    @media (max-width: 979px) {
-
-      .container.navbar-wrapper {
-        margin-bottom: 0;
-        width: auto;
-      }
-      .navbar-inner {
-        border-radius: 0;
-        margin: -20px 0;
-      }
-
-      .carousel .item {
-        height: 500px;
-      }
-      .carousel img {
-        width: auto;
-        height: 500px;
-      }
-
-      .featurette {
-        height: auto;
-        padding: 0;
-      }
-      .featurette-image.pull-left,
-      .featurette-image.pull-right {
-        display: block;
-        float: none;
-        max-width: 40%;
-        margin: 0 auto 20px;
-      }
-    }
-
-
-    @media (max-width: 767px) {
-
-      .navbar-inner {
-        margin: -20px;
-      }
-
-      .carousel {
-        margin-left: -20px;
-        margin-right: -20px;
-      }
-      .carousel .container {
-
-      }
-      .carousel .item {
-        height: 300px;
-      }
-      .carousel img {
-        height: 300px;
-      }
-      .carousel-caption {
-        width: 65%;
-        padding: 0 70px;
-        margin-top: 100px;
-      }
-      .carousel-caption h1 {
-        font-size: 30px;
-      }
-      .carousel-caption .lead,
-      .carousel-caption .btn {
-        font-size: 18px;
-      }
-
-      .marketing .span4 + .span4 {
-        margin-top: 40px;
-      }
-
-      .featurette-heading {
-        font-size: 30px;
-      }
-      .featurette .lead {
-        font-size: 18px;
-        line-height: 1.5;
-      }
-
-    }
-    </style>
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-<!--     <link rel="shortcut icon" href="../assets/ico/favicon.png"> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=960" id="viewport">
+    <meta http-equiv="x-dns-prefetch-control" content="off">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>ログイン | 登録</title>
+    <meta name="robots" content="noodp,nooydir">
+    <meta name="description" content="Post anything (from anywhere!), customize everything, and find and follow what you love. Create your own Tumblr blog today.">
+    <meta name="keywords" content="tumblelog, blog, tumblog, tumbler, tumblr, tlog, microblog">
+    <link rel="shortcut icon" href="https://secure.assets.tumblr.com/favicon.ico?3">
+    <link rel="apple-touch-icon-precomposed" href="https://secure.assets.tumblr.com/images/apple_touch_icon.png?2">
+    <meta name="application-name" content="Tumblr">
+    <meta name="msapplication-TileColor" content="#2c4762">
+    <meta name="msapplication-TileImage" content="https://secure.assets.tumblr.com/images/msfavicon.png ">
+    <meta name="tumblr-form-key" content="!1231375444265|CDGRyhV77iYqmf8g8qfC9GuDmY" id="tumblr_form_key">
+    <link type="text/css" rel="stylesheet" media="screen" href="https://secure.assets.tumblr.com/assets/styles/global.css?_v=8f3707099cbcdeaaf20ae8fb1c30a331">
+    <link type="text/css" rel="stylesheet" media="screen" href="https://secure.assets.tumblr.com/assets/styles/ja_JP.css?_v=39672336d7e26824e584149008959e2e">
+    <link type="text/css" rel="stylesheet" media="screen" href="https://secure.assets.tumblr.com/assets/styles/landing_pages/logged_out_dashboard.css?_v=d97cfc312a85349c2f6e856cbd4e37f8">
+    <%= stylesheet_link_tag :logo, :media => "screen" %>
+    <link type="text/css" rel="stylesheet" media="screen" href="https://secure.assets.tumblr.com/assets/styles/onboarding.css?_v=c0cfa3febb9dc62d5762b6ace1f77286">
+    <link type="text/css" rel="stylesheet" media="screen" href="https://secure.assets.tumblr.com/assets/styles/form_classic_onboarding.css?_v=c38ffefa8833f626fb82d0cc39039d46">
+    <meta name="chromesniffer" id="chromesniffer_meta" content="{}">
+    <meta name="chromesniffer" id="chromesniffer_meta">
   </head>
-
-  <body>
-
-    <!-- Carousel
-    ================================================== -->
-    <div id="myCarousel" class="carousel slide">
-      <div class="carousel-inner">
-        <div class="item active">
-          <%= image_tag "slide-01.jpg" %>
-          <div class="container">
-            <div class="row">
-              <div class="span6">
-                <div class="carousel-caption">
-                  <h1>Week</h1>
-                  <p class="lead">Weekは週末を同期と楽しむサービスです</p>
-                  <a class="btn btn-large btn-primary" href="/auth/facebook">facebook 無料登録/ログイン</a>
-                  <p>WeekがFacebookに許可無く投稿することはありません</p>
-                </div>
-              </div>
-              <div class="span6">
-                <div class="movie">
-                  <iframe width="560" height="315" src="http://www.youtube.com/embed/CGaLpKKiua4" frameborder="0" allowfullscreen></iframe>
-                </div>
-              </div>
-            </div>
+  <body id="account_logged_out_dashboard" class="account_logged_out_dashboard logged_out without_auto_paginate dash_b layout_onboarding logged_out show_form signup_account show_password_strength" data-form-key="!1231375444265|CDGRyhV77iYqmf8g8qfC9GuDmY">
+    <div class="ui_dialog_lock"></div>
+    <div id="fullscreen_post_bg" class="fullscreen_post_bg" style="background-image:url('http://rack.2.mshcdn.com/media/ZgkyMDEzLzA2LzE0L2VjL1N1bW1lckJyZWFrLjcyZTFhLmpwZwpwCXRodW1iCTEyMDB4OTYwMD4/627eb88b/1c6/SummerBreakShaka.jpg');">
+<!--     <div id="fullscreen_post_bg" class="fullscreen_post_bg" style="background-image:url('http://rack.3.mshcdn.com/media/ZgkyMDEzLzA3LzAyLzg3L3NvY2lhbG1lZGlhLjAwNzMyLmpwZwpwCXRodW1iCTk1MHg1MzQjCmUJanBn/6cb5bb52/d32/social-media-day-2013-87.jpg');"> -->
+      <img id="fullscreen_post_image" src="http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzExLzAyL3NvY2lhbGRpc2NvLjBjZjFmLmpwZwpwCXRodW1iCTk1MHg1MzQjCmUJanBn/325ccd2d/880/social-discovery-apps1.jpg" alt="beckyandfrankからの投稿">
+    </div>
+    <div class="fullscreen_post_footer">
+      <div class="fullscreen_post_footer_inner">
+        <div class="footer_legal_links">
+          <a href="#" target="_blank" class="login_link policy_link terms">規約</a>
+          <a href="#" target="_blank" class="login_link policy_link privacy">プライバシー</a>
+        </div>
+        <div class="dash_b_footer_stats">
+          <div class="stat stats_blogs">
+            <div class="number">1.28</div>
+            <div class="description">人（単位：1万）がWeekを使用</div>
+          </div>
+          <div class="stat stats_posts">
+            <div class="number">57.2</div>
+            <div class="description">件（単位：1千）の投稿</div>
+          </div>
+          <div class="stat stats_signup">
+            <div class="number">1&nbsp;</div>
+            <div class="description">登録は簡単</div>
           </div>
         </div>
-        <div class="item">
-          <%= image_tag "slide-02.jpg" %>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <a class="btn btn-large btn-primary" href="#">Learn more</a>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <%= image_tag "slide-03.jpg" %>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
-            </div>
+        <div class="fullscreen_post_posted_by show">
+          <div class="post_info just_tumblelog" data-tumblelog="beckyandfrank" data-id="56873465158" style="cursor: pointer;">
+            <a href="https://www.facebook.com/masahiro.hisada.7" target="_blank" rel="nofollow" title="作ってる人">
+              © 2013
+              <strong>Masahiro Hisada </strong>
+            </a> All Rights Reserved
+            <a href="https://twitter.com/Kyuden_" target="_blank" rel="nofollow" title="@kyuden_" class="post_avatar root_tumblelog" id="post_avatar_56873465158" style="background-image:url('http://farm9.staticflickr.com/8225/8560365994_32a152cce2_q.jpg')">
+              <img src="http://farm9.staticflickr.com/8225/8560365994_32a152cce2_q.jpg" alt="@kyuden_">
+            </a>
           </div>
         </div>
       </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-    </div><!-- /.carousel -->
-
-
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="span4">
-          <img class="img-circle" data-src="holder.js/140x140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div><!-- /.span4 -->
-        <div class="span4">
-          <img class="img-circle" data-src="holder.js/140x140">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div><!-- /.span4 -->
-        <div class="span4">
-          <img class="img-circle" data-src="holder.js/140x140">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div><!-- /.span4 -->
-      </div><!-- /.row -->
-
-
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="featurette">
-        <%= image_tag("browser-icon-chrome.png", :class => "featurette-image pull-right") %>
-        <h2 class="featurette-heading">First featurette headling. <span class="muted">It'll blow your mind.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    </div>
+    <div class="dash_b_form_container with_bg has_subheading">
+      <div class="dash_b_form_header">
+        <h1 id="logo" class="logo ">
+          <a href="/" class="logo_anchor"></a>
+        </h1>
+        <h2 class="subheading">週末やりたいことをつぶやいて
+          <br>近くの同期と週末を楽しむサービス
+        </h2>
       </div>
-
-      <hr class="featurette-divider">
-
-      <div class="featurette">
-        <%= image_tag("browser-icon-firefox.png", :class => "featurette-image pull-left") %>
-        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="muted">See for yourself.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+              <div class="movie">
+            <iframe width="360" height="215" src="//www.youtube.com/embed/OFb0NaeRmdg?autohide=1&color=white&rel=0&showinfo=0&start=20&theme=light" frameborder="0" allowfullscreen></iframe>
+        </div>
+      <div class="dash_b_form">
+        <button class="chrome big on_dark signup_forms_submit touchy blue" id="signup_forms_submit" onclick="location.href='/auth/facebook'">
+          <span class="account_btn">facebook 無料登録/ログイン</span>
+        </button>
       </div>
-
-      <hr class="featurette-divider">
-
-      <div class="featurette">
-        <%= image_tag("browser-icon-safari.png", :class => "featurette-image pull-right") %>
-        <h2 class="featurette-heading">And lastly, this one. <span class="muted">Checkmate.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+      <div class="signup_waiting" id="signup_waiting"></div>
+          <div class="tumblr_login_link">
+      <a class="login_link login">
+        facebookに許可無く投稿することはありません
+      </a>
       </div>
-
-      <hr class="featurette-divider">
-
-      <!-- /END THE FEATURETTES -->
-
-
-      <!-- FOOTER -->
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-
-    </div><!-- /.container -->
-
-    <script>
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel()
-        })
-      }(window.jQuery)
-    </script>
+    </div>
   </body>
 </html>

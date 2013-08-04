@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout "one_column_layout"
+  layout "one_column_layout", only: [:callback]
 
   def callback
     @auth = request.env["omniauth.auth"]

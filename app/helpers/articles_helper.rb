@@ -7,7 +7,7 @@ module ArticlesHelper
     tday = Date.today
 
     if (tday.wday == 0)
-      array <<  tday
+      array << tday
     end
 
     while( tday < Date.today >> 1 ) do

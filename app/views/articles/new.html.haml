@@ -1,4 +1,3 @@
-%h5 週末どんな事がしたいですか？
 = simple_form_for @article, :remote => true do |f|
   - if @article.errors.any?
     #error_explanation
@@ -6,21 +5,30 @@
       %ul
         - @article.errors.full_messages.each do |msg|
           %li= msg
-
   .row-fluid
-    .span7
-      = f.text_field :title, placeholder: "映画見た後、飲み会したい",label: false, class: "span12"
-    .span5
+    .span6
+      %strong 1.週末どんな事がしたい？
+    .span6
       .row-fluid
-        #new-form.span7
-          = f.input :disp_day, collection: week_select, input_html: { class: 'selectpicker show-menu-arrow span12'}, label: false,include_blank: false
         .span5
+          %strong 2.大体何日に辺りに？
+        .span4
+          %strong  3.時間帯は？
+        .span3
+          %strong  4.気軽に投稿！
+  .row-fluid
+    .span6
+      = f.input :title, placeholder: "映画見た後、飲み会したら楽しそう",label: false, input_html: { class: 'span12', rows: '2'}
+    .span6
+      .row-fluid
+        #new-form.span5
+          = f.input :disp_day, collection: week_select, input_html: { class: 'selectpicker show-menu-arrow span12'}, label: false,include_blank: false
+        .span4
           = f.input :about_time, collection: [["朝辺りから"],["昼辺りから"],["夕方辺りから"],["夜辺りから"]], prompt: "時間は後で決める",input_html: { class: 'selectpicker show-menu-arrow span12' },label: false
+        .span2
+          .actions
+            = f.button :submit, value: '      投稿      ', disable_with: "Seding....", class: "btn btn-primary"
+        .span1
 
   = f.hidden_field :user_id, value: current_user.id
   = f.hidden_field :place_adress, value: "#{current_user.location_name}..."
-  .row-fluid
-    .span10
-    .span2
-      .actions
-        = f.button :submit, value: '投稿する', disable_with: "Seding....", class: "btn btn-large btn-primary"

@@ -1,56 +1,65 @@
 = div_for article, :class => "Article" do
-  %hr
-  .date
-  - if current_user == article.user
-    = button_to '☓', article_path(article), :method => :delete, class: "close", data_dismiss: "modal", aria_hidden: true, :data => { :confirm => 'イベントを削除しますか？' }, remote: true
-  = article.disp_day
-  - if article.about_time.present?
-    %a= "#{article.about_time}"
   .row-fluid
-    .span1
-      %div{:style => "float:left; margin-top:20px;"}
-        = image_tag article.user.image
-        %br
-        = article.user.name
-    .span11
-      .article
-        .article-title{:style => "margin: 20px"}
-          %p= article.title
-        %ul.breadcrumb
-          %li
-            - unless article.watch_hold?(current_user)
-              = link_to 'ちょっと気になる', entries_path(article_id: article, type: 'Watch'), :remote => true, method: :post, :class => "add-watch"
-            - else
-              = link_to '気になるをやめる', entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true
-            %span.divider /
-          %li
-            - unless article.cart_hold?(current_user)
-              = link_to '参加してみる', entries_path(article_id: article, type: 'Cart'), :remote => true, method: :post, :class => "add-cart"
-            - else
-              = link_to '参加をやめる', entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart"
-            %span.divider /
-          %li
-            - if article.publish?
-              = link_to 'イベント詳細', article_path(article)
-              %span.divider /
-            - if article.user == current_user
-              = link_to '詳細を編集', edit_article_path(article)
-              %span.divider /
-      .com
-        %ul.comments
-          - article.comments.each do |comment|
-            - if comment.body
-              = render 'comments/comment', comment: comment
-        = render 'comments/form', comment: article.comments.build, type: ''
-        %div
+    .span7
+      %hr
+      .row-fluid
+        .span12
+          = article.disp_day
+          - if article.about_time.present?
+            %a= "#{article.about_time}"
           - if current_user == article.user
-            %a 共通の友達はいません
-          - else
-            %a 共通の友達
-            %br
-            - friends = graph.get_connections("me", "mutualfriends/#{article.user.uid}?fields=first_name,picture")
-            - friends.each do |friend|
-              .picture{:style => "float:left"}
-                = image_tag friend["picture"]["data"]["url"]
-                %br
-                = friend["first_name"]
+            = link_to '☓', article_path(article), :method => :delete, class: "close", data_dismiss: "modal", aria_hidden: true, :data => { :confirm => 'イベントを削除しますか？' }, remote: true
+      .row-fluid
+        .span2
+          %div{:style => "margin-top:5px;"}
+            = image_tag article.user.image
+        .span10
+          .article
+            .article-title
+              .user-name
+                %a{style:"color: #B94A48;font-weight: bold"}=article.user.name
+              %span= auto_link(simple_format(article.title), html: {target: "_blank"}, link: :urls)
+            %ul.breadcrumb
+              %li
+                - unless article.watch_hold?(current_user)
+                  = link_to 'ちょっと気になる', entries_path(article_id: article, type: 'Watch'), :remote => true, method: :post, :class => "add-watch"
+                - else
+                  = link_to '気になるをやめる', entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true
+                %span.divider /
+              %li
+                - unless article.cart_hold?(current_user)
+                  = link_to '参加してみる', entries_path(article_id: article, type: 'Cart'), :remote => true, method: :post, :class => "add-cart"
+                - else
+                  = link_to '参加をやめる', entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart"
+                %span.divider /
+              %li
+                - if article.publish?
+                  = link_to 'イベント詳細', article_path(article)
+                  %span.divider /
+                - if article.user == current_user
+                  = link_to '詳細を編集', edit_article_path(article)
+                  %span.divider /
+      .row-fluid
+        .span2
+        .span10
+          .comment
+            %ul.comments
+              - article.comments.each do |comment|
+                - if comment.body
+                  = render 'comments/comment', comment: comment
+            = render 'comments/form', comment: article.comments.build, type: ''
+    .span5
+      %hr
+      .mutualfriends
+        - if current_user == article.user
+          %p 共通の友達はいません
+          %p [WIP]共通の友達がいない場合は広告を出す予定
+        - else
+          %a 共通の友達
+          %br
+          - friends = graph.get_connections("me", "mutualfriends/#{article.user.uid}?fields=first_name,picture")
+          - friends.each do |friend|
+            .picture{:style => "float:left"}
+              = image_tag friend["picture"]["data"]["url"]
+              %br
+              = friend["first_name"]

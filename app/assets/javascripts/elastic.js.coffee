@@ -1,0 +1,2 @@
+jQuery ($) ->
+  $("textarea").elastic()

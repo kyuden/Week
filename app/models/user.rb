@@ -8,13 +8,12 @@ class User < ActiveRecord::Base
   include JpPrefecture
   jp_prefecture :prefecture_code
 
-
   def location_name
     JpPrefecture::Prefecture.find(self.location).name
   end
 
   def small_image
-    self.image.sub(/square/, "small")
+    self.image.sub(/type=square/, "width=32&height=32&type=square")
   end
 
   def normal_image

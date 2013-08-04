@@ -1,10 +1,9 @@
 = content_tag_for :li, comment, :class => 'comment' do
   %hr{style: "margin:1px",size: "1"}
-    .row-fluid{style: "padding: 0px; background-color: #f0f0f0; overflow: hidden;"}
+    .row-fluid{style: "padding: 0px; background-color: #f0f0f0;"}
       .span1
         %div
-          = image_tag comment.user.image
+          = image_tag comment.user.small_image
       .span11
-        %a{style:"color: #973102"}= comment.user.name
-        .div{:style => "margin: 10px"}
-          = comment.body
+        %a{style:"color: #B94A48;font-weight: bold"}= comment.user.name
+        %span{style:"hight 28p"}= auto_link(simple_format(comment.body), html: {target: "_blank"}, link: :urls)

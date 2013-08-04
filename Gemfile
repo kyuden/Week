@@ -25,6 +25,8 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "twitter-bootstrap-rails"
 gem 'bootstrap-select-rails'
 gem 'heroku'
+gem 'jquery-elastic-rails'
+gem "rails_autolink"
 
 group :development do
   gem 'better_errors'

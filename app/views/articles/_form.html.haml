@@ -47,21 +47,21 @@
                 = f.input :description , input_html: { class: 'field span12', rows: '6'}, label: false
             = f.label "公開設定"
             .row-fluid
-              .span1
+              .span2
               .span1
                 = f.radio_button :publish, true
-              .span10
+              .span9
                 上記の内容を公開する
             .row-fluid
-              .span1
+              .span2
               .span1
                 = f.radio_button :publish, false, :checked => true
-              .span10
+              .span9
                 上記の内容を公開しない
           %br
           //= gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})
 
-  %hr
+  %href
     .row-fluid
       .span10
       .span2

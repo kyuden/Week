@@ -1,11 +1,10 @@
 = simple_form_for comment, url: comments_path(type: type),:html => { :method => "post" }, :remote => true do |f|
-  #comment-form{style: "border-top:2px outset #6a6a6a;border-right:15px solid #FFFFFF; padding: 1px; background-color: #808080; overflow: hidden;"}
-    .span1
-      = image_tag current_user.image
-    .span11{style: "float:left"}
-      = f.text_field :body, label: false, placeholder: "コメントをする",:class=>"input-xxlarge"
-      = f.input :article_id, as: :hidden
-      = f.button :submit, disable_with: "Sending...", style: "display:none"
-      %br
+  .row-fluid
+    #comment-form{style: "border-top:2px outset #6a6a6a;border-right:15px solid #FFFFFF; padding: 1px; background-color: #808080; overflow: hidden;"}
+      .span1
+        = image_tag current_user.small_image
+      .span11
+        = f.input :body, label: false, placeholder: "コメントをする", input_html: { class: 'span12', rows: '1', style: "height:28px;" }
+        = f.button :submit, disable_with: "Sending...", style: "display:none"
 
 
