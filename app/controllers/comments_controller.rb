@@ -42,7 +42,6 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.user_id = current_user.id
-    logger.debug "MASAMASAAAAAAAAAAAAAAAAAAAAAAAAAAA#{@comment.inspect}"
     respond_to do |format|
       if @comment.save
         if params[:type] == 'Cart'
