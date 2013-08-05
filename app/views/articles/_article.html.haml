@@ -17,7 +17,7 @@
           .article
             .article-title
               .user-name
-                %a{style:"color: #B94A48;font-weight: bold"}=article.user.name
+                %a{style:"color: #B94A48;font-weight: bold"}= article.user.name
               %span= auto_link(simple_format(article.title), html: {target: "_blank"}, link: :urls)
             %ul.breadcrumb
               %li
@@ -55,12 +55,16 @@
           %p 共通の友達はいません
           %p [WIP]共通の友達がいない場合は広告を出す予定
         - else
-          %a 共通の友達(試しにアイコンをたくさん出して見栄えを確認中)
-          %br
           - friends = graph.get_connections("me", "mutualfriends/#{article.user.uid}?fields=first_name,picture")
-          - 18.times do
-            - friends.each do |friend|
-              .picture{:style => "float:left"}
-                = image_tag friend["picture"]["data"]["url"], :class => "img-circle"
-                %br
-                = friend["first_name"]
+          - if friends
+            %a 共通の友達(試しにアイコンをたくさん出して見栄えを確認中)
+            %br
+            - 18.times do
+              - friends.each do |friend|
+                .picture{:style => "float:left"}
+                  = image_tag friend["picture"]["data"]["url"], :class => "img-circle"
+                  %br
+                  = friend["first_name"]
+          - else
+            %p 共通の友達はいません
+            %p [WIP]共通の友達がいない場合は広告を出す予定
