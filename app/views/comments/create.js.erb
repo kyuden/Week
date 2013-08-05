@@ -1,3 +1,3 @@
 $('<%= "#article_" + @comment.article.id.to_s %> .comments ').append('<%= escape_javascript( render "comments/comment", comment: @comment ) %>');
-$('#comment-form .input-xxlarge').val('');
+$('#comment-form .span12').val('');
 $("#comment_<%= @comment.id %>").show( 'blind', '', 200 );
