@@ -59,7 +59,7 @@
           - if friends
             %a 共通の友達(試しにアイコンをたくさん出して見栄えを確認中)
             %br
-            - 18.times do
+            - 1.times do
               - friends.each do |friend|
                 .picture{:style => "float:left"}
                   = image_tag friend["picture"]["data"]["url"], :class => "img-circle"
