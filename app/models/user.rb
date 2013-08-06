@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   end
 
   def small_image
-    self.image.sub(/type=square/, "width=32&height=32&type=square")
+    self.image.sub(/type=square/, "width=43&height=43&type=square")
   end
 
   def normal_image
