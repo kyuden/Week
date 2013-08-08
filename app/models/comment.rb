@@ -7,6 +7,6 @@ class Comment < ActiveRecord::Base
   belongs_to :article
   belongs_to :user
 
-  validates_presence_of :body
-  validates_length_of :body, :in => (1..310)
+  validates_presence_of :body, message: "コメントが入力されていません"
+  validates_length_of :body, maximum: 310, too_long: "310文字以内で投稿してください"
 end

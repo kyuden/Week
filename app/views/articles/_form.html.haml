@@ -1,12 +1,11 @@
-%p#notice= notice
-= simple_form_for @article do |f|
+= simple_form_for @article, :validate => true do |f|
   - if @article.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@article.errors.count, "error")} prohibited this article from being saved:"
-      %ul
-        - @article.errors.full_messages.each do |msg|
-          %li= msg
-  .tabbable.tabs-left
+    .alert.alert-error#error_explanation
+      - if @article.errors.any?
+        %ul
+          - @article.errors.full_messages.each do |msg|
+            %li= msg
+  .tabbable
     %ul.nav.nav-tabs
       %li
         %a{"data-toggle" => "tab", :href => "#A"} 予定編集
@@ -16,7 +15,7 @@
       .tab-content
         #A.tab-pane
           .well
-            = f.input :title, label: "イベント名", input_html: { class: 'field span8'}
+            = f.input :title, label: "イベント名(必須)", input_html: { class: 'field span8'}, :validate => true, :required => false
             .row-fluid
               .span4
                 = f.input :disp_day, collection: week_select, input_html: { class: 'selectpicker show-menu-arrow span12'},include_blank: false, label: "開催日"
@@ -28,12 +27,12 @@
               .span2
                 集合場所
               .span10
-                = f.input :place_name, label: false ,placeholder: "例) 金時計前,　ビックマン前,　渋谷駅１番出口前", input_html: { class: 'field span10' }
+                = f.input :place_name, label: false ,placeholder: "例) 金時計前,　ビックマン前,　渋谷駅１番出口前", input_html: { class: 'field span10' }, :validate => {:presence => true}
             .row-fluid
               .span2
                 集合場所住所
               .span10
-                = f.input :place_adress, label: false, input_html: { class: 'field span12' }, hint: "例) 愛知県名古屋市中村区名古屋駅1-1-4",placeholder: "例) 愛知県名古屋市中村区名古屋駅1-1-4"
+                = f.input :place_adress, label: false, input_html: { class: 'field span12' }, hint: "※ 住所を入力すると地図上に集合場所が出力されます",placeholder: "例) 愛知県名古屋市中村区名古屋駅1-1-4"
             .row-fluid
               .span2
                 集合時間
