@@ -57,9 +57,10 @@
         - else
           - friends = graph.get_connections("me", "mutualfriends/#{article.user.uid}?fields=first_name,picture")
           - if friends
-            %a 共通の友達(試しにアイコンをたくさん出して見栄えを確認中)
+            %a{style:"color: #B94A48;font-weight: bold"}= article.user.name
+            さんと共通の友達
             %br
-            - 1.times do
+            - 1.times do # 見栄えを確認するため
               - friends.each do |friend|
                 .picture{:style => "float:left"}
                   = image_tag friend["picture"]["data"]["url"], :class => "img-circle"
