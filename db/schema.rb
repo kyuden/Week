@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(:version => 20130804140430) do
 
   create_table "articles", :force => true do |t|
-    t.text     "title"
+    t.text     "title", :null => false
     t.text     "description"
     t.datetime "date"
     t.integer  "comment_id"
     t.integer  "user_id"
     t.integer  "entry_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.boolean  "publish",      :default => false
     t.string   "disp_day"
     t.string   "about_time"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20130804140430) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
-    t.text     "body"
+    t.text     "body", :null => false
     t.integer  "article_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

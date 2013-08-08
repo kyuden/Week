@@ -21,6 +21,8 @@ class Article < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :entries, :dependent => :destroy
 
+  validates_presence_of :title, message: "未入力です"
+  validates_length_of :title, maximum: (410), too_long: "410文字以内で投稿してください"
   default_scope order: "created_at DESC"
   paginates_per  5
 

@@ -30,6 +30,7 @@ gem "rails_autolink"
 
 group :development, :test do
   gem 'rspec-rails', '>= 2.6.0'
+  gem 'shoulda-matchers'
   gem 'better_errors'
   gem 'binding_of_caller'
 end
