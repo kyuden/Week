@@ -42,8 +42,8 @@ Week::Application.configure do
     port:                587,
     domain:              "gmail.com",
     authentication:      "plain",
-    user_name:           "msmsms.um@gmail.com",
-    password:            "2101dada",
+    user_name:           "week.no.reply@gmail.com",
+    password:            "myservice",
     enable_starttls_auto: true
     }
   end

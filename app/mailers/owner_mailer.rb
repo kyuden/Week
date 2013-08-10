@@ -1,6 +1,5 @@
 class OwnerMailer < ActionMailer::Base
-  default from: "from@example.com"
-
+  default :from => "Week<week.no.reply@gmail.com>"
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -13,6 +12,9 @@ class OwnerMailer < ActionMailer::Base
     entries.each do |entry|
      users_adress  << entry.cart.user.email
     end
-    mail to: users_adress
+
+    mail bcc: users_adress,
+         return_path: "week.no.reply@gmail.com",
+         subject: "イベント詳細メール"
   end
 end
