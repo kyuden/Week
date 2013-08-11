@@ -1,30 +1,59 @@
-%h2 Event Detail
+%h2 イベント詳細
 %hr
-%h4= "Event: #{@article.title}"
+.row-fluid
+  .span1
+    %div{:style => "margin-top:5px;"}
+      = image_tag @article.user.image
+  .span11
+    .article
+      .article-title
+        .user-name
+          %a{style:"color: #B94A48;font-weight: bold"}= @article.user.name
+        %span= auto_link(simple_format(@article.title), html: {target: "_blank"}, link: :urls)
 %hr
 .row-fluid
   .span6
-    .well
-      %dl.dl-horizontal
-        %dt 開催日:
-        %dd= @article.disp_day
-        %dt 集合時間:
-        %dd= @article.date.strftime("%H:%M")
-        %dt 集合場所:
+    .row-fluid
+      .span3
+        開催日:
+      .span9
+        = @article.disp_day
+    %hr
+    .row-fluid
+      .span3
+        集合時間:
+      .span9
+        = @article.date.strftime("%H:%M")
+    %hr
+    .row-fluid
+      .span3
+        集合場所:　
+      .span9
         - if @article.place_name.present?
-          %dd= @article.place_name
+          = @article.place_name
         - else
-          %dd= "　- "
-        %dt 集合場所住所:
-        %dd= @article.place_adress
-    %dt 備考:
-    .well.well-small= simple_format @article.description, :style => "font-size:small"
+          未入力
+    %hr
+    .row-fluid
+      .span3
+        集合場所住所:
+      .span9
+        - if @article.place_adress.present?
+          = @article.place_adress
+        - else
+          未入力(入力すると地図上に集合場所が出力されます)
+    %hr
+    .row-fluid
+      .span12
+        備考:
+        .well.well-small
+          = simple_format @article.description, :style => "font-size:small"
   .span6
     = gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})
 -if @entries.present?
   %dt 参加者:
 - @entries.each do |entry|
-  = image_tag entry.cart.user.image
+  = image_tag entry.cart.user.image, :class => "img-circle"
 %hr
 -if (current_user == @article.user) && @entries.present?
   .text-center

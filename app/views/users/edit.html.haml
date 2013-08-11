@@ -6,9 +6,9 @@
   /   /   %ul
   /   /     - @user.errors.full_messages.each do |msg|
   /   /       %li= msg
-  .tabbable.tabs-left
+  .tabbable
     %ul.nav.nav-tabs
-      %li
+      %li.active
         %a{"data-toggle" => "tab", :href => "#A"} プロフィール編集
       / %li
       /   %a{"data-toggle" => "tab", :href => "#B"} 詳細編集

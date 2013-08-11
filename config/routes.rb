@@ -6,6 +6,7 @@ Week::Application.routes.draw do
   resources :articles do
     get "send_mail", on: :member
     get "my_index", on: :collection, as: "my_index"
+    get "search", on: :collection, as: "search"
   end
 
   resources :users

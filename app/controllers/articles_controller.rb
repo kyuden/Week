@@ -1,6 +1,14 @@
 class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
+  def search
+    @article = Article.new
+    @articles = Article.joins(:user).where("location = ? AND age = ? AND (title LIKE ? OR disp_day LIKE ?)", current_user.location, current_user.age, "%#{params[:query]}%", "%#{params[:query]}%" ).page(params[:page])
+    @graph = Koala::Facebook::API.new(current_user.access_token)
+
+    render action: :index
+  end
+
   def index
     if current_user
       @article = Article.new

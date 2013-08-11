@@ -1,8 +1,12 @@
 %section#Article-new
   = render template: 'articles/new'
 %section#Article-index
-  - @articles.each do |article|
-    = render 'articles/article', article: article, graph: @graph
+  - if @articles.present?
+    - @articles.each do |article|
+      = render 'articles/article', article: article, graph: @graph
+  - else
+    %hr
+    %h5 検索結果0件
 %section#Article-paginate
   = paginate @articles
 %br

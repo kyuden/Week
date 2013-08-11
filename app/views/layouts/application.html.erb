@@ -40,32 +40,37 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="brand" href="/articles/">Week</a>
-        <div class="nav-collapse collapse">
+        <div class="row-field">
+        <a class="brand span1" href="/articles/" style = "padding-left:0px;" >Week</a>
+        <div class="span1"></div>
+        <div class="nav-collapse collapse span10">
+          <%= form_tag :search_articles, method: :get, class: "navbar-search"  do %>
+            <div class="input-prepend">
+              <%= text_field_tag "query", params[:query], placeholder: "映画, 12日, (土)などでイベントを絞込み", :class => "span4" %>
+              <%= button_tag(:type => 'submit', :class => 'btn') do %>
+                <i class="icon-search"></i>
+              <% end %>
+            </div>
+          <% end %>
+<!--             <form class="navbar-search pull-center" action="<%= search_articles_path %>" method = "get">
+              <input type="text" placeholder="Search" value="<%= params[:title] %>">
+            </form> -->
           <ul class="nav pull-right">
-            <form class="navbar-search pull-left" action="">
-            <input type="text" class="search-query span2 GINGER_SOFATWARE_control" placeholder="Search" spellcheck="false" ginger_sofatware_editor="true" style="background-attachment: local; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJwAAAAUCAYAAAB4W1T4AAAAcUlEQVRoQ+3SMQ0AAAzDsJU/6bHI5RKoFHlnCoQFFn65UuCAgyAtAFya2xlwDKQFgEtzOwOOgbQAcGluZ8AxkBYALs3tDDgG0gLApbmdAcdAWgC4NLcz4BhICwCX5nYGHANpAeDS3M6AYyAtAFya29kDMaQAFR40GaMAAAAASUVORK5CYII=); position: relative; font-size: 13px; line-height: 13px; background-position: 14px 13px; background-repeat: no-repeat no-repeat;">
-            </form>
             <li></li>
-            <li><a href="#">Link</a></li>
+            <!-- <li><a href="#"></a></li> -->
             <li class="divider-vertical"></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span><%= image_tag current_user.minimum_image %></span>
+              <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
+                <li><%= link_to "プロフィール設定", current_user  %></li>
                 <li><%= link_to "logout", logout_path %></li>
               </ul>
             </li>
           </ul>
         </div><!-- /nav-collapse collapse -->
+      </div>
       </div><!-- /container -->
     </div><!-- /navbar-inner -->
   </div>

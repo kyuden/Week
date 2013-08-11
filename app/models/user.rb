@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
     JpPrefecture::Prefecture.find(self.location).name
   end
 
+  def minimum_image
+    self.image.sub(/type=square/, "width=24&height=24&type=square")
+  end
+
   def small_image
     self.image.sub(/type=square/, "width=43&height=43&type=square")
   end
