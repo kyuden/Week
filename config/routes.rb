@@ -1,8 +1,8 @@
 Week::Application.routes.draw do
-  resources :watches
-  resources :entries
-  resources :carts
-  resources :comments
+  resources :watches, only: %w[index]
+  resources :carts,   only: %w[index]
+  resources :entries, only: %w[create destroy]
+  resources :comments, only: %w[create]
   resources :articles do
     get "send_mail", on: :member
     get "my_index", on: :collection, as: "my_index"
@@ -10,7 +10,6 @@ Week::Application.routes.draw do
   end
 
   resources :users
-  resources :cars
 
   get "home/index"
   root to: "articles#index"
@@ -19,6 +18,7 @@ Week::Application.routes.draw do
   match "/auth/facebook/callback" => 'users#callback'
   match "/logout" => 'users#destroy', as: 'logout'
 
+  #Exeption
   match "*not_found" => 'application#render_404'
   # The priority is based upon order of creation:
   # first created -> highest priority.
