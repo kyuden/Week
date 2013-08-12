@@ -11,9 +11,10 @@
     = stylesheet_link_tag    "errors", :media => "all"
     = csrf_meta_tags
   %body
-    %h3
-      そのページは存在しません.
-    %h5
-      お気づきありがとうございます.
-      これから解決に向けて取り組ませて頂きます.
-  　= button_to  'ホームへ戻る', root_path
+    .error-page
+      %h3
+        そのページは存在しません.
+      %h5
+        お気づきありがとうございます.
+        これから解決に向けて取り組ませて頂きます.
+    　= button_to  'ホームへ戻る', root_path
