@@ -6,21 +6,28 @@
 
 %ul.nav.nav-list
   %li.active
-    = link_to  "Home", root_path
+    = link_to root_path do
+      %i.icon-home
+      Home
   %li
-    = link_to "Profile", current_user
+    = link_to current_user do
+      %i.icon-user
+      Profile
   / %li
   /   %a{:href => "#"} Mail Setting
   %li.nav-header{style:"color: #973102"}  Activity list
   %li
     = link_to my_index_articles_path do
+      %i.icon-pencil
       自分の投稿  <span id = "my-event-count" class = "badge badge-important">#{my_event_count}</span> 件
   %li
     = link_to carts_path do
-      参加する <span id = "cart-count" class = "badge badge-important">#{current_user.cart.entries.length}</span> 件
+      %i.icon-heart
+      参加する &nbsp  <span id = "cart-count" class = "badge badge-important">#{current_user.cart.entries.length}</span> 件
   %li
     = link_to watches_path do
-      気になる <span id = "watch-count" class = "badge badge-inverse">#{current_user.watch.entries.length}</span> 件
+      %i.icon-star
+      気になる &nbsp  <span id = "watch-count" class = "badge badge-inverse">#{current_user.watch.entries.length}</span> 件
   %li.divider
   %li
     %a{:href => "#"} Help

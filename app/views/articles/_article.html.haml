@@ -22,23 +22,35 @@
             %ul.breadcrumb
               %li
                 - unless article.watch_hold?(current_user)
-                  = link_to 'ちょっと気になる', entries_path(article_id: article, type: 'Watch'), :remote => true, method: :post, :class => "add-watch"
+                  = link_to  entries_path(article_id: article, type: 'Watch'), :remote => true, method: :post, :class => "add-watch" do
+                    %i.icon-star
+                    ちょっと気になる
                 - else
-                  = link_to '気になるをやめる', entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true
+                  = link_to entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true do
+                    %i.icon-hand-down
+                    気になるをやめる
                 %span.divider /
               %li
                 - unless article.cart_hold?(current_user)
-                  = link_to '参加してみる', entries_path(article_id: article, type: 'Cart'), :remote => true, method: :post, :class => "add-cart"
+                  = link_to entries_path(article_id: article, type: 'Cart'), :remote => true, method: :post, :class => "add-cart" do
+                    %i.icon-heart
+                    参加してみる
                 - else
-                  = link_to '参加をやめる', entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart"
+                  = link_to entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart" do
+                    %i.icon-thumbs-down
+                    参加をやめる
+
                 %span.divider /
               %li
                 - if article.publish?
-                  = link_to 'イベント詳細', article_path(article)
+                  = link_to article_path(article) do
+                    %i.icon-bullhorn
+                    イベント詳細
                   %span.divider /
                 - if article.user == current_user
-                  = link_to '詳細を編集', edit_article_path(article)
-                  %span.divider /
+                  = link_to edit_article_path(article) do
+                    %i.icon-edit
+                    詳細を編集
       .row-fluid
         .span2
         .span10

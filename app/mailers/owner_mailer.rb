@@ -13,7 +13,8 @@ class OwnerMailer < ActionMailer::Base
      users_adress  << entry.cart.user.email
     end
 
-    mail bcc: users_adress,
+    mail :bcc => users_adress,
+         from: "Week<week.no.reply@gmail.com>",
          return_path: "week.no.reply@gmail.com",
          subject: "イベント詳細メール"
   end
