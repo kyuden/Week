@@ -8,7 +8,10 @@
     %h5 検索結果0件
 %section#Article-paginate
   = link_to_next_page @articles,
-                      'more',
+                      'もっと見る',
                       id: 'more_link',
-                      :remote => true
+                      remote: true,
+                      class: "span5 btn",
+                      disable_with: "Loading....",
+                      style: "margin:50px 1px 50px 70px;color:#111111;"
 %br
