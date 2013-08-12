@@ -1,6 +1,29 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  #例外ハンドル
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  rescue_from ActionController::UnknownAction, with: :render_404
+  rescue_from ActionController::RoutingError, with: :render_404
+  rescue_from Exception, with: :render_505
+
+  def render_404(exception = nill)
+    if exception
+      logger.info "Rendering 404 with exception: #{exception.message}"
+    end
+
+    render template: "errors/error_404", status: 404, layout: false, content_type: 'text/html'
+  end
+
+  def render_500(exception = nill)
+    if exception
+      logger.info "Rendering 500 with exception: #{exception.message}"
+    end
+
+    render template: "errors/error_500", status: 500, layout: false, content_type: 'text/html'
+  end
+
+
   helper_method :current_user, :my_event_count
 
   private

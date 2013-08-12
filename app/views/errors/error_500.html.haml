@@ -1,0 +1,19 @@
+!!!
+%html{:lang => "jp"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    / Le styles
+    %meta{:charset => "utf-8"}/
+    %title Week
+    = stylesheet_link_tag    "errors", :media => "all"
+    = csrf_meta_tags
+  %body
+    %h3
+      そのページは存在しません.
+    %h5
+      お気づきありがとうございます.
+      これから解決に向けて取り組ませて頂きます.
+  　= button_to  'ホームへ戻る', root_path

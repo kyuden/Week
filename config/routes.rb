@@ -18,6 +18,8 @@ Week::Application.routes.draw do
   #OmniAuth
   match "/auth/facebook/callback" => 'users#callback'
   match "/logout" => 'users#destroy', as: 'logout'
+
+  match "*not_found" => 'application#render_404'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
