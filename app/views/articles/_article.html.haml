@@ -58,7 +58,7 @@
             %ul.comments
               - article.comments.each do |comment|
                 - if comment.body
-                  = render 'comments/comment', comment: comment
+                  = render comment
             = render 'comments/form', comment: article.comments.build, type: ''
     .span5
       %hr

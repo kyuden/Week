@@ -2,8 +2,7 @@
   = render template: 'articles/new'
 %section#Article-index
   - if @articles.present?
-    - @articles.each do |article|
-      = render 'articles/article', article: article, graph: @graph
+    = render @articles, graph: @graph
   - else
     %hr
     %h5 検索結果0件
