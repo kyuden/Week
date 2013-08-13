@@ -54,12 +54,11 @@
               %a{style:"color: #B94A48;font-weight: bold"}= entry.article.user.name
               さんと共通の友達
               %br
-              - 18.times do
-                - friends.each do |friend|
-                  .picture{:style => "float:left"}
-                    = image_tag friend["picture"]["data"]["url"], :class => "img-circle"
-                    %br
-                    = friend["first_name"]
+              - friends.each do |friend|
+                .picture{:style => "float:left"}
+                  = image_tag friend["picture"]["data"]["url"], :class => "img-circle"
+                  %br
+                  = friend["first_name"]
             - else
               %p 共通の友達はいません
               %p [WIP]共通の友達がいない場合は広告を出す予定
