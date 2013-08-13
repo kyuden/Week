@@ -1,58 +1,51 @@
 class UsersController < ApplicationController
   layout "one_column_layout", only: [:callback]
+  before_filter :check_logined, except: [:callback, :create]
+  after_filter  :delete_session, only: [:callback]
 
   def callback
     @auth = request.env["omniauth.auth"]
     user = User.find_by_uid(@auth['uid'])
     if user
       session[:user_id] = user.id
-      redirect_to root_url, notice: "login"
+      redirect_to session[:referer] || root_path
     else
       @user = User.new
       render 'users/_form'
     end
   end
 
-  # GET /users
-  # GET /users.json
   def index
     @users = User.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @users }
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @user }
     end
   end
 
-  # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @user }
     end
   end
 
-  # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
     session[:user_id] = @user
@@ -70,15 +63,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    logger.debug "AAAAAAAAAAAAAAAASASASA#{params[:id]}"
-    # @user = User.find(params[:id])
-    # @user.destroy
     session[:user_id] = nil
-    redirect_to '/home/index', notice: "logout"
+    render 'users/login', notice: "logout", layout: false
   end
 
-  # PUT /users/1
-  # PUT /users/1.json
   def update
     @user = User.find(params[:id])
 
@@ -91,5 +79,10 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  private
+  def delete_session
+    session[:referer] = nil
   end
 end

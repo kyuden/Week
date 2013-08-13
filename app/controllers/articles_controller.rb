@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
-  # GET /articles
-  # GET /articles.json
+
   def search
     @article = Article.new
     @articles = Article.joins(:user).where("location = ? AND age = ? AND (title LIKE ? OR disp_day LIKE ?)", current_user.location, current_user.age, "%#{params[:query]}%", "%#{params[:query]}%" ).page(params[:page])
@@ -10,13 +9,9 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    if current_user
-      @article = Article.new
-      @articles = Article.joins(:user).where("location = ? AND age = ?", current_user.location, current_user.age).page(params[:page])
-      @graph = Koala::Facebook::API.new(current_user.access_token)
-    else
-      render template: 'home/login', layout: false
-    end
+    @article = Article.new
+    @articles = Article.joins(:user).where("location = ? AND age = ?", current_user.location, current_user.age).page(params[:page])
+    @graph = Koala::Facebook::API.new(current_user.access_token)
   end
 
   def my_index
@@ -24,8 +19,6 @@ class ArticlesController < ApplicationController
     @graph = Koala::Facebook::API.new(current_user.access_token)
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
   def show
     @article = Article.find(params[:id])
     @entries = Entry.where(article_id: @article, watch_id: nil)
@@ -37,8 +30,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # GET /articles/new
-  # GET /articles/new.json
   def new
     @article = Article.new
 
@@ -48,14 +39,11 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
     @json = Article.find(params[:id]).to_gmaps4rails
   end
 
-  # POST /articles
-  # POST /articles.json
   def create
     @article = Article.new(params[:article])
     @graph = Koala::Facebook::API.new(current_user.access_token)
@@ -72,8 +60,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # PUT /articles/1
-  # PUT /articles/1.json
   def update
     @article = Article.find(params[:id])
 
@@ -88,8 +74,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # DELETE /articles/1
-  # DELETE /articles/1.json
   def destroy
     @article = Article.find(params[:id])
     @article.destroy

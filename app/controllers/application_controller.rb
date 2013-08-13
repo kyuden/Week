@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :check_logined
 
-  #例外ハンドル
   rescue_from Exception,                       with: :render_500 if Rails.env == 'production'
   rescue_from ActiveRecord::RecordNotFound,    with: :render_404 if Rails.env == 'production'
   rescue_from ActionController::UnknownAction, with: :render_404 if Rails.env == 'production'
@@ -27,6 +27,13 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :my_event_count
 
   private
+  def check_logined
+    unless current_user
+      session[:referer] = request.fullpath
+      render template: 'users/login', layout: false
+    end
+  end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end

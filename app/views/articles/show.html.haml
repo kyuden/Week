@@ -23,13 +23,16 @@
       .span3
         集合時間:
       .span9
-        = @article.date.strftime("%H:%M")
+        - if @article.date
+          = @article.date.strftime("%H:%M")
+        - else
+          未入力
     %hr
     .row-fluid
       .span3
         集合場所:　
       .span9
-        - if @article.place_name.present?
+        - if @article.place_name
           = @article.place_name
         - else
           未入力
@@ -38,7 +41,7 @@
       .span3
         集合場所住所:
       .span9
-        - if @article.place_adress.present?
+        - if @article.place_adress
           = @article.place_adress
         - else
           未入力(入力すると地図上に集合場所が出力されます)
