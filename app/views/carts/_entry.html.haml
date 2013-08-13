@@ -20,14 +20,20 @@
                 %span= auto_link(simple_format(entry.article.title), html: {target: "_blank"}, link: :urls)
               %ul.breadcrumb
                 %li
-                  = link_to '参加をやめる', entry_path(entry, type: 'Cart' ), :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => true, :class => "remove-cart"
+                  = link_to entry_path(entry, type: 'Cart' ), :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => true, :class => "remove-cart" do
+                    %i.icon-remove
+                    参加をやめる
                   %span.divider /
                 %li
                   - if entry.article.publish?
-                    = link_to 'イベント詳細', article_path(entry.article)
+                    = link_to article_path(entry.article) do
+                      %i.icon-bullhorn
+                      イベント詳細
                     %span.divider /
                   - if entry.article.user == current_user
-                    = link_to '詳細を編集', edit_article_path(entry.article)
+                    = link_to edit_article_path(entry.article) do
+                      %i.icon-edit
+                      詳細を編集
                     %span.divider /
         .row-fluid
           .span2

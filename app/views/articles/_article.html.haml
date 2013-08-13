@@ -27,7 +27,7 @@
                     ちょっと気になる
                 - else
                   = link_to entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true do
-                    %i.icon-hand-down
+                    %i.icon-remove
                     気になるをやめる
                 %span.divider /
               %li
@@ -37,7 +37,7 @@
                     参加してみる
                 - else
                   = link_to entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart" do
-                    %i.icon-thumbs-down
+                    %i.icon-remove
                     参加をやめる
 
                 %span.divider /

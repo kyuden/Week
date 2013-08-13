@@ -6,7 +6,7 @@ class CartsController < ApplicationController
     respond_to do |format|
       format.js
       format.html
-      format.json { render json: @carts }
+      format.json { render json: current_user.cart }
     end
   end
 end

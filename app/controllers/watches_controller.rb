@@ -6,7 +6,7 @@ class WatchesController < ApplicationController
     respond_to do |format|
       format.js
       format.html
-      format.json { render json: @watch }
+      format.json { render json: current_user.watch }
     end
   end
 end

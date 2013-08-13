@@ -21,17 +21,25 @@
               %ul.breadcrumb
                 - unless entry.cart_hold?(current_user)
                   %li
-                    = link_to '参加してみる', entries_path(article_id: entry.article, type: 'Cart'), :remote => true, method: :post, :class => "add-cart"
+                    = link_to entries_path(article_id: entry.article, type: 'Cart'), :remote => true, method: :post, :class => "add-cart" do
+                      %i.icon-heart
+                      参加してみる
                   %span.divider /
                 %li
-                  = link_to '気になるをやめる', entry_path(entry, type: 'Watch' ), :method => :delete, remote: true, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch"
+                  = link_to entry_path(entry, type: 'Watch' ), :method => :delete, remote: true, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch" do
+                    %i.icon-remove
+                    気になるをやめる
                   %span.divider /
                 %li
                   - if entry.article.publish?
-                    = link_to 'イベント詳細', article_path(entry.article)
+                    = link_to article_path(entry.article) do
+                      %i.icon-bullhorn
+                      イベント詳細
                     %span.divider /
                   - if entry.article.user == current_user
-                    = link_to '詳細を編集', edit_article_path(entry.article)
+                    = link_to edit_article_path(entry.article) do
+                      %i.icon-edit
+                      詳細を編集
                     %span.divider /
         .row-fluid
           .span2

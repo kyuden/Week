@@ -31,6 +31,7 @@ gem 'hirb-unicode'
 gem 'roadie'
 gem 'gmaps4rails'
 gem 'therubyracer'
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'rspec-rails', '>= 2.6.0'

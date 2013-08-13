@@ -2,10 +2,10 @@
   var watch_count = $('#watch-count').text();
   watch_count =  parseInt(watch_count);
   $("#watch-count").text(watch_count + 1 );
-  $("#article_<%= @watch.article.id %> .add-watch").html('<%=  link_to '気になるをやめる', entry_path( @watch, type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true %>')
+  $("#article_<%= @watch.article.id %> .add-watch").html('<%=  link_to entry_path( @watch, type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true do %> <i class= "icon-remove"></i> 気になるをやめる <% end %>')
 <% else %>
   var cart_count = $("#cart-count").text();
   cart_count =  parseInt(cart_count);
   $("#cart-count").text(cart_count + 1 );
-  $("#article_<%= @entry.article.id %> .add-cart").html('<%= link_to '参加をやめる', entry_path( @entry, type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart" %>')
+  $("#article_<%= @entry.article.id %> .add-cart").html('<%= link_to entry_path( @entry, type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart" do %> <i class= "icon-remove"></i> 参加をやめる <% end %>')
 <% end %>
