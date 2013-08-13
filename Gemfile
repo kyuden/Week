@@ -6,30 +6,31 @@ gem 'rails', '3.2.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'newrelic_rpm'
+gem 'heroku'
 gem 'haml-rails'
+gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'jp_prefecture'
 gem 'koala'
+gem "twitter-bootstrap-rails"
+gem 'bootstrap-select-rails'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
+gem 'jp_prefecture'
+gem 'rails_autolink'
+gem 'kaminari'
+gem 'jquery-elastic-rails'
+gem 'jquery-rails'
 gem 'factory_girl_rails'
 gem 'guard-rails'
 gem 'rails3-generators'
-gem 'kaminari'
 gem 'hirb'
 gem 'hirb-unicode'
 gem 'roadie'
 gem 'gmaps4rails'
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
-gem 'bootstrap-select-rails'
-gem 'heroku'
-gem 'jquery-elastic-rails'
-gem "rails_autolink"
-gem 'jquery-rails'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'rspec-rails', '>= 2.6.0'
@@ -50,7 +51,6 @@ group :assets do
 end
 
 group :production do
-  gem 'newrelic_rpm'
   gem 'pg'
   gem 'thin'
 end
