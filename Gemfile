@@ -29,6 +29,7 @@ gem 'bootstrap-select-rails'
 gem 'heroku'
 gem 'jquery-elastic-rails'
 gem "rails_autolink"
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails', '>= 2.6.0'
@@ -48,9 +49,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
 group :production do
+  gem 'newrelic_rpm'
   gem 'pg'
   gem 'thin'
 end
