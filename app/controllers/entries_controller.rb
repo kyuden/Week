@@ -1,4 +1,6 @@
 class EntriesController < ApplicationController
+  before_filter :check_self, only: [:destroy]
+
   def create
     if params[:type] == 'Cart'
       @cart = current_cart
@@ -48,6 +50,13 @@ class EntriesController < ApplicationController
         format.js {render :file => "entries/toggle.js.erb"}
       end
       format.json { head :no_content }
+    end
+  end
+
+  private
+  def check_self
+    unless current_user == Entry.find(params[:id]).article.user
+      raise Forbidden
     end
   end
 end

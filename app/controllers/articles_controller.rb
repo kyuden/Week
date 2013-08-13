@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_filter :check_self,     only: [:edit, :update, :destroy, :send_mail]
 
   def search
     @article = Article.new
@@ -25,7 +26,7 @@ class ArticlesController < ApplicationController
     @json = Article.find(params[:id]).to_gmaps4rails
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @article }
     end
   end
@@ -34,7 +35,7 @@ class ArticlesController < ApplicationController
     @article = Article.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @article }
     end
   end
@@ -91,5 +92,12 @@ class ArticlesController < ApplicationController
     mail.transport_encoding = "8bit"
     mail.deliver
     redirect_to article_path(params[:id])
+  end
+
+  private
+  def check_self
+    unless current_user == Article.find(params[:id]).user
+      raise Forbidden
+    end
   end
 end

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  layout "one_column_layout", only: [:callback]
-  before_filter :check_logined, except: [:callback, :create]
-  after_filter  :delete_session, only: [:callback]
+  layout "one_column_layout",    only:   [:callback]
+  before_filter :check_self,     only:   [:edit, :show, :update]
+  before_filter :check_logined,  except: [:callback, :create]
+  after_filter  :delete_session, only:   [:callback]
 
   def callback
     @auth = request.env["omniauth.auth"]
@@ -75,5 +76,11 @@ class UsersController < ApplicationController
   private
   def delete_session
     session[:referer] = nil
+  end
+
+  def check_self
+    unless current_user.id.to_s == params[:id] || params[:user_id]
+      raise Forbidden
+    end
   end
 end
