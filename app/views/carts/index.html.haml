@@ -1,60 +1,16 @@
-%h3 参加するイベント
-- @cart.entries.each do |entry|
-  = div_for entry.article, :class => "Article" do
-    .row-fluid
-      .span7
-        %hr
-        .row-fluid
-          .span12
-            = entry.article.disp_day
-            - if entry.article.about_time.present?
-              %a= "#{entry.article.about_time}"
-        .row-fluid
-          .span2
-            %div{:style => "margin-top:5px;"}
-              = image_tag entry.article.user.image
-          .span10
-            .article
-              .article-title
-                .user-name
-                  %a{style:"color: #B94A48;font-weight: bold"}= entry.article.user.name
-                %span= auto_link(simple_format(entry.article.title), html: {target: "_blank"}, link: :urls)
-              %ul.breadcrumb
-                %li
-                  = link_to '参加をやめる', entry_path(entry, type: 'Cart' ), :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => true, :class => "remove-cart"
-                  %span.divider /
-                %li
-                  - if entry.article.publish?
-                    = link_to 'イベント詳細', article_path(entry.article)
-                    %span.divider /
-                  - if entry.article.user == current_user
-                    = link_to '詳細を編集', edit_article_path(entry.article)
-                    %span.divider /
-        .row-fluid
-          .span2
-          .span10
-            .comment
-              %ul.comments
-                - entry.article.comments.each do |comment|
-                  - if comment.body
-                    = render 'comments/comment', comment: comment
-              = render 'comments/form', comment: entry.article.comments.build, type: 'Cart'
-      .span5
-        %hr
-        .mutualfriends
-          - if current_user == entry.article.user
-            %a 共通の友達はいません
-          - else
-            - friends = @graph.get_connections("me", "mutualfriends/#{entry.article.user.uid}?fields=first_name,picture")
-            - if friends
-              %a{style:"color: #B94A48;font-weight: bold"}= entry.article.user.name
-              さんと共通の友達
-              %br
-              - friends.each do |friend|
-                .picture{:style => "float:left"}
-                  = image_tag friend["picture"]["data"]["url"], :class => "img-circle"
-                  %br
-                  = friend["first_name"]
-            - else
-              %p 共通の友達はいません
-              %p [WIP]共通の友達がいない場合は広告を出す予定
+%section#Cart-index
+  %h3 参加するイベント
+  = render 'carts/entry', entries: @entries , graph: @graph
+%section#Cart-paginate
+  .row-fluid
+    .span2
+    .span5
+      = link_to_next_page @entries,
+                          'もっと見る',
+                          id: 'more_cart_entries',
+                          remote: true,
+                          class: "span10 btn",
+                          disable_with: "Loading....",
+                          style: "margin:50px 1px 45px 1px;color:#111111;"
+    .span5
+%br

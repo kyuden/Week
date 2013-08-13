@@ -3,7 +3,9 @@ class Entry < ActiveRecord::Base
   belongs_to :article
   belongs_to :cart
   belongs_to :watch
+
   default_scope order: "created_at DESC"
+  paginates_per  5
 
   def cart_hold?(user)
     Entry.where(

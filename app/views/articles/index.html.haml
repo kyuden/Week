@@ -5,13 +5,17 @@
     = render @articles, graph: @graph
   - else
     %hr
-    %h5 検索結果0件
+    %h5 結果0件
 %section#Article-paginate
-  = link_to_next_page @articles,
-                      'もっと見る',
-                      id: 'more_link',
-                      remote: true,
-                      class: "span4 btn",
-                      disable_with: "Loading....",
-                      style: "margin:50px 1px 45px 110px;color:#111111;"
+  .row-fluid
+    .span2
+    .span5
+      = link_to_next_page @articles,
+                          'もっと見る',
+                          id: 'more_link',
+                          remote: true,
+                          class: "span10 btn",
+                          disable_with: "Loading....",
+                          style: "margin:50px 1px 45px 1px;color:#111111;"
+    .span5
 %br

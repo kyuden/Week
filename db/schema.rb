@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(:version => 20130804140430) do
 
   create_table "entries", :force => true do |t|
     t.integer  "cart_id"
+    t.integer  "watch_id"
     t.integer  "article_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "watch_id"
   end
 
   create_table "users", :force => true do |t|

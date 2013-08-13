@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   def search
     @article = Article.new
-    @articles = Article.joins(:user).where("location = ? AND age = ? AND (title LIKE ? OR disp_day LIKE ?)", current_user.location, current_user.age, "%#{params[:query]}%", "%#{params[:query]}%" ).page(params[:page])
+    @articles = Article.joins(:user).where("location = ? AND age = ? AND (title LIKE ? OR disp_day LIKE ?)", current_user.location, current_user.age, "%#{params[:query]}%", "%#{params[:query]}%" ).page params[:page]
     @graph = Koala::Facebook::API.new(current_user.access_token)
 
     render action: :index
@@ -11,12 +11,12 @@ class ArticlesController < ApplicationController
 
   def index
     @article = Article.new
-    @articles = Article.joins(:user).where("location = ? AND age = ?", current_user.location, current_user.age).page(params[:page])
+    @articles = Article.joins(:user).where("location = ? AND age = ?", current_user.location, current_user.age).page params[:page]
     @graph = Koala::Facebook::API.new(current_user.access_token)
   end
 
   def my_index
-    @articles = Article.where(user_id: current_user).page(params[:page])
+    @articles = Article.where(user_id: current_user).page params[:page]
     @graph = Koala::Facebook::API.new(current_user.access_token)
   end
 

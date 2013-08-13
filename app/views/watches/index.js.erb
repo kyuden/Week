@@ -1,0 +1,6 @@
+$('#Watch-index').append('<%= escape_javascript( render 'watches/entry', entries: @entries, graph: @graph ) %>')
+$('#more_watch_entries').replaceWith('<%= escape_javascript( link_to_next_page(@entries, 'もっと見る',remote: true,
+                                                                      id: 'more_watch_entries',
+                                                                      class: "span10 btn",
+                                                                      disable_with: "Loading....",
+                                                                      style: "margin:50px 1px 45px 1px;color:#111111;" )) %>');

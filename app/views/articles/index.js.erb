@@ -1,6 +1,6 @@
 $('#Article-index').append('<%= escape_javascript( render @articles, graph: @graph ) %>')
 $('#more_link').replaceWith('<%= escape_javascript( link_to_next_page(@articles, 'もっと見る',remote: true,
                                                                       id: 'more_link',
-                                                                      class: "span4 btn",
+                                                                      class: "span10 btn",
                                                                       disable_with: "Loading....",
-                                                                      style: "margin:50px 1px 50px 110px;" )) %>');
+                                                                      style: "margin:50px 1px 45px 1px;color:#111111;" )) %>');
