@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  layout "one_column_layout",    only:   [:callback]
   before_filter :check_self,     only:   [:edit, :show, :update]
   before_filter :check_logined,  except: [:callback, :create]
   after_filter  :delete_session, only:   [:callback]
@@ -12,7 +11,7 @@ class UsersController < ApplicationController
       redirect_to session[:referer] || root_path
     else
       @user = User.new
-      render 'users/_form'
+      render 'users/_form', layout: "one_column_layout"
     end
   end
 

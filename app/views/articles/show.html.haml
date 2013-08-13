@@ -64,6 +64,4 @@
 -if current_user == @article.user
   = link_to '編集を続ける', edit_article_path(@article)
   \|
-= link_to 'Back Home', articles_path
-/ %dt Publish:
-/ %dd= @article.publish ? "詳細を公開しています" : "詳細を公開していません"
+= link_to 'Back Home', articles_pat
