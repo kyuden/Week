@@ -1,9 +1,9 @@
 class EntriesController < ApplicationController
   def create
     if params[:type] == 'Cart'
-      @cart = current_cart
-      article = Article.find(params[:article_id])
-      @entry = @cart.entries.build(article_id: article.id)
+      cart = current_cart
+      article = Article.select(:id).find(params[:article_id])
+      @entry = cart.entries.build(article_id: article.id)
 
       respond_to do |format|
         if @entry.save
@@ -15,13 +15,14 @@ class EntriesController < ApplicationController
           format.json { render json: @entry.errors, status: :unprocessable_entity }
         end
       end
+
     else
-      @watch = current_watch
-      article = Article.find(params[:article_id])
-      @watch = @watch.entries.build(article_id: article.id)
+      watch = current_watch
+      article = Article.select(:id).find(params[:article_id])
+      @entry = watch.entries.build(article_id: article.id)
 
       respond_to do |format|
-        if @watch.save
+        if @entry.save
           format.html { redirect_to root_url, notice: 'Entry was successfully created.' }
           format.js
           format.json { render json: @entry, status: :created, location: @entry }
@@ -36,6 +37,7 @@ class EntriesController < ApplicationController
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy
+
     respond_to do |format|
       if params[:type] == 'Cart'
         format.html { redirect_to carts_url }
