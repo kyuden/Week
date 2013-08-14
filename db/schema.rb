@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814214529) do
+ActiveRecord::Schema.define(:version => 20130814225453) do
 
   create_table "articles", :force => true do |t|
     t.text     "title",                           :null => false
@@ -58,6 +58,10 @@ ActiveRecord::Schema.define(:version => 20130814214529) do
     t.datetime "updated_at", :null => false
     t.integer  "watch_id"
   end
+
+  add_index "entries", ["article_id", "watch_id"], :name => "index_entries_on_article_id_and_watch_id"
+  add_index "entries", ["article_id"], :name => "index_entries_on_article_id"
+  add_index "entries", ["watch_id"], :name => "index_entries_on_watch_id"
 
   create_table "users", :force => true do |t|
     t.string   "uid",          :null => false
