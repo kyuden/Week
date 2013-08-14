@@ -3,12 +3,12 @@
 .row-fluid
   .span1
     %div{:style => "margin-top:5px;"}
-      = image_tag @article.user.image
+      = image_tag @article_user.image
   .span11
     .article
       .article-title
         .user-name
-          %a{style:"color: #B94A48;font-weight: bold"}= @article.user.name
+          %a{style:"color: #B94A48;font-weight: bold"}= @article_user.name
         %span= auto_link(simple_format(@article.title), html: {target: "_blank"}, link: :urls)
 %hr
 .row-fluid
@@ -58,10 +58,10 @@
 - @entries.each do |entry|
   = image_tag entry.cart.user.image, :class => "img-circle"
 %hr
--if (current_user == @article.user) && @entries.present?
+-if (current_user == @article_user) && @entries.present?
   .text-center
     = button_to '参加者全員に詳細事項をmailする', send_mail_article_path(@article),:data => { :confirm => 'Are you sure?' }, method: "get", class: "btn btn-primary btn-large"
--if current_user == @article.user
+-if current_user == @article_user
   = link_to '編集を続ける', edit_article_path(@article)
   \|
 = link_to 'Back Home', articles_path

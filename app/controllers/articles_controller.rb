@@ -11,7 +11,8 @@ class ArticlesController < ApplicationController
                                 user_id,
                                 comment_id")
                         .joins(:user)
-                        .where("location = ? AND age = ? AND (title LIKE ? OR disp_day LIKE ?)", current_user.location, current_user.age, "%#{params[:query]}%", "%#{params[:query]}%" )
+                        .where("users.location = ? AND users.age = ? AND (title LIKE ? OR disp_day LIKE ?)", current_user.location, current_user.age, "%#{params[:query]}%", "%#{params[:query]}%" )
+                        .includes([:user, comments: :user])
                         .page params[:page]
 
     @graph = Koala::Facebook::API.new(current_user.access_token)
@@ -29,9 +30,9 @@ class ArticlesController < ApplicationController
                                 user_id,
                                 comment_id")
                        .joins(:user)
-                       .where("location = ? AND age = ?", current_user.location, current_user.age)
+                       .where("users.location = ? AND users.age = ?", current_user.location, current_user.age)
+                       .includes([:user, comments: :user])
                        .page params[:page]
-
     @graph = Koala::Facebook::API.new(current_user.access_token)
   end
 
@@ -44,6 +45,7 @@ class ArticlesController < ApplicationController
                                 user_id,
                                 comment_id")
                         .where(user_id: current_user)
+                        .includes([:user, comments: :user])
                         .page params[:page]
 
     @graph = Koala::Facebook::API.new(current_user.access_token)
@@ -66,7 +68,8 @@ class ArticlesController < ApplicationController
                                 description")
                       .find(params[:id])
 
-    @entries = Entry.where(article_id: @article, watch_id: nil)
+    @article_user = @article.user
+    @entries = Entry.includes(cart: :user).where(article_id: @article, watch_id: nil)
     @json = Article.find(params[:id]).to_gmaps4rails
 
     respond_to do |format|
