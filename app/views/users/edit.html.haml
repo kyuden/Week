@@ -1,17 +1,8 @@
-= simple_form_for @user do |f|
-  / = form_for(@user, url: users_path(@user), html: { method: :post } ) do |f|
-  / - if @user.errors.any?
-  /   / #error_explanation
-  /   /   %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-  /   /   %ul
-  /   /     - @user.errors.full_messages.each do |msg|
-  /   /       %li= msg
+= simple_form_for current_user do |f|
   .tabbable
     %ul.nav.nav-tabs
       %li.active
         %a{"data-toggle" => "tab", :href => "#A"} プロフィール編集
-      / %li
-      /   %a{"data-toggle" => "tab", :href => "#B"} 詳細編集
     .tabbable
       .tab-content
         #A.tab-pane.active
@@ -39,10 +30,6 @@
                   = f.text_field :email, value: current_user.email
                 - else
                   = f.text_field :email, value: @user.email
-        / #B.tab-pane
-        /   .well
-        /     .row-fluid
-        /       %h1 Editing user
   %hr
     .row-fluid
       .span10

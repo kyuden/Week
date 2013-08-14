@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_filter :check_self,     only:   [:edit, :show, :update]
-  before_filter :check_logined,  except: [:callback, :create]
+  before_filter :check_logined,  except: [:callback, :create, :log_out]
   after_filter  :delete_session, only:   [:callback]
 
+  #log_in
   def callback
     @auth = request.env["omniauth.auth"]
-    user = User.find_by_uid(@auth['uid'])
+    user = User.select(:id).find_by_uid(@auth['uid'])
+
     if user
       session[:user_id] = user.id
       redirect_to session[:referer] || root_path
@@ -15,22 +17,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @user }
-    end
-  end
-
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def create
     @user = User.new(params[:user])
     session[:user_id] = @user
+
     respond_to do |format|
       if @user.save
         current_cart
@@ -44,13 +34,19 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def log_out
     session[:user_id] = nil
     render 'users/login', notice: "logout", layout: false
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.select(" id,
+                          name,
+                          email,
+                          location,
+                          age,
+                          updated_at")
+                .find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

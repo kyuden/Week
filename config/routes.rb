@@ -14,7 +14,7 @@ Week::Application.routes.draw do
 
   #OmniAuth
   match "/auth/facebook/callback" => 'users#callback'
-  match "/logout" => 'users#destroy', as: 'logout'
+  match "/logout" => 'users#log_out', as: 'logout'
 
   #Exeption
   match "*not_found" => 'application#render_404'
