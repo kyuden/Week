@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814154429) do
+ActiveRecord::Schema.define(:version => 20130814214529) do
 
   create_table "articles", :force => true do |t|
     t.text     "title",                           :null => false
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20130814154429) do
     t.integer  "location"
     t.integer  "age"
   end
+
+  add_index "users", ["location", "age"], :name => "index_users_on_location_and_age"
 
   create_table "watches", :force => true do |t|
     t.integer  "user_id"
