@@ -1,7 +1,16 @@
 %h3 自分が投稿したイベント
 %section#Article-index
-  - @articles.each do |article|
-    = render 'articles/article', article: article, graph: @graph
+  = render @articles, graph: @graph
 %section#Article-paginate
-  = paginate @articles
+  .row-fluid
+    .span2
+    .span5
+      = link_to_next_page @articles,
+                          'もっと見る',
+                          id: 'more_link',
+                          remote: true,
+                          class: "span10 btn",
+                          disable_with: "Loading....",
+                          style: "margin:50px 1px 45px 1px;color:#111111;"
+    .span5
 %br

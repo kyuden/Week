@@ -18,6 +18,12 @@ class ArticlesController < ApplicationController
   def my_index
     @articles = Article.where(user_id: current_user).page params[:page]
     @graph = Koala::Facebook::API.new(current_user.access_token)
+
+    respond_to do |format|
+      format.js {render 'index.js.erb'}
+      format.html
+      format.json { render json: @article }
+    end
   end
 
   def show
