@@ -46,9 +46,7 @@
           .span10
             .comment
               %ul.comments
-                - entry.article.comments.each do |comment|
-                  - if comment.body
-                    = render 'comments/comment', comment: comment
+                = render entry.article.comments
               = render 'comments/form', comment: entry.article.comments.build, type: 'Watch'
       .span5
         %hr
