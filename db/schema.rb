@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130804140430) do
+ActiveRecord::Schema.define(:version => 20130814154429) do
 
   create_table "articles", :force => true do |t|
-    t.text     "title",       :null => false
+    t.text     "title",                           :null => false
     t.text     "description"
     t.datetime "date"
     t.integer  "comment_id"
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(:version => 20130804140430) do
     t.float    "longitude"
     t.boolean  "gmaps"
   end
+
+  add_index "articles", ["id", "user_id"], :name => "index_articles_on_id_and_user_id"
+  add_index "articles", ["title", "disp_day"], :name => "index_articles_on_title_and_disp_day", :length => {"title"=>255, "disp_day"=>nil}
+  add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
 
   create_table "carts", :force => true do |t|
     t.integer  "user_id"
