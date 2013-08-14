@@ -1,7 +1,7 @@
 Week::Application.routes.draw do
   root to: "articles#index"
 
-  resources :users, except: %w[new]
+  resources :users, except: %w[new index]
   resources :watches, only: %w[index]
   resources :carts,   only: %w[index]
   resources :entries, only: %w[create destroy]
