@@ -1,22 +1,51 @@
 class ArticlesController < ApplicationController
-  before_filter :check_self,     only: [:edit, :update, :destroy, :send_mail]
+  before_filter :check_self, only: [:edit, :update, :destroy, :send_mail]
 
   def search
-    @article = Article.new
-    @articles = Article.joins(:user).where("location = ? AND age = ? AND (title LIKE ? OR disp_day LIKE ?)", current_user.location, current_user.age, "%#{params[:query]}%", "%#{params[:query]}%" ).page params[:page]
+    @article  = Article.new
+    @articles = Article.select("articles.id,
+                                disp_day,
+                                about_time,
+                                title,
+                                publish,
+                                user_id,
+                                comment_id")
+                        .joins(:user)
+                        .where("location = ? AND age = ? AND (title LIKE ? OR disp_day LIKE ?)", current_user.location, current_user.age, "%#{params[:query]}%", "%#{params[:query]}%" )
+                        .page params[:page]
+
     @graph = Koala::Facebook::API.new(current_user.access_token)
 
     render action: :index
   end
 
   def index
-    @article = Article.new
-    @articles = Article.joins(:user).where("location = ? AND age = ?", current_user.location, current_user.age).page params[:page]
+    @article  = Article.new
+    @articles = Article.select("articles.id,
+                                disp_day,
+                                about_time,
+                                title,
+                                publish,
+                                user_id,
+                                comment_id")
+                       .joins(:user)
+                       .where("location = ? AND age = ?", current_user.location, current_user.age)
+                       .page params[:page]
+
     @graph = Koala::Facebook::API.new(current_user.access_token)
   end
 
   def my_index
-    @articles = Article.where(user_id: current_user).page params[:page]
+    @articles = Article.select("articles.id,
+                                disp_day,
+                                about_time,
+                                title,
+                                publish,
+                                user_id,
+                                comment_id")
+                        .where(user_id: current_user)
+                        .page params[:page]
+
     @graph = Koala::Facebook::API.new(current_user.access_token)
 
     respond_to do |format|
@@ -27,7 +56,16 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = Article.select(" articles.id,
+                                user_id,
+                                title,
+                                disp_day,
+                                date,
+                                place_name,
+                                place_adress,
+                                description")
+                      .find(params[:id])
+
     @entries = Entry.where(article_id: @article, watch_id: nil)
     @json = Article.find(params[:id]).to_gmaps4rails
 
@@ -47,8 +85,17 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
-    @json = Article.find(params[:id]).to_gmaps4rails
+    @article = Article.select(" articles.id,
+                                title,
+                                description,
+                                date,
+                                user_id,
+                                publish,
+                                disp_day,
+                                about_time,
+                                place_adress,
+                                place_name")
+                      .find(params[:id])
   end
 
   def create
@@ -68,7 +115,18 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
+    @article = Article.select(" articles.id,
+                                title,
+                                description,
+                                date,
+                                user_id,
+                                publish,
+                                disp_day,
+                                about_time,
+                                place_adress,
+                                place_name,
+                                updated_at")
+                        .find(params[:id])
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
@@ -82,7 +140,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    @article = Article.select(:id).find(params[:id])
     @article.destroy
 
     respond_to do |format|
@@ -102,7 +160,7 @@ class ArticlesController < ApplicationController
 
   private
   def check_self
-    unless current_user == Article.find(params[:id]).user
+    unless current_user == Article.select("id, user_id").find(params[:id]).user
       raise Forbidden
     end
   end
