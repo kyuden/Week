@@ -1,6 +1,9 @@
 class CartsController < ApplicationController
   def index
-    @entries = Entry.where(cart_id: current_user.cart).page params[:page]
+    @entries = Entry.select("entries.id, entries.article_id")
+                    .includes(article: [:user, :comments])
+                    .where(cart_id: current_user.cart).page params[:page]
+
     @graph   = Koala::Facebook::API.new(current_user.access_token)
 
     respond_to do |format|
