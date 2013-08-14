@@ -31,7 +31,8 @@ gem 'hirb-unicode'
 gem 'roadie'
 gem 'gmaps4rails'
 gem 'therubyracer'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+
 
 group :development, :test do
   gem 'rspec-rails', '>= 2.6.0'
@@ -53,7 +54,7 @@ end
 
 group :production do
   gem 'pg'
-  gem 'thin'
+  gem 'unicorn'
 end
 
 # To use ActiveModel has_secure_password
