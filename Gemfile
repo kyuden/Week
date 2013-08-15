@@ -6,8 +6,10 @@ gem 'rails', '3.2.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem 'newrelic_rpm'
 gem 'heroku'
+gem 'dalli'
+gem 'memcachier'
+gem 'newrelic_rpm'
 gem 'haml-rails'
 gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'omniauth'
@@ -31,8 +33,6 @@ gem 'roadie'
 gem 'gmaps4rails'
 gem 'therubyracer'
 gem 'font-awesome-rails'
-gem 'dalli'
-gem 'memcachier'
 
 
 group :development, :test do

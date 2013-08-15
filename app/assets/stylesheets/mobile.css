@@ -1,0 +1,15 @@
+/**
+ * GridSystem for Mobile Display
+ */
+@media only screen and (max-width: 767px) {
+
+    /* 画面両サイドの余白調整 */
+    body {
+        width: 100%;
+        padding:0;
+    }
+
+    .container-fluid{
+        padding-left:0; padding-right: 0;
+    }
+}
