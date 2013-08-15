@@ -15,7 +15,6 @@
 //= require twitter/bootstrap
 //= require jquery_elastic
 //= require elastic
-//= require bootstrap-select
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require_tree .

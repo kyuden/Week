@@ -2,8 +2,10 @@
   = image_tag current_user.large_image, :class => "img-circle"
   %br
   %br
-  %p{align: "center"}= "#{current_user.name}さん"
-
+  .user-name{align: "center"}
+    = "#{current_user.name}"
+    さん
+  %br
 %ul.nav.nav-list
   %li.active
     = link_to root_path do
@@ -13,10 +15,8 @@
     = link_to current_user do
       %i.icon-user
       Profile
-  / %li
-  /   %a{:href => "#"} Mail Setting
   %li.nav-header{style:"color: #973102"}  Activity list
-  %li
+  %li{}
     = link_to my_index_articles_path do
       %i.icon-pencil
       自分の投稿  <span id = "my-event-count" class = "badge badge-important">#{my_event_count}</span> 件
@@ -28,6 +28,3 @@
     = link_to watches_path do
       %i.icon-star
       気になる &nbsp  <span id = "watch-count" class = "badge badge-inverse">#{current_user.watch.entries.length}</span> 件
-  %li.divider
-  %li
-    %a{:href => "#"} Help

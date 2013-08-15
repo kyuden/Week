@@ -14,7 +14,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem "twitter-bootstrap-rails"
-gem 'bootstrap-select-rails'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
