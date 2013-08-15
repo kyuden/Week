@@ -49,7 +49,7 @@ Week::Application.configure do
 
   config.after_initialize do
     Bullet.enable = true # Bullet plugin
-    Bullet.alert = true # JavaScript
+    Bullet.alert = false # JavaScript
     Bullet.bullet_logger = true # log/bullet.log
     Bullet.console = true
     Bullet.rails_logger = true # Rails log

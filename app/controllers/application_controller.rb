@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  helper_method :current_user, :my_event_count
+  helper_method :current_user, :my_event_count, :current_graph
 
   private
   def check_logined

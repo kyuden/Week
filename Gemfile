@@ -32,6 +32,8 @@ gem 'roadie'
 gem 'gmaps4rails'
 gem 'therubyracer'
 gem 'font-awesome-rails'
+gem 'dalli'
+gem 'memcachier'
 
 
 group :development, :test do

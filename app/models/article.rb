@@ -41,7 +41,7 @@ class Article < ActiveRecord::Base
   end
 
   def cart_hold?(user)
-    Entry.where(
+    Entry.select(:id).where(
       article_id: self,
       watch_id:   nil,
       cart_id:    user.cart
@@ -49,7 +49,7 @@ class Article < ActiveRecord::Base
   end
 
   def watch_hold?(user)
-    Entry.where(
+    Entry.select(:id).where(
       article_id: self,
       cart_id:    nil,
       watch_id:   user.watch
@@ -57,7 +57,7 @@ class Article < ActiveRecord::Base
   end
 
   def cart_hold(user)
-    Entry.where(
+    Entry.select(:id).where(
       article_id: self,
       watch_id:   nil,
       cart_id:    user.cart
@@ -65,7 +65,7 @@ class Article < ActiveRecord::Base
   end
 
   def watch_hold(user)
-    Entry.where(
+    Entry.select(:id).where(
       article_id: self,
       cart_id:    nil,
       watch_id:   user.watch
