@@ -46,4 +46,12 @@ Week::Application.configure do
     enable_starttls_auto: true
     }
   end
+
+  config.after_initialize do
+    Bullet.enable = true # Bullet plugin
+    Bullet.alert = true # JavaScript
+    Bullet.bullet_logger = true # log/bullet.log
+    Bullet.console = true
+    Bullet.rails_logger = true # Rails log
+  end
 end

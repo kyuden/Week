@@ -39,6 +39,8 @@ GEM
     bourne (1.1.2)
       mocha (= 0.10.5)
     builder (3.0.4)
+    bullet (4.6.0)
+      uniform_notifier
     client_side_validations (3.2.5)
     client_side_validations-simple_form (2.0.1)
       client_side_validations (~> 3.2.0)
@@ -262,6 +264,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.2.0)
 
 PLATFORMS
   ruby
@@ -270,6 +273,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-select-rails
+  bullet
   client_side_validations
   client_side_validations-simple_form
   coffee-rails (~> 3.2.1)

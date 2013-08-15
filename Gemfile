@@ -39,6 +39,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bullet'
 end
 # Gems used only for assets and not required
 # in production environments by default.
