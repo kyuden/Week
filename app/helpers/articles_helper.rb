@@ -1,7 +1,7 @@
 require 'date'
 
 module ArticlesHelper
-
+  #[TODO]refactor this
   def week_select
     array = []
     tday = Date.today

@@ -2,7 +2,7 @@
   = render template: 'articles/new'
 %section#Article-index
   - if @articles.present?
-    = render @articles, graph: @graph
+    = render @articles
   - else
     %hr
     %h5 結果0件

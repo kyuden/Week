@@ -1,4 +1,4 @@
-$('#Cart-index').append('<%= escape_javascript( render 'carts/entry', entries: @entries, graph: @graph ) %>')
+$('#Cart-index').append('<%= escape_javascript( render 'carts/entry', entries: @entries ) %>')
 $('#more_cart_entries').replaceWith('<%= escape_javascript( link_to_next_page(@entries, 'もっと見る',remote: true,
                                                                       id: 'more_cart_entries',
                                                                       class: "span10 btn",

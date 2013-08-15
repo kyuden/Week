@@ -15,8 +15,6 @@ class ArticlesController < ApplicationController
                         .includes([:user, comments: :user])
                         .page params[:page]
 
-    @graph = Koala::Facebook::API.new(current_user.access_token)
-
     render action: :index
   end
 
@@ -33,7 +31,7 @@ class ArticlesController < ApplicationController
                        .where("users.location = ? AND users.age = ?", current_user.location, current_user.age)
                        .includes([:user, comments: :user])
                        .page params[:page]
-    @graph = Koala::Facebook::API.new(current_user.access_token)
+
   end
 
   def my_index
@@ -47,8 +45,6 @@ class ArticlesController < ApplicationController
                         .where(user_id: current_user)
                         .includes([:user, comments: :user])
                         .page params[:page]
-
-    @graph = Koala::Facebook::API.new(current_user.access_token)
 
     respond_to do |format|
       format.js {render 'index.js.erb'}
@@ -103,7 +99,6 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(params[:article])
-    @graph = Koala::Facebook::API.new(current_user.access_token)
 
     respond_to do |format|
       if @article.save
