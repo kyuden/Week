@@ -3,7 +3,9 @@
     .row-fluid{style: "padding: 0px; background-color: #f0f0f0;"}
       .span2
         %div
-          = image_tag comment.user.small_image
+          = link_to (image_tag comment.user.small_image), "#{comment.user.url}", target: "_blank"
       .span10
-        %a{style:"color: #B94A48;font-weight: bold"}= comment.user.name
+        .comment-user-name
+          %a
+            = link_to comment.user.name, "#{comment.user.url}", target: "_blank"
         %span{style:"height: 28px;"}= auto_link(simple_format(comment.body), html: {target: "_blank"}, link: :urls)

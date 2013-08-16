@@ -11,12 +11,12 @@
         .row-fluid
           .span2
             %div{:style => "margin-top:5px;"}
-              = image_tag entry.article.user.image
+              = link_to (image_tag entry.article.user.image), "#{entry.article.user.url}", target: '_blank'
           .span10
             .article
               .article-title
                 .user-name
-                  %a{style:"color: #B94A48;font-weight: bold"}= entry.article.user.name
+                  %a= link_to (entry.article.user.name), "#{entry.article.user.url}", target: '_blank'
                 %span= auto_link(simple_format(entry.article.title), html: {target: "_blank"}, link: :urls)
               %ul.breadcrumb
                 - unless entry.cart_hold?(current_user)
@@ -49,22 +49,4 @@
                 = render entry.article.comments
               = render 'comments/form', comment: entry.article.comments.build, type: 'Watch'
       .span5
-        %hr
-        .mutualfriends
-          - if current_user == entry.article.user
-            %a 共通の友達はいません
-          - else
-            - friends = current_graph.get_connections("me", "mutualfriends/#{entry.article.user.uid}?fields=first_name,picture")
-            - if friends
-              %a{style:"color: #B94A48;font-weight: bold"}= entry.article.user.name
-              さんと共通の友達
-              %br
-              - friends.each do |friend|
-                .picture{:style => "float:left"}
-                  = image_tag friend["picture"]["data"]["url"], :class => "img-circle"
-                  %br
-                  .mutualfriends-name
-                    = friend["first_name"]
-            - else
-              %p 共通の友達はいません
-              %p [WIP]共通の友達がいない場合は広告を出す予定
+        = render 'shared/mutualfriends', article_user: entry.article.user
