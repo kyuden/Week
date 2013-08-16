@@ -56,7 +56,7 @@
 -if @entries.present?
   %dt 参加者:
 - @entries.each do |entry|
-  = image_tag entry.cart.user.image, :class => "img-circle"
+  = link_to (image_tag entry.cart.user.image, :class => "img-circle"), "#{entry.cart.user.url}", target: "_blank"
 %hr
 .btn-mail
   -if (current_user == @article_user) && @entries.present?
