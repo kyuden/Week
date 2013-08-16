@@ -58,9 +58,11 @@
 - @entries.each do |entry|
   = image_tag entry.cart.user.image, :class => "img-circle"
 %hr
--if (current_user == @article_user) && @entries.present?
-  .text-center
-    = button_to '参加者全員に詳細事項をmailする', send_mail_article_path(@article),:data => { :confirm => 'Are you sure?' }, method: "get", class: "btn btn-primary btn-large"
+.btn-mail
+  -if (current_user == @article_user) && @entries.present?
+    .text-center
+      = button_to '参加者全員に詳細事項をmailする', send_mail_article_path(@article),:data => { :confirm => '参加者全員に上記の内容をメールしますか？' }, method: "get", class: "btn btn-primary btn-large", disable_with: "Sending..."
+%br
 -if current_user == @article_user
   = link_to '編集を続ける', edit_article_path(@article)
   \|

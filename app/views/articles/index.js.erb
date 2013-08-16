@@ -2,5 +2,5 @@ $('#Article-index').append('<%= escape_javascript( render @articles ) %>')
 $('#more_link').replaceWith('<%= escape_javascript( link_to_next_page(@articles, 'もっと見る',remote: true,
                                                                       id: 'more_link',
                                                                       class: "span10 btn",
-                                                                      disable_with: "Loading....",
+                                                                      disable_with: "<i class=\"icon-spinner icon-spin icon-large\"></i> Loading...",
                                                                       style: "margin:50px 1px 45px 1px;color:#111111;" )) %>');
