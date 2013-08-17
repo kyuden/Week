@@ -17,7 +17,8 @@
               .article-title
                 .user-name
                   %a= link_to (entry.article.user.name), "#{entry.article.user.url}", target: '_blank'
-                %span= auto_link(simple_format(entry.article.title), html: {target: "_blank"}, link: :urls)
+                .article-body
+                  %span= auto_link(simple_format(entry.article.title), html: {target: "_blank"}, link: :urls)
               %ul.breadcrumb
                 %li
                   = link_to entry_path(entry, type: 'Cart' ), :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => true, :class => "remove-cart" do

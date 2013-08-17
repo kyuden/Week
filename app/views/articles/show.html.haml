@@ -9,7 +9,8 @@
       .article-title
         .user-name
           %a= link_to @article_user.name, "#{@article_user.url}", target: '_blank'
-        %span= auto_link(simple_format(@article.title), html: {target: "_blank"}, link: :urls)
+        .article-body
+          %span= auto_link(simple_format(@article.title), html: {target: "_blank"}, link: :urls)
 %hr
 .row-fluid
   .span6
@@ -50,7 +51,8 @@
       .span12
         備考:
         .well.well-small
-          = simple_format @article.description, :style => "font-size:small"
+          .article-body
+            = auto_link(simple_format(@article.description), html: {target: "_blank"}, link: :urls)
   .span6
     = gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})
 -if @entries.present?

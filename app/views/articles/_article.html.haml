@@ -18,7 +18,8 @@
             .article-title
               .user-name
                 %a= link_to article.user.name, "#{article.user.url}", target: '_blank'
-              %span= auto_link(simple_format(article.title), html: {target: "_blank"}, link: :urls)
+              .article-body
+                %span= auto_link(simple_format(article.title), html: {target: "_blank"}, link: :urls)
             %ul.breadcrumb
               %li
                 - unless article.watch_hold?(current_user)
