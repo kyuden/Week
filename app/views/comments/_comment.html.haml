@@ -9,4 +9,4 @@
           %a
             = link_to comment.user.name, "#{comment.user.url}", target: "_blank"
         .comment-body
-          %span{style:"height: 28px;"}= auto_link(simple_format(comment.body), html: {target: "_blank"}, link: :urls)
+          %span= auto_link(simple_format(comment.body), html: {target: "_blank"}, link: :urls)
