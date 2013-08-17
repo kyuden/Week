@@ -72,8 +72,8 @@ Week::Application.configure do
     port:                587,
     domain:              "gmail.com",
     authentication:      "plain",
-    user_name:           "week.no.reply@gmail.com",
-    password:            "myservice",
+    user_name:           ENV["GMAIL_ADDRESS"],
+    password:            ENV["GMAIL_PASS"],
     enable_starttls_auto: true
     }
   end

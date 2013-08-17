@@ -3,3 +3,5 @@ log/*.log
 tmp/
 config/database.yml
 *.DS_Store
+# Ignore application configuration
+/config/application.yml

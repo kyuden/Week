@@ -14,8 +14,8 @@ class OwnerMailer < ActionMailer::Base
     end
 
     mail :bcc => users_adress,
-         from: "Week<week.no.reply@gmail.com>",
-         return_path: "week.no.reply@gmail.com",
+         from: ENV['GMAIL_DISPLAY'],
+         return_path: ENV['GMAIL_ADDRESS'],
          subject: "イベント詳細メール"
   end
 end
