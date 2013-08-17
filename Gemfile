@@ -34,6 +34,7 @@ gem 'roadie'
 gem 'gmaps4rails'
 gem 'therubyracer'
 gem 'font-awesome-rails'
+gem 'exception_notification', :require => 'exception_notifier'
 
 
 group :development, :test do

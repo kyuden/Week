@@ -31,7 +31,6 @@ class ArticlesController < ApplicationController
                        .where("users.location = ? AND users.age = ?", current_user.location, current_user.age)
                        .includes([:user, comments: :user])
                        .page params[:page]
-
   end
 
   def my_index

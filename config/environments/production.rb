@@ -77,4 +77,10 @@ Week::Application.configure do
     enable_starttls_auto: true
     }
   end
+
+  config.middleware.use ExceptionNotifier,
+  :email_prefix => "[week] ",
+  :sender_address => ENV["GMAIL_DISPLAY"],
+  :exception_recipients => ENV["GMAIL_ADDRESS"]
+
 end
