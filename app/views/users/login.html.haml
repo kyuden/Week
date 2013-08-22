@@ -87,67 +87,72 @@
       }
 
   %body
-    .container
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      .row-fluid
-        .span12.block.block-m
-          %br/
-          .text-center
-            =image_tag "http://farm4.staticflickr.com/3827/9428484664_270faf2bee_o.png"
-            %p
-              週末やりたい事をつぶやいて
-              %br/
-              地域の同い年と週末を楽しむサービス
-            %p - β版 -
-            %button.btn.btn-primary.btn-flat{:onclick => "location.href='/auth/facebook'"}
-              facebook 無料登録/ログイン
+    - if request.host == "week-kyuden.herokuapp.com"
+      %h1
+        .mess{:style => "margin:300px 40px;"}
+          %a{:href => "http://weekjp.com/"} 新ドメインweekjp.comからしか認証できなくしました。Please redirect!
+    - else
+      .container
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        .row-fluid
+          .span12.block.block-m
             %br/
-            .attent
+            .text-center
+              =image_tag "http://farm4.staticflickr.com/3827/9428484664_270faf2bee_o.png"
               %p
-                weekが許可なく投稿することはありません
-            %br/
-            %br/
-            %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      %br/
-      .row-fluid
-        .span6
-          .footer_legal_links
-            %a{:href => "#", :target => "_blank"} お問い合わせ
-            |
-            %a.login_link.policy_link.terms{:href => "#", :target => "_blank"} 規約
-            |
-            %a.login_link.policy_link.privacy{:href => "#", :target => "_blank"} プライバシー
-            %br/
-            © 2013 Week Created By
-            %a{:href => "http://internkyuden.tumblr.com/post/58597061613/web", :target => "_blank" } Masahiro Hisada
-        .span6
-          .pull-right.block.block-f
-            %a{:href => "https://www.facebook.com/masahiro.hisada.7", :target => "_blank" } Masahiro
-            さんからの投稿 -
-            =image_tag "http://graph.facebook.com/100001985565772/picture?width=43&height=43&type=square", :class => "img-circle"
-      %br/
+                週末やりたい事をつぶやいて
+                %br/
+                地域の同い年と週末を楽しむサービス
+              %p - β版 -
+              %button.btn.btn-primary.btn-flat{:onclick => "location.href='/auth/facebook'"}
+                facebook 無料登録/ログイン
+              %br/
+              .attent
+                %p
+                  weekが許可なく投稿することはありません
+              %br/
+              %br/
+              %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        %br/
+        .row-fluid
+          .span6
+            .footer_legal_links
+              %a{:href => "#", :target => "_blank"} お問い合わせ
+              |
+              %a.login_link.policy_link.terms{:href => "#", :target => "_blank"} 規約
+              |
+              %a.login_link.policy_link.privacy{:href => "#", :target => "_blank"} プライバシー
+              %br/
+              © 2013 Week Created By
+              %a{:href => "http://internkyuden.tumblr.com/post/58597061613/web", :target => "_blank" } Masahiro Hisada
+          .span6
+            .pull-right.block.block-f
+              %a{:href => "https://www.facebook.com/masahiro.hisada.7", :target => "_blank" } Masahiro
+              さんからの投稿 -
+              =image_tag "http://graph.facebook.com/100001985565772/picture?width=43&height=43&type=square", :class => "img-circle"
+        %br/
     %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js", :type => "text/javascript"}
     %script{:src => "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js", :type => "text/javascript"}
