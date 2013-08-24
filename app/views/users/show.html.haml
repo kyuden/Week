@@ -1,7 +1,7 @@
 .tabbable
   %ul.nav.nav-tabs
     %li.active
-      %a{"data-toggle" => "tab", :href => "#A"} プロフィール
+      %a{"data-toggle" => "tab", :href => "#A"} ユーザ設定
     / %li
     /   %a{"data-toggle" => "tab", :href => "#B"} 詳細編集
   .tabbable
@@ -31,6 +31,6 @@
               email　　　
             .span10
               = current_user.email
-= link_to 'プロフィールを編集する', edit_user_path(current_user)
+= link_to 'ユーザ設定を編集する', edit_user_path(current_user)
 \|
 = link_to 'homeに戻る', root_path

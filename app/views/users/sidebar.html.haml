@@ -13,18 +13,18 @@
       Home
   %li
     = link_to current_user do
-      %i.icon-user
-      Profile
+      %i.icon-asterisk
+      User Setting
   %li.nav-header{style:"color: #973102"}  Activity list
   %li{}
     = link_to my_index_articles_path do
       %i.icon-pencil
-      自分の投稿  <span id = "my-event-count" class = "badge badge-important">#{my_event_count}</span> 件
+      自分の投稿  <span id = "my-event-count" class = "badge badge-important">#{my_event_count}</span>
   %li
     = link_to carts_path do
       %i.icon-heart
-      参加する &nbsp  <span id = "cart-count" class = "badge badge-important">#{current_user.cart.entries.length}</span> 件
+      参加する &nbsp  <span id = "cart-count" class = "badge badge-important">#{current_user.cart.entries.length}</span>
   %li
     = link_to watches_path do
       %i.icon-star
-      気になる &nbsp  <span id = "watch-count" class = "badge badge-inverse">#{current_user.watch.entries.length}</span> 件
+      気になる &nbsp  <span id = "watch-count" class = "badge badge-inverse">#{current_user.watch.entries.length}</span>
