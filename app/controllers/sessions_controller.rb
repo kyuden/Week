@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.select(:id).find_by_uid(@auth['uid'])
 
     if user
-      #request.session_options[:expire_after] = 1.months.from_now
+      request.session_options[:expire_after] = 1.months.from_now
       session[:user_id] = user.id
       redirect_to session[:referer] || root_path
     else
