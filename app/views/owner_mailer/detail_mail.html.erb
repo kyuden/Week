@@ -44,7 +44,11 @@
                             <strong>開催日</strong><br>
                             <%= @entries.first.article.disp_day %><br>
                             <strong>集合時間</strong><br>
-                            <%= @entries.first.article.date.strftime("%H:%M") %><br>
+                            <% if @entries.first.article.date.present? %>
+                              <%= @entries.first.article.date.strftime("%H:%M") %><br>
+                            <% elsif %>
+                              未入力<br>
+                            <% end %>
                             <strong>集合場所</strong><br>
                             <% if @entries.first.article.place_name.present? %>
                               <%= @entries.first.article.place_name %>

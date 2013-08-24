@@ -7,9 +7,9 @@ Week::Application.routes.draw do
   resources :entries, only: %w[create destroy]
   resources :comments, only: %w[create]
   resources :articles do
-    get "send_mail", on: :member
-    get "my_index", on: :collection, as: "my_index"
-    get "search", on: :collection, as: "search"
+    post "send_mail", on: :member
+    get  "my_index", on: :collection, as: "my_index"
+    get  "search", on: :collection, as: "search"
   end
 
   #OmniAuth
