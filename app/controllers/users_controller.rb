@@ -1,24 +1,10 @@
 class UsersController < ApplicationController
   before_filter :check_self,     only:   [:edit, :show, :update]
   before_filter :check_logined,  except: [:callback, :create, :log_out]
-  after_filter  :delete_session, only:   [:callback]
-
-  #log_in
-  def callback
-    @auth = request.env["omniauth.auth"]
-    user = User.select(:id).find_by_uid(@auth['uid'])
-
-    if user
-      session[:user_id] = user.id
-      redirect_to session[:referer] || root_path
-    else
-      @user = User.new
-      render 'users/_form', layout: "one_column_layout"
-    end
-  end
 
   def create
     @user = User.new(params[:user])
+    request.session_options[:expire_after] = 1.months.from_now
     session[:user_id] = @user
 
     respond_to do |format|
@@ -32,11 +18,6 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def log_out
-    session[:user_id] = nil
-    render 'users/login', notice: "logout", layout: false
   end
 
   def update
@@ -60,13 +41,9 @@ class UsersController < ApplicationController
   end
 
   private
-  def delete_session
-    session[:referer] = nil
-  end
-
-  def check_self
-    unless current_user.id.to_s == params[:id] || params[:user_id]
-      raise Forbidden
+    def check_self
+      unless current_user.id.to_s == params[:id] || params[:user_id]
+        raise Forbidden
+      end
     end
-  end
 end
