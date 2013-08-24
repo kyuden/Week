@@ -2,26 +2,43 @@ require 'date'
 
 module ArticlesHelper
   def week_select
-    array = []
+    proposed_date = []
     tday = Date.today
 
-    if (tday.wday == 0)
-      array <<  tday
-    end
+    3.times do
+      if tday.saturday?
+        proposed_date << tday
+        proposed_date << tday.next_day
+        tday = next_saturday(tday)
 
-    while( tday < Date.today >> 1 ) do
-      wday = tday.wday
-      diff = wday - 6
-      if(diff == 0)
-        array << tday
-        array << (tday + 1)
+      elsif tday.sunday?
+        proposed_date << tday
+        tday = next_next_saturday(tday)
+
       else
-        array << (tday - diff)
-        array << (tday - diff + 1)
+        proposed_date << next_saturday(tday)
+        proposed_date << next_sanday(tday)
+        tday = next_next_saturday(tday)
       end
-      tday = (tday - diff + 1)
     end
 
-    array.map{|t|[t.strftime("(#{%w(日 月 火 水 木 金 土)[t.wday]})%m月%d日/%Y年")]}
+    proposed_date.map{|t|[t.strftime("(#{%w(日 月 火 水 木 金 土)[t.wday]})%m月%d日/%Y年")]}
+  end
+
+  def next_saturday(tday)
+    if tday.saturday?
+      tday.next_day(7)
+    else
+      tday += (6 - tday.wday)
+    end
+  end
+
+  def next_sanday(tday)
+    tday += (6 - tday.wday)
+    tday + 1
+  end
+
+  def next_next_saturday(tday)
+    next_saturday next_saturday tday
   end
 end

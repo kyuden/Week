@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    request.session_options[:expire_after] = 1.months.from_now
+    #request.session_options[:expire_after] = 1.months.from_now
     session[:user_id] = @user
 
     respond_to do |format|
