@@ -2,11 +2,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :check_logined
 
+  http_basic_authenticate_with :name => ENV["STAGING_NAME"], :password => ENV["STAGING_PASS"] if Rails.env.staging?
+
   rescue_from Exception,                       with: :render_500 if Rails.env == 'production'
   rescue_from ActiveRecord::RecordNotFound,    with: :render_404 if Rails.env == 'production'
   rescue_from ActionController::UnknownAction, with: :render_404 if Rails.env == 'production'
   rescue_from ActionController::RoutingError,  with: :render_404 if Rails.env == 'production'
-
   #access-control-error
   class Forbidden < StandardError; end
 
