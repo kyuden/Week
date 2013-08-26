@@ -16,6 +16,9 @@ Week::Application.routes.draw do
   get "/auth/facebook/callback" => 'sessions#callback', as: 'login'
   get "/logout" => 'sessions#log_out', as: 'logout'
 
+  get "/terms"   => 'policies#terms',   as: 'terms'
+  get "/privacy" => 'policies#privacy', as: 'privacy'
+
   #Exeption
   match "*not_found" => 'application#render_404'
   # The priority is based upon order of creation:

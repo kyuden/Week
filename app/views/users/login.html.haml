@@ -142,9 +142,9 @@
             .footer_legal_links
               %a{:href => "#", :target => "_blank"} お問い合わせ
               |
-              %a.login_link.policy_link.terms{:href => "#", :target => "_blank"} 規約
+              = link_to '利用規約', terms_path
               |
-              %a.login_link.policy_link.privacy{:href => "#", :target => "_blank"} プライバシー
+              = link_to 'プライバシーポリシー', privacy_path
               %br/
               © 2013 Week Created By
               %a{:href => "http://internkyuden.tumblr.com/post/58597061613/web", :target => "_blank" } Masahiro Hisada
