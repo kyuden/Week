@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @contact.name
+%p
+  %b Adress:
+  = @contact.adress
+%p
+  %b Category:
+  = @contact.category
+%p
+  %b Description:
+  = @contact.description
+
+= link_to 'Edit', edit_contact_path(@contact)
+\|
+= link_to 'Back', contacts_path

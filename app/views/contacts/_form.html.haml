@@ -1,0 +1,13 @@
+= simple_form_for(@contact) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name, label: "お名前", input_html: {class: 'field span4'}
+    = f.input :adress, label: "連絡先メールアドレス（こちらに記入されたメールアドレスに回答いたします）", input_html: {class: 'field span5'}
+    = f.input :category, collection:[['サービスに関するお問い合わせ'],['提携、パートナーシップ、コラボレーションのお問い合わせ'], ['広告掲載のご依頼'], ['取材のご依頼'], ['その他']], label: "お問い合わせ種別", include_blank: false, label: "お問い合わせ種別", input_html: {class: 'field span5'}
+    = f.input :description, input_html: {class: 'field span8', rows: '6'}, label: "お問い合わせ内容"
+
+  .form-actions
+    .row-fluid
+      .span9
+      .span3
+        = f.button :submit, value: '送信', class: 'span9', class: "btn btn-primary btn-large"

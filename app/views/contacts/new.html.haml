@@ -1,0 +1,23 @@
+- if notice
+  .alert.alert-success
+    %a.close{"data-dismiss"=>"alert"}x
+    = notice
+
+%h3 お問い合わせ
+.well
+  %ol
+    %li
+      サービスに対するご質問
+    %li
+      提携・パートナーシップ・コラボレーションのご相談
+    %li
+      広告掲載のご依頼
+    %li
+      取材のご依頼
+  %p
+    など以下のフォームからご連絡ください。
+= render 'form'
+
+%br
+%br
+%hr

@@ -1,4 +1,5 @@
 Week::Application.routes.draw do
+
   root to: "articles#index"
 
   resources :users, except: %w[new index]
@@ -11,6 +12,7 @@ Week::Application.routes.draw do
     get  "my_index", on: :collection, as: "my_index"
     get  "search", on: :collection, as: "search"
   end
+  resources :contacts, except: %w[update]
 
   #OmniAuth
   get "/auth/facebook/callback" => 'sessions#callback', as: 'login'

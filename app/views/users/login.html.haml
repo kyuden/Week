@@ -140,7 +140,7 @@
         .row-fluid
           .span6
             .footer_legal_links
-              %a{:href => "#", :target => "_blank"} お問い合わせ
+              = link_to 'お問い合わせ', new_contact_path
               |
               = link_to '利用規約', terms_path
               |
