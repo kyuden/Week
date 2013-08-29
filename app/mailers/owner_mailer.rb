@@ -13,9 +13,9 @@ class OwnerMailer < ActionMailer::Base
      users_adress  << entry.cart.user.email
     end
 
-    mail :bcc => users_adress,
-         from: ENV['GMAIL_DISPLAY'],
+    mail bcc:         users_adress,
+         from:        ENV['GMAIL_DISPLAY'],
          return_path: ENV['GMAIL_ADDRESS'],
-         subject: "イベント詳細メール"
+         subject:     "イベント詳細メール"
   end
 end

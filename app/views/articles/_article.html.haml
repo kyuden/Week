@@ -34,7 +34,7 @@
                   %span.divider /
               %li
                 - unless article.cart_hold?(current_user)
-                  = link_to entries_path(article_id: article, type: 'Cart'), :remote => true, method: :post, :class => "add-cart" do
+                  = link_to entries_path(article_id: article, type: 'Cart'), :remote => true, method: :post, loading: "loading", :class => "add-cart" do
                     %i.icon-heart
                     参加してみる
                 - else
