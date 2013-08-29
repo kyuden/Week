@@ -21,16 +21,17 @@
               .article-body
                 %span= auto_link(simple_format(article.title), html: {target: "_blank"}, link: :urls)
             %ul.breadcrumb
-              %li
-                - unless article.watch_hold?(current_user)
-                  = link_to  entries_path(article_id: article, type: 'Watch'), :remote => true, method: :post, :class => "add-watch" do
-                    %i.icon-star
-                    ちょっと気になる
-                - else
-                  = link_to entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true do
-                    %i.icon-remove
-                    気になるをやめる
-                %span.divider /
+              - unless article.user == current_user
+                %li
+                  - unless article.watch_hold?(current_user)
+                    = link_to  entries_path(article_id: article, type: 'Watch'), :remote => true, method: :post, :class => "add-watch" do
+                      %i.icon-star
+                      ちょっと気になる
+                  - else
+                    = link_to entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true do
+                      %i.icon-remove
+                      気になるをやめる
+                  %span.divider /
               %li
                 - unless article.cart_hold?(current_user)
                   = link_to entries_path(article_id: article, type: 'Cart'), :remote => true, method: :post, :class => "add-cart" do
