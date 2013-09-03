@@ -35,7 +35,7 @@ gem 'gmaps4rails'
 gem 'therubyracer'
 gem 'font-awesome-rails'
 gem 'exception_notification', :require => 'exception_notifier'
-
+gem 'sidekiq'
 
 group :development, :test do
   gem 'rspec-rails', '>= 2.6.0'

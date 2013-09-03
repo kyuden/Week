@@ -5,8 +5,7 @@ class EntryObserver < ActiveRecord::Observer
 
   private
   def deliver_notify_cart(entry)
-    mail = NoticeMailer.cart_notice(entry)
-    mail.transport_encoding = "8bit"
-    mail.deliver
+    # instead of calling NoticeMailer.cart_notice we'll do
+    MailWorker.perform_async(entry.id)
   end
 end
