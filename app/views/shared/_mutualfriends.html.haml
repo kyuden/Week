@@ -2,10 +2,10 @@
   .mutualfriends
     - if current_user == article_user
       %p 共通の友達はいません
-      %p [WIP]共通の友達がいない場合は広告を出す予定
+      / %p [WIP]共通の友達がいない場合は広告を出す予定
     - else
       - friends = current_graph.get_connections("me", "mutualfriends/#{article_user.uid}?fields=first_name,picture,link")
-      - if friends
+      - if friends.present?
         %a{style:"color: #B94A48;font-weight: bold"}= article_user.name
         さんと共通の友達
         %br
@@ -17,4 +17,4 @@
               = link_to friend["first_name"], "#{friend["link"]}", target: "_blank"
       - else
         %p 共通の友達はいません
-        %p [WIP]共通の友達がいない場合は広告を出す予定
+        / %p [WIP]共通の友達がいない場合は広告を出す予定
