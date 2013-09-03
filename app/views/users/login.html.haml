@@ -1,5 +1,5 @@
 !!!
-%html{:lang => "jp"}
+%html{:lang => "jp", "xmlns:fb" => "http://ogp.me/ns/fb#"}
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
@@ -7,13 +7,23 @@
     %meta#viewport{:content => "width=960", :name => "viewport"}/
     %meta{:content => "off", "http-equiv" => "x-dns-prefetch-control"}/
     %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
-    %title ログイン | 登録
+
+    %meta{:content => "Week",                                                           :property => "og:title"}/
+    %meta{:content => "「週末やりたい事」をつぶやいて、近くの同期と週末を楽しむサービス",       :property => "og:description"}/
+    %meta{:content => "http://farm3.staticflickr.com/2838/9663450624_5cd23868db_o.png", :property => "og:image"}/
+    %meta{:content => "「週末を楽しむサービス」",                                          :property => "og:site_name"}/
+    %meta{:content => "http://weekjp.com/",                                             :property => "og:url"}/
+    %meta{:content => "155431544630724",                                                :property => "fb:app_id"}/
+    %meta{:content => "website",                                                        :property => "og:type"}/
+
+    %title Week
     %meta{:content => "noodp,nooydir", :name => "robots"}/
     %meta{:content => "週末やりたい事をつぶやいて、近くの同期と週末を楽しむサービス", :name => "description"}/
     %meta{:content => "week, weekend, week.jpn, Week, WEEK ", :name => "keywords"}/
     %link{:href => "http://farm4.staticflickr.com/3680/9546158361_729e7be993_o.png", :rel => "apple-touch-icon-precomposed"}/
     %meta{:content => "Week", :name => "application-name"}/
     %meta{:content => "#2c4762", :name => "msapplication-TileColor"}/
+
     / Le styles
     %title Week
     = stylesheet_link_tag    "application", :media => "all"

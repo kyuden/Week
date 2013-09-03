@@ -1,19 +1,29 @@
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="jp" xmlns:fb="http://ogp.me/ns/fb#">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta property = "fb:app_id"      content = "155431544630724">
+    <meta property = "og:type"        content = "website">
+    <meta property = "og:title"       content = "Week">
+    <meta property = "og:description" content = "「週末やりたい事」をつぶやいて、近くの同期と週末を楽しむサービス">
+    <meta property = "og:image"       content = "http://farm8.staticflickr.com/7421/9664554504_86e6798b4f_o.png">
+    <meta property = "og:site_name"   content = "「週末を楽しむサービス」">
+    <meta property = "og:url"         content = "http://weekjp.com/">
+
+    <meta name = "viewport"           content = "width=device-width, initial-scale=1.0">
+    <meta name = "description"        content = "「週末やりたい事」をつぶやいて、近くの同期と週末を楽しむサービス">
+    <meta name = "keywords"           content = "week, weekend, week.jpn, Week, WEEK " >
+    <meta name = "application-name"   content = "Week" >
+    <link href = "http://farm3.staticflickr.com/2838/9663450624_5cd23868db_o.png" rel = "apple-touch-icon-precomposed" >
 
   <!-- Le styles -->
-  <meta charset="utf-8">
-  <title>Week</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= stylesheet_link_tag    "mobile" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <%= favicon_link_tag 'favicon.ico' %>
+    <meta charset="utf-8">
+    <title>Week</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "mobile" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'favicon.ico' %>
     <style>
       .container#main { padding-top: 60px; }
       ul{ list-style:none;margin:0;padding:0; }
@@ -60,8 +70,20 @@
       .comment-body a, .article-body a{
        color:#DD4814;
       }
+      .fb-like span iframe{
+        height:20px !important;
+        width:97px !important;
+      }
 
     </style>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=155431544630724";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     <!-- Fav and touch icons -->
   </head>
 <body>
@@ -70,8 +92,7 @@
     <div class="navbar-inner">
       <div class="container">
         <div class="row-field">
-        <a class="brand span1" href="/articles/" style = "padding-left:0px;" >Week</a>
-        <div class="span1"></div>
+        <a class="brand span2" href="/articles/">Week</a>
         <div class="nav-collapse collapse span10">
           <%= form_tag :search_articles, method: :get, class: "navbar-search"  do %>
             <div class="input-prepend">
@@ -81,12 +102,13 @@
               <% end %>
             </div>
           <% end %>
-<!--             <form class="navbar-search pull-center" action="<%= search_articles_path %>" method = "get">
-              <input type="text" placeholder="Search" value="<%= params[:title] %>">
-            </form> -->
           <ul class="nav pull-right">
-            <li></li>
             <!-- <li><a href="#"></a></li> -->
+            <li style="padding-top:5px;">
+            <fb:like href="http://weekjp.com/" width="450" layout="button_count" show_faces="true" send="false"></fb:like>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://weekjp.com/" data-text="週末を近くの同期と楽しむサービス" data-lang="ja">ツイート</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </li>
             <li class="divider-vertical"></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
