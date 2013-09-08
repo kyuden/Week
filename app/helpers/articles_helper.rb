@@ -13,7 +13,7 @@ module ArticlesHelper
 
       elsif tday.sunday?
         proposed_date << tday
-        tday = next_next_saturday(tday)
+        tday = next_saturday(tday)
 
       else
         proposed_date << next_saturday(tday)
