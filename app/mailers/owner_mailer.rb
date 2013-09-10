@@ -1,10 +1,5 @@
 class OwnerMailer < ActionMailer::Base
   default :from => "Week<week.no.reply@gmail.com>"
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.owner_mailer.detail_notice.subject
-  #
   def detail_mail(entries)
     @entries = entries
 
