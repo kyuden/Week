@@ -1,0 +1,28 @@
+%hr
+  .action-users
+    .watch-users
+      %p
+        %span.label
+          気になっているユーザ
+      - if watch_entries.present?
+        - watch_entries.each do |entry|
+          .picture{:style => "float:left"}
+            = link_to (image_tag entry.watch.user.image, :class => "img-circle"), "#{entry.watch.user.url}", target: '_blank'
+            %br
+            .mutualfriends-name
+              = link_to entry.watch.user.name, "#{entry.watch.user.url}", target: "_blank"
+      - else
+        %br
+        %br
+    %br
+    .cart-users{:style => "clear:both"}
+      %p
+        %span.label.label-warning
+          参加するユーザ
+      - if cart_entries.present?
+        - cart_entries.each do |entry|
+          .picture{:style => "float:left"}
+            = link_to (image_tag entry.cart.user.image, :class => "img-circle"), "#{entry.cart.user.url}", target: '_blank'
+            %br
+            .mutualfriends-name
+              = link_to entry.cart.user.name, "#{entry.cart.user.url}", target: "_blank"

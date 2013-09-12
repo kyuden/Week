@@ -61,4 +61,7 @@
               = render article.comments
             = render 'comments/form', comment: article.comments.build, type: ''
     .span5
-      = render 'shared/mutualfriends', article_user: article.user
+      - unless current_user == article.user
+        = render 'shared/mutualfriends', article_user: article.user
+      - else
+        = render 'shared/action_user' , watch_entries: watch_entry(article), cart_entries: cart_entry(article)
