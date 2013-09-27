@@ -16,7 +16,8 @@ class Article < ActiveRecord::Base
                   :place_name,
                   :latitude,
                   :longitude,
-                  :gmaps
+                  :gmaps,
+                  :invited
 
   belongs_to :user
   has_many :comments, :dependent => :destroy

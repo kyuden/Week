@@ -147,6 +147,22 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def switch_invitation
+    @article = Article.find(params[:id])
+
+    unless @article.invited
+      @article.update_attributes(invited: true)
+    else
+      @article.update_attributes(invited: false)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+      format.json { head :no_content }
+    end
+  end
+
   def send_mail
     entries = Entry.where(article_id: params[:id], watch_id: nil)
     mail = OwnerMailer.detail_mail(entries)

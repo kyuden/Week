@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130827220310) do
+ActiveRecord::Schema.define(:version => 20130927133702) do
 
   create_table "articles", :force => true do |t|
     t.text     "title",                           :null => false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20130827220310) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
+    t.boolean  "invited",      :default => false
   end
 
   add_index "articles", ["id", "user_id"], :name => "index_articles_on_id_and_user_id"

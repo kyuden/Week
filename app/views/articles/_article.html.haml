@@ -21,38 +21,55 @@
               .article-body
                 %span= auto_link(simple_format(article.title), html: {target: "_blank"}, link: :urls)
             %ul.breadcrumb
-              - unless article.user == current_user
+              - if article.user == current_user
                 %li
-                  - unless article.watch_hold?(current_user)
-                    = link_to  entries_path(article_id: article, type: 'Watch'), :remote => true, method: :post, :class => "add-watch" do
-                      %i.icon-star
-                      ちょっと気になる
+                  - if article.invited
+                    = link_to switch_invitation_article_path(article), :remote => true, method: :post, loading: "loading", :class => "switch_invitation" do
+                      %i.icon-heart
+                      募集をやめる
                   - else
+                    = link_to switch_invitation_article_path(article), :remote => true, method: :post, loading: "loading", :class => "switch_invitation" do
+                      %i.icon-heart
+                      参加者を募集する
+                %span.divider /
+
+                %li#event-detail
+                  = link_to edit_article_path(article) do
+                    %i.icon-edit
+                    詳細を編集
+                %span.divider /
+
+              - else
+                %li
+                  - if article.watch_hold?(current_user)
                     = link_to entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true do
                       %i.icon-remove
                       気になるをやめる
+                  - else
+                    = link_to  entries_path(article_id: article, type: 'Watch'), :remote => true, method: :post, :class => "add-watch" do
+                      %i.icon-star
+                      ちょっと気になる
                   %span.divider /
-              %li
-                - unless article.cart_hold?(current_user)
-                  = link_to entries_path(article_id: article, type: 'Cart'), :remote => true, method: :post, loading: "loading", :class => "add-cart" do
-                    %i.icon-heart
-                    参加してみる
-                - else
-                  = link_to entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart" do
-                    %i.icon-remove
-                    参加をやめる
 
-                %span.divider /
+                - if article.invited
+                  %li
+                    - if article.cart_hold?(current_user)
+                      = link_to entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart" do
+                        %i.icon-remove
+                        参加をやめる
+                    - else
+                      = link_to entries_path(article_id: article, type: 'Cart'), :remote => true, method: :post, loading: "loading", :class => "add-cart" do
+                        %i.icon-heart
+                        参加してみる
+                  %span.divider /
+
+
               %li#event-detail
                 - if article.publish?
                   = link_to article_path(article) do
                     %i.icon-bullhorn
                     イベント詳細
                   %span.divider /
-                - if article.user == current_user
-                  = link_to edit_article_path(article) do
-                    %i.icon-edit
-                    詳細を編集
       .row-fluid
         .span2
         .span10

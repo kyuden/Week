@@ -9,6 +9,7 @@ Week::Application.routes.draw do
   resources :comments, only: %w[create]
   resources :articles do
     post "send_mail", on: :member
+    post "switch_invitation", on: :member, as: "switch_invitation"
     get  "my_index", on: :collection, as: "my_index"
     get  "search", on: :collection, as: "search"
   end
