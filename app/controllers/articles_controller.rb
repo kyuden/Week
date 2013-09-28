@@ -149,11 +149,18 @@ class ArticlesController < ApplicationController
 
   def switch_invitation
     @article = Article.find(params[:id])
+    @cart_entry_create = false
 
-    unless @article.invited
-      @article.update_attributes(invited: true)
-    else
+    if @article.invited
       @article.update_attributes(invited: false)
+    else
+      @article.update_attributes(invited: true)
+
+      unless cart_article_entry?(@article)
+        @entry = current_user.cart.entries.build(article_id: @article.id)
+        @entry.save
+        @cart_entry_create = true
+      end
     end
 
     respond_to do |format|

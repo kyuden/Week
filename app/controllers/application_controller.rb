@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  helper_method :current_user, :my_event_count, :current_graph, :watch_entry, :cart_entry
+  helper_method :current_user, :my_event_count, :current_graph, :watch_entry, :cart_entry, :cart_article_entry?
 
   private
   def check_logined
@@ -82,4 +82,12 @@ class ApplicationController < ActionController::Base
          )
          .includes([watch: :user])
   end
+
+  def cart_article_entry?(article)
+    Entry.where(
+        article_id: article.id,
+        cart_id:    article.user.cart.id
+      ).exists?
+  end
+
 end

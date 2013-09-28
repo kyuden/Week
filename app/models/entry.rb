@@ -15,4 +15,11 @@ class Entry < ActiveRecord::Base
     ).exists?
   end
 
+  def count_entry_cart
+    Entry.where(
+      article_id: self.article_id,
+      watch_id:   nil
+      ).length
+  end
+
 end

@@ -1,6 +1,6 @@
 class EntryObserver < ActiveRecord::Observer
   def after_create(entry)
-    deliver_notify_cart(entry) if entry.cart_id
+    deliver_notify_cart(entry) if entry.cart_id && entry.count_entry_cart != 1
   end
 
   private

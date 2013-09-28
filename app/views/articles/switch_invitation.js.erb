@@ -1,5 +1,10 @@
 <% if @article.invited  %>
   $("#article_<%= @article.id %> .switch_invitation").html('<%=  link_to switch_invitation_article_path(@article), :remote => true, method: :post, :data => { :confirm => '参加者の募集をやめていいですか？' }, loading: "loading", :class => "switch_invitation"  do %> <i class= "icon-heart"></i> 募集をやめる <% end %>')
+  <% if @cart_entry_create  %>
+    var cart_count = $("#cart-count").text();
+    cart_count =  parseInt(cart_count);
+    $("#cart-count").text(cart_count + 1 );
+  <% end %>
 <% else %>
   $("#article_<%= @article.id %> .switch_invitation").html('<%=  link_to switch_invitation_article_path(@article), :remote => true, method: :post, loading: "loading", :class => "switch_invitation"  do %> <i class= "icon-heart"></i> 参加者を募集する <% end %>')
 <% end %>
