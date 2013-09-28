@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
                                 about_time,
                                 title,
                                 publish,
+                                invited,
                                 user_id,
                                 comment_id")
                         .joins(:user)
@@ -25,6 +26,7 @@ class ArticlesController < ApplicationController
                                 about_time,
                                 title,
                                 publish,
+                                invited,
                                 user_id,
                                 comment_id")
                        .joins(:user)
@@ -39,6 +41,7 @@ class ArticlesController < ApplicationController
                                 about_time,
                                 title,
                                 publish,
+                                invited,
                                 user_id,
                                 comment_id")
                         .where(user_id: current_user)

@@ -26,7 +26,7 @@
                   - if article.invited
                     = link_to switch_invitation_article_path(article), :remote => true, method: :post, loading: "loading", :class => "switch_invitation" do
                       %i.icon-heart
-                      募集をやめる
+                      参加者の募集を止める
                   - else
                     = link_to switch_invitation_article_path(article), :remote => true, method: :post, loading: "loading", :class => "switch_invitation" do
                       %i.icon-heart
@@ -42,7 +42,7 @@
               - else
                 %li
                   - if article.watch_hold?(current_user)
-                    = link_to entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "remove-watch", :remote => true do
+                    = link_to entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :class => "remove-watch", :remote => true do
                       %i.icon-remove
                       気になるをやめる
                   - else
@@ -54,7 +54,7 @@
                 - if article.invited
                   %li
                     - if article.cart_hold?(current_user)
-                      = link_to entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => 'Are you sure?' },:remote => true, :class => "remove-cart" do
+                      = link_to entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => '参加をやめますか?' },:remote => true, :class => "remove-cart" do
                         %i.icon-remove
                         参加をやめる
                     - else

@@ -20,22 +20,38 @@
                 .article-body
                   %span= auto_link(simple_format(entry.article.title), html: {target: "_blank"}, link: :urls)
               %ul.breadcrumb
-                %li
-                  = link_to entry_path(entry, type: 'Cart' ), :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => true, :class => "remove-cart" do
-                    %i.icon-remove
-                    参加をやめる
+                - if entry.article.user == current_user
+                  %li
+                    - if entry.article.invited
+                      = link_to switch_invitation_article_path(entry.article), :remote => true, method: :post, loading: "loading", :class => "switch_invitation" do
+                        %i.icon-heart
+                        参加者の募集を止める
+                    - else
+                      = link_to switch_invitation_article_path(entry.article), :remote => true, method: :post, loading: "loading", :class => "switch_invitation" do
+                        %i.icon-heart
+                        参加者を募集する
                   %span.divider /
+
+                  %li#event-detail
+                    = link_to edit_article_path(entry.article) do
+                      %i.icon-edit
+                      詳細を編集
+                  %span.divider /
+
+                - else
+                  %li
+                    = link_to entry_path(entry, type: 'Cart' ), :method => :delete, :data => { :confirm => 'Are you sure?' }, :remote => true, :class => "remove-cart" do
+                      %i.icon-remove
+                      参加をやめる
+                  %span.divider /
+
                 %li#event-detail
                   - if entry.article.publish?
                     = link_to article_path(entry.article) do
                       %i.icon-bullhorn
                       イベント詳細
                     %span.divider /
-                  - if entry.article.user == current_user
-                    = link_to edit_article_path(entry.article) do
-                      %i.icon-edit
-                      詳細を編集
-                    %span.divider /
+
         .row-fluid
           .span2
           .span10
