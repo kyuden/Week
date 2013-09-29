@@ -10,7 +10,8 @@
         margin: 0;
     }
     .navbar .brand{
-      margin-left: 5px;
+      margin-left: 0px;
+      text-align:center;
     }
 
     .container-fluid{
