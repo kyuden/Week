@@ -13,11 +13,11 @@ class User < ActiveRecord::Base
   end
 
   def minimum_image
-    self.image.sub(/type=square/, "width=24&height=24&type=square")
+    self.image.sub(/type=square/, "width=25&height=25&type=square")
   end
 
   def small_image
-    self.image.sub(/type=square/, "width=43&height=43&type=square")
+    self.image.sub(/type=square/, "width=15&height=15")
   end
 
   def normal_image

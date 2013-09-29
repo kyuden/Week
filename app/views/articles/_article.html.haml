@@ -42,7 +42,7 @@
               - else
                 %li
                   - if article.watch_hold?(current_user)
-                    = link_to entry_path(article.watch_hold(current_user), type: 'Article'), :method => :delete, :class => "remove-watch", :remote => true do
+                    = link_to entry_path(article.watch_hold(current_user), type: 'Article'), confirm: '気になるをやめますか?', :class => "remove-watch", :remote => true, mathod: :delete do
                       %i.icon-remove
                       気になるをやめる
                   - else
@@ -54,7 +54,7 @@
                 - if article.invited
                   %li
                     - if article.cart_hold?(current_user)
-                      = link_to entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, :data => { :confirm => '参加をやめますか?' },:remote => true, :class => "remove-cart" do
+                      = link_to entry_path(article.cart_hold(current_user), type: 'Article' ), :method => :delete, confirm: '参加をやめますか?',:remote => true, :class => "remove-cart" do
                         %i.icon-remove
                         参加をやめる
                     - else
@@ -78,7 +78,8 @@
               = render article.comments
             = render 'comments/form', comment: article.comments.build, type: ''
     .span5
-      - unless current_user == article.user
-        = render 'shared/mutualfriends', article_user: article.user
-      - else
+      - if current_user == article.user
         = render 'shared/action_user' , watch_entries: watch_entry(article), cart_entries: cart_entry(article)
+      -else
+        = render 'shared/mutualfriends', article_user: article.user
+

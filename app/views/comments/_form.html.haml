@@ -2,7 +2,7 @@
   .row-fluid
     #comment-form{style: "border-top:1px outset #6a6a6a; padding: 1px; background-color: #808080; overflow: hidden;"}
       .span2
-        = image_tag current_user.small_image
+        = image_tag current_user.image
       .span10
         = f.input :body, label: false, placeholder: "コメントをする", input_html: { class: 'span12', rows: '1', style: "height:28px;" }, :validate => true
         = f.input :article_id, as: :hidden
