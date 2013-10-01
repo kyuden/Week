@@ -12,7 +12,7 @@
       .row-fluid
         .span2
           %div{:style => "margin-top:5px;"}
-            = link_to (image_tag article.user.image), "#{article.user.url}", target: '_blank'
+            = link_to (image_tag article.user.image, :class => "img-circle"), "#{article.user.url}", target: '_blank'
         .span10
           .article
             .article-title

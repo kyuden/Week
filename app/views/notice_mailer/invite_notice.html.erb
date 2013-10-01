@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Week</title>
+  <style type="text/css">
+  </style>
+</head>
+<body>
+  <div>
+    <table width="100%" cellpadding="10" cellspacing="0" style="margin:0;padding:0 0 30px 0;background-color:#DD4814">
+      <tbody>
+        <tr>
+          <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center">
+              <tbody>
+                <tr>
+                  <td style="color:#FFFFFF;font:normal 30px helvetica,sans-serif;text-align:left;padding:1px 0 10px 0" colspan="2">
+                    <strong>
+                      <a href="http://week-kyuden.herokuapp.com/" style="color:#FFFFFF;text-decoration:none;" >week</a>
+                    </strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border:1px dotted #d6d7d8;border-top:none;border-bottom:3px solid #d6d7d8;background-color:#ffffff" colspan="2">
+                    <table width="100%" cellpadding="30" cellspacing="0" border="0" align="center">
+                      <tbody>
+                        <tr>
+                          <td style="background-color:#ffffff;padding-bottom: 5px;" colspan="2">
+                            <p style="color:#456;font-family:helvetica,arial,sans-serif;font-size:20px;line-height:1.2;">
+                              <%= image_tag @entries.first.article.user.image %>
+                              <%= @entries.first.article.user.name %>
+                              さんが参加者を募集しています。
+                            </p>
+                            <p style="background-color:#dcdcdc">
+                             　<%= simple_format @entries.first.article.title %>
+                            </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="background-color:#ffffff" colspan="2">
+                            <p style="width:400px;background:#DD4814;font-family:helvetica,arial,sans-serif;font-size:18px;line-height:18px;text-align:center;margin:10px auto 20px auto;padding:14px 10px;border-radius:6px">
+                              <strong>
+                                <%= link_to "イベントを確認する" , watches_url, :style => "color:#fff;text-decoration:none;", :target => "_blank" %>
+                              </strong>
+                            </p>
+                            <br>
+                            <br>
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:0 0 0 0;width:100%;border-top:1px dotted #e1e2e3";>
+                                    <p style="color:#9ab;font:normal 11px helvetica,sans-serif;text-align:center">
+                                      <strong>© 2013 Masahiro Hisada All Rights Reserved</strong>
+                                      <br>
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

@@ -159,6 +159,8 @@ class ArticlesController < ApplicationController
     else
       @article.update_attributes(invited: true)
 
+      InviteMailWorker.perform_async(@article.id)
+
       unless cart_article_entry?(@article)
         @entry = current_user.cart.entries.build(article_id: @article.id)
         @entry.save

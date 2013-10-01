@@ -1,5 +1,6 @@
 class OwnerMailer < ActionMailer::Base
   default :from => "Week<week.no.reply@gmail.com>"
+
   def detail_mail(entries)
     @entries = entries
 
