@@ -1,12 +1,14 @@
 = content_tag_for :li, comment, :class => 'comment' do
   %hr{style: "margin:1px",size: "1"}
     .row-fluid{style: "padding: 0px; background-color: #f0f0f0;"}
-      .span2
-        %div
-          = link_to (image_tag comment.user.image), "#{comment.user.url}", target: "_blank"
-      .span10
-        .comment-user-name
-          %a
-            = link_to comment.user.name, "#{comment.user.url}", target: "_blank"
-        .comment-body
-          %span= auto_link(simple_format(comment.body), html: {target: "_blank"}, link: :urls)
+      .comment-pic
+        .span2
+          %div
+            = link_to (image_tag comment.user.image), "#{comment.user.url}", target: "_blank"
+      .comment-form
+        .span10
+          .comment-user-name
+            %a
+              = link_to comment.user.name, "#{comment.user.url}", target: "_blank"
+          .comment-body
+            %span= auto_link(simple_format(comment.body), html: {target: "_blank"}, link: :urls)

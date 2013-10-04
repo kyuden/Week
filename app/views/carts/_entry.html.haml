@@ -1,16 +1,17 @@
 - entries.each do |entry|
   = div_for entry.article, :class => "Article" do
     .row-fluid
-      .span7
+      .span7#line
         %hr#article-line
         .row-fluid
           .span12
+            %i.icon-calendar
             = entry.article.disp_day
             - if entry.article.about_time.present?
               %a= "#{entry.article.about_time}"
         .row-fluid
-          .span2
-            %div{:style => "margin-top:5px;"}
+          .auther-image
+            .span2
               = link_to (image_tag entry.article.user.image), "#{entry.article.user.url}", target: '_blank'
           .span10
             .article

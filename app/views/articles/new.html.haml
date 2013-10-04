@@ -1,24 +1,19 @@
 = simple_form_for @article, :validate => true, :remote => true do |f|
-  .alert-alert-error
-    - if @article.errors.any?
-      %ul
-        - @article.errors.messages.each do |key, value |
-          %li= value
+  %h5#new-meg 週末どんな事がしたい？
+  = f.input :title, placeholder: "ナイトサイクリングしたい", label: false, input_html: { class: 'span12', rows: '2'}, :validate => true
   .row-fluid
-    .span6
-      %strong 週末どんな事がしたい？
-  .row-fluid
-    .span6
-      = f.input :title, placeholder: "映画見た後、飲み会したら楽しそう", label: false, input_html: { class: 'span12', rows: '2'}, :validate => true
-    .span6
-      .row-fluid
-        #new-form.span5
-          = f.input :disp_day, collection: week_select, input_html: { class: 'selectpicker show-menu-arrow span12'}, label: false, include_blank: false
-        .span4
-          = f.input :about_time, collection: [["朝辺りから"],["昼辺りから"],["夕方辺りから"],["夜辺りから"]], prompt: "時間は後で決める", input_html: { class: 'selectpicker show-menu-arrow span12' }, label: false
-        .span2
-          .actions
-            = f.button :submit, value: '      投稿      ', disable_with: "Sending...", class: "btn btn-primary"
-        .span1
-
+    .select-day
+      .span2
+        %i.icon-calendar
+        日付
+      .span4
+        = f.input :disp_day, collection: week_select, input_html: { class: 'selectpicker show-menu-arrow span12'}, label: false, include_blank: false
+      .span2
+        %i.icon-time
+        時間
+      .span3
+        = f.input :about_time, collection: [["朝辺りから"],["昼辺りから"],["夕方辺りから"],["夜辺りから"]], prompt: "時間は後で決める", input_html: { class: 'selectpicker show-menu-arrow span12' }, label: false
+      .span1
+        .actions
+          = f.button :submit, value: '      投稿      ', disable_with: "Sending...", class: "btn btn-primary"
   = f.hidden_field :user_id, value: current_user.id

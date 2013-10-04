@@ -1,5 +1,7 @@
 %section#Article-new
-  = render template: 'articles/new'
+  .row-fluid
+    .span7#line
+      = render template: 'articles/new'
 %section#Article-index
   - if @articles.present?
     = render @articles

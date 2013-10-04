@@ -1,17 +1,19 @@
 = div_for article, :class => "Article" do
   .row-fluid
-    .span7
+    .span7#line
       %hr#article-line
       .row-fluid
         .span12
+          %i.icon-calendar
           = article.disp_day
           - if article.about_time.present?
             %a= "#{article.about_time}"
           - if current_user == article.user
-            = link_to '☓', article_path(article), :method => :delete, class: "close", data_dismiss: "modal", aria_hidden: true, :data => { :confirm => 'イベントを削除しますか？' }, remote: true
+            = link_to  article_path(article), :method => :delete, class: "close", data_dismiss: "modal", aria_hidden: true, :data => { :confirm => 'イベントを削除しますか？' }, remote: true do
+              %i.icon-remove-sign
       .row-fluid
-        .span2
-          %div{:style => "margin-top:5px;"}
+        .auther-image
+          .span2
             = link_to (image_tag article.user.image, :class => "img-circle"), "#{article.user.url}", target: '_blank'
         .span10
           .article
