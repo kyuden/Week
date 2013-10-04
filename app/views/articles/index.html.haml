@@ -2,6 +2,8 @@
   .row-fluid
     .span7#line
       = render template: 'articles/new'
+    .span5
+      = render "shared/hint_tag"
 %section#Article-index
   - if @articles.present?
     = render @articles
