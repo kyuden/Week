@@ -1,43 +1,22 @@
-= simple_form_for @user,:html => { :class => "form-signin"  }  do |f|
+%h1.form-signin-heading
+  Please sign up
+= simple_form_for @user do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name, label: "名前", input_html: {class: 'field span4'}, :input_html => { :value => @auth['info']['first_name'] }, required: true
+    = f.input :age,  label: "年齢", collection: 18..99, include_blank: false, input_html: {class: 'field span2'}
+    = f.label "活動地域"
+    = f.collection_select :location, @location, :code, :name
+    = f.input :email, label: "MobileMail", :input_html => { :value => @auth['info']['email'], class: 'field span4' }, required: true
 
-  %h1.form-signin-heading
-    Please sign up
-  %br
-  .row-fluid
-    .span2{:style => "float:left"}
-      名前　　　
-    .span10
-      = f.text_field :name, value: @auth['info']['first_name']
-  %br
-  .row-fluid{:style => "clear:left"}
-    .span2{:style => "float:left"}
-      年齢　　　
-    .span10
-      = f.select :age, (18..99)
-  %br
-  .row-fluid{:style => "clear:left"}
-    .span2{:style => "float:left"}
-      活動拠点　
-    .span10
-      - if current_user
-        = f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name, selected: current_user.location
-      - else
-        = f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name
-  %br
-  .row-fluid{:style => "clear:left"}
-    .span2{:style => "float:left"}
-      email　　　
-    .span10
-      - if current_user
-        = f.text_field :email, value: current_user.email
-      - else
-        = f.text_field :email, value: @auth['info']['email']
-  = f.hidden_field :uid, value: @auth['uid']
-  = f.hidden_field :gender, value: @auth['extra']['raw_info']['gender']
-  = f.hidden_field :access_token, value: @auth['credentials']['token']
-  = f.hidden_field :image, value: @auth['info']['image']
-  = f.hidden_field :url, value: @auth['info']['urls']['Facebook']
-  %hr
-  .span{:style => "float:right"}
-    = f.submit 'Sign Up', class: "btn btn-primary"
-  %br{:style => "clear:right"}
+    = f.input :uid,          :as => :hidden, :input_html => { :value => @auth['uid'] }
+    = f.input :gender,       :as => :hidden, :input_html => { :value => @auth['extra']['raw_info']['gender'] }
+    = f.input :access_token, :as => :hidden, :input_html => { :value => @auth['credentials']['token'] }
+    = f.input :image,        :as => :hidden, :input_html => { :value => @auth['info']['image'] }
+    = f.input :url,          :as => :hidden, :input_html => { :value => @auth['info']['urls']['Facebook'] }
+
+  .form-actions
+    .row-fluid
+      .span9
+      .span3
+        = f.button :submit, value: 'Sign Up', class: 'span9', class: "btn btn-primary btn-large"

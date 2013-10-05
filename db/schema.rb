@@ -75,16 +75,16 @@ ActiveRecord::Schema.define(:version => 20130927133702) do
 
   create_table "users", :force => true do |t|
     t.string   "uid",          :null => false
-    t.string   "access_token"
+    t.string   "access_token", :null => false
     t.string   "name",         :null => false
-    t.string   "email"
+    t.string   "email",        :null => false
     t.string   "gender"
     t.string   "image"
     t.string   "url"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "location"
-    t.integer  "age"
+    t.integer  "location",     :null => false
+    t.integer  "age",          :null => false
   end
 
   add_index "users", ["location", "age"], :name => "index_users_on_location_and_age"

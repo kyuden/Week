@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_one :cart
   has_one :watch
 
+  validates_presence_of :uid, :name, :age, :location, :email, :access_token
+
   include JpPrefecture
   jp_prefecture :prefecture_code
 

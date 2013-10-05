@@ -10,25 +10,29 @@
         .well
           .row-fluid
             .span2
+              %i.icon-user
               名前
             .span10
               = current_user.name
           %hr
           .row-fluid
             .span2
+              %i.icon-bar-chart
               年齢
             .span10
               = current_user.age
           %hr
           .row-fluid
             .span2
-              活動拠点　
+              %i.icon-map-marker
+              活動拠点
             .span10
               = current_user.location_name
           %hr
           .row-fluid
             .span2
-              email　　　
+              %i.icon-envelope-alt
+              MobileEmail　
             .span10
               = current_user.email
 = link_to 'ユーザ設定を編集する', edit_user_path(current_user)

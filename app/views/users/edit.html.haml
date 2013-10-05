@@ -6,35 +6,38 @@
     .tabbable
       .tab-content
         #A.tab-pane.active
-          .well
-            .row-fluid
-              .span2
-                名前
-              .span10
-                = f.text_field :name
-            .row-fluid
-              .span2
-                年齢
-              .span10
-                = f.select :age, (18..99)
-            .row-fluid
-              .span2
-                活動拠点　
-              .span10
-                = f.collection_select :location, JpPrefecture::Prefecture.all, :code, :name, selected: current_user.location
-            .row-fluid
-              .span2
-                email　　　
-              .span10
-                - if current_user.email
-                  = f.text_field :email, value: current_user.email
-                - else
-                  = f.text_field :email, value: @user.email
-  %hr
+          = f.error_notification
+          .form-inputs
+            .well
+              .row-fluid
+                .span2
+                  %i.icon-user
+                  名前
+                .span10
+                  = f.input :name, label: false
+              .row-fluid
+                .span2
+                  %i.icon-bar-chart
+                  年齢
+                .span10
+                  = f.input :age, label: false, collection: 18..99, include_blank: false
+              .row-fluid
+                .span2
+                  %i.icon-map-marker
+                  活動拠点　
+                .span10
+                  = f.collection_select :location, @location, :code, :name, selected: current_user.location, label: false
+              .row-fluid
+                .span2
+                  %i.icon-envelope-alt
+                  MobileEmail
+                .span10
+                  = f.input :email, label: false
+  .form-actions
     .row-fluid
       .span10
       .span2
-        = f.button :submit, value: 'UPdate', class: 'span9', class: "btn btn-primary"
+        = f.button :submit, value: '更新', class: 'span12', class: "btn btn-primary"
 = link_to 'ユーザ設定に戻る', @user
 \|
 = link_to 'homeに戻る', articles_path

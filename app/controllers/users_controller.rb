@@ -8,35 +8,37 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:auth] = nil
         current_cart
         current_watch
         format.html { redirect_to root_url, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render 'form'}
+        @auth = session[:auth]
+        @location = JpPrefecture::Prefecture.all
+        format.html { render 'users/_form', layout: "one_column_layout"}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
-    @user = User.select(" id,
-                          name,
-                          email,
-                          location,
-                          age,
-                          updated_at")
-                .find(params[:id])
+    @user = User.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
+        @location = JpPrefecture::Prefecture.all
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def edit
+    @location = JpPrefecture::Prefecture.all
   end
 
   private

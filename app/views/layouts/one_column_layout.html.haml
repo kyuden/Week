@@ -1,0 +1,55 @@
+!!!
+%html{:lang => "jp"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    / Le styles
+    %meta{:charset => "utf-8"}/
+    %title Week
+    = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag    "mobile"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = favicon_link_tag 'favicon.ico'
+    = javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+    = javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"
+    / HTML5 shim, for IE6-8 support of HTML5 elements
+    /[if lt IE 9]
+      <script src="../assets/js/html5shiv.js"></script>
+    :css
+      .container#main { padding-top: 60px; }
+      .media-heading > p {
+        { padding: 5px; }
+      }
+      body {
+        background-color:#f0f0f0;
+      }
+      #main {
+        background-color:#ffffff;
+      }
+  %body
+    / Nav-fixed-top
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          .row-field
+            %a.brand.span1
+              Week
+    #main.container
+      .row-field
+        .span3
+        .span6
+          = yield
+        .span3
+      %br
+      / Footer
+      %footer
+        .row-field
+          .span12
+            %hr
+            %p
+              \© 2013
+              \#{link_to  'Masahiro Hisada', 'http://internkyuden.tumblr.com/'}
+              All Rights Reserved

@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
       redirect_to session[:referer] || root_path
     else
       @user = User.new
+      session[:auth] = @auth
+      @location = JpPrefecture::Prefecture.all
       render 'users/_form', layout: "one_column_layout"
     end
   end
