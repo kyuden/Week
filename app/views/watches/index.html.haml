@@ -1,7 +1,11 @@
 %section#Watch-index
-  %h3 気になるイベント
+  %p#watch-tittle
+    %span.label
+      %i.icon-star.icon-2x
+        気になるイベント　
   = render 'watches/entry', entries: @entries
 %section#Watch-paginate
+
   .row-fluid
     .span2
     .span5

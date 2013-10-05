@@ -1,5 +1,8 @@
 %section#Cart-index
-  %h3 参加するイベント
+  %p#cart-tittle
+    %span.label
+      %i.icon-heart.icon-2x
+        参加するイベント　
   = render 'carts/entry', entries: @entries
 %section#Cart-paginate
   .row-fluid

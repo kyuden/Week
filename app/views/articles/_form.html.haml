@@ -25,37 +25,44 @@
           .well
             .row-fluid
               .span2
-                集合場所
+                %i.icon-compass
+                  集合場所
               .span10
                 = f.input :place_name, label: false ,placeholder: "例) 金時計前,　ビックマン前,　渋谷駅１番出口前", input_html: { class: 'field span10' }, :validate => {:presence => true}
             .row-fluid
               .span2
-                集合場所住所
+                %i.icon-map-marker
+                  集合場所住所
               .span10
                 = f.input :place_adress, label: false, input_html: { class: 'field span12' }, hint: "※ 住所を入力すると地図上に集合場所が出力されます",placeholder: "例) 愛知県名古屋市中村区名古屋駅1-1-4"
             .row-fluid
               .span2
-                集合時間
+                %i.icon-time
+                  集合時間
               .span10
                 = f.datetime_select :date , :discard_year => true, :discard_month => true, :discard_day => true
             %hr
             .row-fluid
               .span2
-                備考
+                %i.icon-pencil
+                  備考
               .span10
                 = f.input :description , input_html: { class: 'field span12', rows: '6'}, label: false
-            = f.label "公開設定"
+            %i.icon-volume-up
+              公開設定
             .row-fluid
               .span2
               .span1
                 = f.radio_button :publish, true
               .span9
-                上記の内容を公開する
+                %i.icon-bullhorn
+                  上記の内容を公開する
             .row-fluid
               .span2
               .span1
                 = f.radio_button :publish, false
               .span9
+                %i.icon-ban-circle
                 上記の内容を公開しない
           %br
 

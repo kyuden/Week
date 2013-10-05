@@ -1,4 +1,7 @@
-%h2 イベント詳細
+%p#watch-tittle
+  %span.label
+    %i.icon-bullhorn.icon-2x
+      イベント詳細　
 %hr
 .row-fluid
   .span1
@@ -16,43 +19,48 @@
   .span6
     .row-fluid
       .span3
-        開催日:
+        %i.icon-calendar
+          開催日:
       .span9
         = @article.disp_day
     %hr
     .row-fluid
       .span3
-        集合時間:
+        %i.icon-time
+          集合時間:
       .span9
-        - if @article.date
+        - if @article.date.present?
           = @article.date.strftime("%H:%M")
         - else
           未入力
     %hr
     .row-fluid
       .span3
-        集合場所:　
+        %i.icon-compass
+          集合場所:　
       .span9
-        - if @article.place_name
+        - if @article.place_name.present?
           = @article.place_name
         - else
           未入力
     %hr
     .row-fluid
       .span3
-        集合場所住所:
+        %i.icon-map-marker
+          集合場所住所:
       .span9
-        - if @article.place_adress
+        - if @article.place_adress.present?
           = @article.place_adress
         - else
           未入力(入力すると地図上に集合場所が出力されます)
     %hr
     .row-fluid
       .span12
-        備考:
-        .well.well-small
-          .article-body
-            = auto_link(simple_format(@article.description), html: {target: "_blank"}, link: :urls)
+        %i.icon-pencil
+          備考:
+          .well.well-small
+            .article-body
+              = auto_link(simple_format(@article.description), html: {target: "_blank"}, link: :urls)
   .span6
     = gmaps({"map_options" => {container_id: "connections_map_container", auto_zoom: false, auto_adjust: true, zoom: 15},"markers" => { data: @json}})
 -if @entries.present?
