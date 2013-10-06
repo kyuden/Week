@@ -1,5 +1,5 @@
 %hr
-  .mutualfriends
+  .mutualfriends.bold-font-h5
     - friends = current_graph.get_connections("me", "mutualfriends/#{article_user.uid}?fields=first_name,picture,link")
     - if friends.present?
       %a{style:"color: #B94A48;font-weight: bold"}= article_user.name
