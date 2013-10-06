@@ -1,14 +1,15 @@
 = simple_form_for @article, :validate => true, :remote => true do |f|
-  %h5#new-meg 週末どんな事がしたい？
+  %h5#new-meg
+    週末どんな事がしたい？
   = f.input :title, placeholder: "ナイトサイクリングしたい", label: false, input_html: { class: 'span12', rows: '2'}, :validate => true
   .row-fluid
     .select-day
-      .span2
+      .span2.white
         %i.icon-calendar
         日付
       .span4
         = f.input :disp_day, collection: week_select, input_html: { class: 'selectpicker show-menu-arrow span12'}, label: false, include_blank: false
-      .span2
+      .span2.white
         %i.icon-time
         時間
       .span3
