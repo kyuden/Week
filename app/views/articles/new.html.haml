@@ -7,14 +7,15 @@
       .span2.white
         %i.icon-calendar
         日付
-      .span4
+      .span3
         = f.input :disp_day, collection: week_select, input_html: { class: 'selectpicker show-menu-arrow span12'}, label: false, include_blank: false
       .span2.white
         %i.icon-time
         時間
       .span3
         = f.input :about_time, collection: [["朝辺りから"],["昼辺りから"],["夕方辺りから"],["夜辺りから"]], prompt: "時間は後で決める", input_html: { class: 'selectpicker show-menu-arrow span12' }, label: false
-      .span1
-        .actions
-          = f.button :submit, value: '      投稿      ', disable_with: "Sending...", class: "btn btn-primary"
+      .span2
+        .pull-right
+          .actions
+            = f.button :submit, value: '    投稿    ', disable_with: "Sending...", class: "btn btn-primary"
   = f.hidden_field :user_id, value: current_user.id

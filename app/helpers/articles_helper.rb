@@ -22,7 +22,7 @@ module ArticlesHelper
       end
     end
 
-    proposed_date.map{|t|[t.strftime("(#{%w(日 月 火 水 木 金 土)[t.wday]})%m月%d日/%Y年")]}
+    proposed_date.map{|t|[t.strftime("(#{%w(日 月 火 水 木 金 土)[t.wday]})%m月%d日/%y年")]}
   end
 
   def next_saturday(tday)
