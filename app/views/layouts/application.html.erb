@@ -126,7 +126,7 @@
       <div class="row-fluid">
         <!-- Sidebar -->
         <div class="span2 bs-docs-sidebar">
-          <div class= "bs-docs-sidenav  affix">
+          <div class= "bs-docs-sidenav  affix-top">
             <%= render template: 'users/sidebar' %>
           </div>
         </div>
@@ -177,15 +177,12 @@
         !function ($) {
           $(function(){
             var $window = $(window)
-            if( $window.width() >= 767 )
-            {
               $('.bs-docs-sidenav').affix({
                 offset: {
                   top: function () { return $window.width() <= 980 ? 290 : 210 }
                   , bottom: 270
                 }
               })
-            }
           })
         }(window.jQuery)
   </script>
