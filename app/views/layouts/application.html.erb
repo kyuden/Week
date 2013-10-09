@@ -82,6 +82,20 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
+      </div>
+    <script>
+      !function ($) {
+        $(function(){
+          var $window = $(window)
+          $('.bs-docs-sidenav').affix({
+            offset: {
+              top: function () { return $window.width() <= 980 ? 290 : 210 }
+              , bottom: 270
+            }
+          })
+        })
+      }(window.jQuery)
+    </script>
     <!-- Fav and touch icons -->
   </head>
 <body>
@@ -125,7 +139,7 @@
       <div class="row-fluid">
         <!-- Sidebar -->
         <div class="span2 bs-docs-sidebar">
-          <div class= "bs-docs-sidenav affix">
+          <div class= "bs-docs-sidenav" id="side">
             <%= render template: 'users/sidebar' %>
           </div>
         </div>
@@ -170,20 +184,7 @@
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </div>
     </div>
-  </div>
-    <script>
-      !function ($) {
-        $(function(){
-          var $window = $(window)
-          $('.bs-docs-sidenav').affix({
-            offset: {
-              top: function () { return $window.width() <= 980 ? 290 : 210 }
-              , bottom: 270
-            }
-          })
-        })
-      }(window.jQuery)
-    </script>
+
 <%= yield :scripts %>
 </body>
 </html>

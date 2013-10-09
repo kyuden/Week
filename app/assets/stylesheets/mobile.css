@@ -8,7 +8,8 @@
         width: 100%;
         padding:0;
         margin: 0;
-        background-color:#d6e4e5;
+        background-image:url("http://farm8.staticflickr.com/7446/10169762143_4267efd761_o.jpg");
+        background-repeat: repeat-y;
     }
     .navbar .brand {
         margin-left: 0px;
@@ -60,5 +61,8 @@
     }
     .select-day{
       margin-left:0px;
+    }
+    .row-fluid .comment-pic .span2{
+        width: auto;
     }
 }
