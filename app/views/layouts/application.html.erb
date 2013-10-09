@@ -89,36 +89,35 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-          <a class="brand span2" href="/articles/">
-            <img src="http://farm8.staticflickr.com/7380/10121558194_b2ab8d40bd_o.png">
-          </a>
-          <div class="nav-collapse collapse span10 ">
-            <%= form_tag :search_articles, method: :get, class: "navbar-search"  do %>
-              <div class="input-prepend">
-                <%= text_field_tag "query", params[:query], placeholder: "映画, 12日, (土)などでイベントを絞込み", :class => "span4" %>
-                <%= button_tag(:type => 'submit', :class => 'btn') do %>
-                  <i class="icon-search"></i>
-                <% end %>
-              </div>
-            <% end %>
-            <ul class="nav pull-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  memu
-                  <!--<%= image_tag current_user.image, :size => "30x30" %>-->
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "ユーザ設定", current_user  %></li>
-                  <li><%= link_to "logout", logout_path %></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- /nav-collapse collapse -->
-        </div>
+        <a class="brand span2" href="/articles/">
+          <img src="http://farm8.staticflickr.com/7380/10121558194_b2ab8d40bd_o.png">
+        </a>
+        <div class="nav-collapse collapse span10 ">
+          <%= form_tag :search_articles, method: :get, class: "navbar-search"  do %>
+            <div class="input-prepend">
+              <%= text_field_tag "query", params[:query], placeholder: "映画, 12日, (土)などでイベントを絞込み", :class => "span4" %>
+              <%= button_tag(:type => 'submit', :class => 'btn') do %>
+              <i class="icon-search"></i>
+              <% end %>
+            </div>
+          <% end %>
+          <ul class="nav pull-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                memu
+                <!--<%= image_tag current_user.image, :size => "30x30" %>-->
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "ユーザ設定", current_user  %></li>
+                <li><%= link_to "logout", logout_path %></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /nav-collapse collapse -->
       </div><!-- /container -->
     </div><!-- /navbar-inner -->
-  </div>
+  </div><!-- /navbar-inner -->
 
   <div id="wrap">
     <!-- Container -->
@@ -126,7 +125,7 @@
       <div class="row-fluid">
         <!-- Sidebar -->
         <div class="span2 bs-docs-sidebar">
-          <div class= "bs-docs-sidenav  affix-top">
+          <div class= "bs-docs-sidenav affix">
             <%= render template: 'users/sidebar' %>
           </div>
         </div>
@@ -172,21 +171,19 @@
       </div>
     </div>
   </div>
-
-  <script>
-        !function ($) {
-          $(function(){
-            var $window = $(window)
-              $('.bs-docs-sidenav').affix({
-                offset: {
-                  top: function () { return $window.width() <= 980 ? 290 : 210 }
-                  , bottom: 270
-                }
-              })
+    <script>
+      !function ($) {
+        $(function(){
+          var $window = $(window)
+          $('.bs-docs-sidenav').affix({
+            offset: {
+              top: function () { return $window.width() <= 980 ? 290 : 210 }
+              , bottom: 270
+            }
           })
-        }(window.jQuery)
-  </script>
-　
+        })
+      }(window.jQuery)
+    </script>
 <%= yield :scripts %>
 </body>
 </html>
