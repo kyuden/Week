@@ -65,4 +65,7 @@
     .row-fluid .comment-pic .span2{
         width: auto;
     }
-}
+    .article-show{
+        background-color:#F0F0F0;
+        padding: 5px;
+    }
